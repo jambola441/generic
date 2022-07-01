@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+Tamma+2:wght@800&family=Libre+Barcode+39+Extended+Text&family=Libre+Barcode+39+Text&family=Monofett&family=Redacted+Script:wght@300&family=Wendy+One&family=Zilla+Slab+Highlight&display=swap" rel="stylesheet">
+
+<html>
+	<style type="text/css">
+		body {
+			display: flex;
+			flex-direction: column;
+			width: 100%;
+			margin: 0;
+			color: white;
+		}
+		.singlediv {
+			margin: 10px;
+			height: 90vh;
+			background: #D2B48C;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			font-family: 'Baloo Tamma 2', cursive;
+			font-size: 12vw;
+		}
+		.div1 > .generic {
+			line-height: 60px;
+		}
+		.div1 > .tech {
+			font-size: 9vw;
+		}
+		div > .left {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			font-size: 10vw;
+		}
+		.div2 > .left {
+			font-size: 6vw;
+		}
+		div > .right {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			font-size: 10vw;
+		}
+		.doublediv {
+			margin: 0px 5px;
+			display: flex;
+			flex-direction: row;
+			justify-content: center;
+			flex-wrap: wrap;
+			align-items: center;
+		}
+		.doublediv > div {
+			background: #D2B48C;
+			height: 60vh;
+			flex: 1 0 0;
+			min-width: 400px;
+			margin: 0px 5px;
+			margin-bottom: 10px;
+		}
+		.div2 > .left {
+			font-family: 'Libre Barcode 39 Extended Text', cursive;
+		}
+		.div2 > .right {
+			font-family: 'Libre Barcode 39 Text', cursive;
+		}
+
+
+		.div3 > .left {
+			font-family: 'Monofett', cursive;
+		}
+		.div3 > .right {
+			font-family: 'Redacted Script', cursive;
+		}
+
+
+		.div4 > .left {
+			font-family: 'Wendy One', sans-serif;
+		}
+		.div4 > .right {
+			font-family: 'Zilla Slab Highlight', cursive;
+		}
+		.div5 {
+			margin-top: 0;
+			background-image: url("generic.svg");
+			background-position: center;
+			background-repeat: no-repeat;
+			background-size: cover;
+		}
+		.div6 {
+			margin-top: 0;
+			font-family: 'Baloo Tamma 2', cursive;
+			font-size: 6vw;
+		}
+
+	</style>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title></title>
+	</head>
+	<body >
+		<div class="div1 singlediv">
+			<span class="generic">generic</span>
+			<span class="tech">.tech</span>
+		</div>
+		<div class="div2 doublediv">
+			<div class="left">generic</div>
+			<div class="right">generic</div>
+		</div>
+		<div class="div3 doublediv">
+			<div class="left">generic</div>
+			<div class="right">generic</div>
+		</div>
+		<div class="div4 doublediv">
+			<div class="left">generic</div>
+			<div class="right">generic</div>
+		</div>
+		<div class="div5 singlediv">
+		</div>
+		<div class="div6 singlediv">
+			<span>I want to build an ____</span>
+		</div>
+
+	</body>
+</html>
