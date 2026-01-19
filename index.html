@@ -1,130 +1,468 @@
 <!DOCTYPE html>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Baloo+Tamma+2:wght@800&family=Libre+Barcode+39+Extended+Text&family=Libre+Barcode+39+Text&family=Monofett&family=Redacted+Script:wght@300&family=Wendy+One&family=Zilla+Slab+Highlight&display=swap" rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css2?family=Baloo+Tamma+2:wght@800&family=Libre+Barcode+39+Extended+Text&family=Libre+Barcode+39+Text&family=Monofett&family=Redacted+Script:wght@300&family=Wendy+One&family=Zilla+Slab+Highlight&display=swap"
+	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Google+Sans+Code:ital,wght@0,300..800;1,300..800&display=swap"
+	rel="stylesheet">
 
 <html>
-	<style type="text/css">
-		body {
-			display: flex;
-			flex-direction: column;
-			width: 100%;
-			margin: 0;
-			color: white;
-		}
+<style type="text/css">
+	body {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		margin: 0;
+		color: white;
+	}
+
+	.singlediv {
+		margin: 0 10px;
+		height: 70vh;
+		background: #D2B48C;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
+
+	@media (max-width: 600px) {
 		.singlediv {
-			margin: 10px;
-			height: 90vh;
-			background: #D2B48C;
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
-			align-items: center;
-			font-family: 'Baloo Tamma 2', cursive;
-			font-size: 12vw;
+			margin: 0;
 		}
-		.div1 > .generic {
-			line-height: 60px;
-		}
-		.div1 > .tech {
-			font-size: 9vw;
-		}
-		div > .left {
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
-			align-items: center;
-			font-size: 10vw;
-		}
-		.div2 > .left {
-			font-size: 6vw;
-		}
-		div > .right {
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
-			align-items: center;
-			font-size: 10vw;
-		}
+	}
+
+	.singlediv>span {
+		font-family: "Google Sans Code", monospace;
+		font-size: 10vw;
+	}
+
+	.singlediv>div {
+		width: 70%;
+		font-size: 20pt;
+		margin: 0;
+		text-align: left;
+		margin-top: 40px;
+	}
+
+	.div1>.generic {
+		line-height: 80px;
+	}
+
+	.div1>.tech {
+		font-size: 6vw;
+		text-align: right;
+		width: 40%;
+	}
+
+	div>.left {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		font-size: 10vw;
+	}
+
+	.div2>.left {
+		font-size: 6vw;
+	}
+
+	div>.right {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		font-size: 10vw;
+	}
+
+	.doublediv {
+		margin: 0px 5px;
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		flex-wrap: wrap;
+		align-items: center;
+	}
+
+	.doublediv>div {
+		background: #D2B48C;
+		height: 40vh;
+		flex: 1 0 0;
+		min-width: 400px;
+		margin: 0px 5px;
+	}
+
+	@media (max-width: 600px) {
 		.doublediv {
-			margin: 0px 5px;
+			margin: 0;
+		}
+		.doublediv>div {
+			height: 20vh;
+			margin: 0;
+		}
+	}
+
+	.div2>.left {
+		font-family: 'Libre Barcode 39 Extended Text', cursive;
+	}
+
+	.div2>.right {
+		font-family: 'Libre Barcode 39 Text', cursive;
+	}
+
+
+	.div3>.left {
+		font-family: 'Monofett', cursive;
+	}
+
+	.div3>.right {
+		font-family: 'Redacted Script', cursive;
+	}
+
+
+	.div4>.left {
+		font-family: 'Wendy One', sans-serif;
+	}
+
+	.div4>.right {
+		font-family: 'Zilla Slab Highlight', cursive;
+	}
+
+	.div5 {
+		margin-top: 0;
+		background-image: url("generic.svg");
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-attachment: fixed;
+	}
+
+	.div5>div {
+		font-family: 'Google Sans Code', monospace;
+		font-size: 3vw;
+		background: rgba(0, 0, 0, 0.5);
+		padding: 20px;
+		border-radius: 10px;
+		color: black;
+		background-color: white;
+	}
+
+	@media (max-width: 600px) {
+		.div5>div {
+			font-size: 20pt;
+		}
+	}
+
+	.div6 {
+		margin-top: 0;
+		font-family: 'Baloo Tamma 2', cursive;
+		font-size: 6vw;
+	}
+
+	.services {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 30px;
+		padding: 60px 20px;
+		background: #1a1a1a;
+		box-shadow: inset 0px 20px 10px rgba(0, 0, 0, 0.3);
+		border: 0;
+	}
+
+	.service-card {
+		background: #2d2d2d;
+		border-radius: 12px;
+		padding: 40px 30px;
+		flex: 1 1 300px;
+		max-width: 400px;
+		box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+		transition: transform 0.3s ease;
+	}
+
+	.service-card:hover {
+		transform: translateY(-5px);
+	}
+
+	.service-card h2 {
+		font-family: 'Google Sans Code', monospace;
+		font-size: 1.8rem;
+		margin-bottom: 20px;
+		color: #D2B48C;
+	}
+
+	.service-card ul {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+
+	.service-card li {
+		font-family: 'Google Sans Code', monospace;
+		font-size: 1rem;
+		line-height: 1.8;
+		margin-bottom: 12px;
+		padding-left: 20px;
+		position: relative;
+		color: #e0e0e0;
+	}
+
+	.service-card li:before {
+		content: "→";
+		position: absolute;
+		left: 0;
+		color: #D2B48C;
+	}
+
+	.singlediv.what-does-it-mean>span {
+		font-family: 'Baloo Tamma 2', cursive;
+		font-size: 4vw;
+		margin-bottom: 20px;
+		margin-right: auto;
+    	margin-left: 10%;
+    	width: 30%;
+	    line-height: 4vw;
+	}
+
+	.singlediv.what-does-it-mean>div {
+		width: 50%;
+		font-size: 18pt;
+		text-align: left;
+		margin-top: 20px;
+		font-family: 'Google Sans Code', monospace;
+		color: black;
+		background-color: white;
+	}
+
+	.singlediv.what-does-it-mean>div ul {
+		list-style-type: decimal-leading-zero;
+		margin: 20px;
+		margin-left: 40px;
+	}
+
+	.engagement-process {
+		background: #2d2d2d;
+		padding: 60px 20px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 40px;
+	}
+
+	.engagement-process h2 {
+		font-family: 'Baloo Tamma 2', cursive;
+		font-size: 4vw;
+		color: #D2B48C;
+		margin: 0 0 20px 0;
+		text-align: center;
+	}
+
+	.process-container {
+		display: flex;
+		flex-direction: column;
+		gap: 30px;
+		width: 100%;
+		max-width: 900px;
+	}
+
+	.process-step {
+		background: #1a1a1a;
+		border-left: 5px solid #D2B48C;
+		padding: 30px 40px;
+		border-radius: 8px;
+		transition: all 0.3s ease;
+		position: relative;
+	}
+
+	.process-step:hover {
+		transform: translateX(10px);
+		box-shadow: -10px 10px 20px rgba(0, 0, 0, 0.5);
+	}
+
+	.step-number {
+		font-family: 'Google Sans Code', monospace;
+		font-size: 1.2rem;
+		color: #D2B48C;
+		font-weight: bold;
+		margin-bottom: 10px;
+	}
+
+	.step-title {
+		font-family: 'Google Sans Code', monospace;
+		font-size: 1.8rem;
+		color: white;
+		margin-bottom: 15px;
+		font-weight: 600;
+	}
+
+	.step-description {
+		font-family: 'Google Sans Code', monospace;
+		font-size: 1.1rem;
+		color: #e0e0e0;
+		line-height: 1.6;
+	}
+
+	.step-price {
+		font-family: 'Google Sans Code', monospace;
+		font-size: 2rem;
+		color: #D2B48C;
+		font-weight: bold;
+		margin-top: 15px;
+	}
+
+	@media (max-width: 600px) {
+		.engagement-process h2 {
+			font-size: 24pt;
+		}
+
+		.process-step {
+			padding: 20px 25px;
+		}
+
+		.step-title {
+			font-size: 1.3rem;
+		}
+
+		.step-description {
+			font-size: 0.95rem;
+		}
+
+		.step-price {
+			font-size: 1.5rem;
+		}
+	}
+
+	@media (max-width: 600px) {
+		.singlediv.what-does-it-mean {
 			display: flex;
-			flex-direction: row;
+			flex-direction: column;
 			justify-content: center;
-			flex-wrap: wrap;
-			align-items: center;
-		}
-		.doublediv > div {
-			background: #D2B48C;
-			height: 60vh;
-			flex: 1 0 0;
-			min-width: 400px;
-			margin: 0px 5px;
-			margin-bottom: 10px;
-		}
-		.div2 > .left {
-			font-family: 'Libre Barcode 39 Extended Text', cursive;
-		}
-		.div2 > .right {
-			font-family: 'Libre Barcode 39 Text', cursive;
+			height: auto;
+			padding: 20px 0;
 		}
 
-
-		.div3 > .left {
-			font-family: 'Monofett', cursive;
-		}
-		.div3 > .right {
-			font-family: 'Redacted Script', cursive;
-		}
-
-
-		.div4 > .left {
-			font-family: 'Wendy One', sans-serif;
-		}
-		.div4 > .right {
-			font-family: 'Zilla Slab Highlight', cursive;
-		}
-		.div5 {
-			margin-top: 0;
-			background-image: url("generic.svg");
-			background-position: center;
-			background-repeat: no-repeat;
-			background-size: cover;
-		}
-		.div6 {
-			margin-top: 0;
-			font-family: 'Baloo Tamma 2', cursive;
-			font-size: 6vw;
+		.singlediv.what-does-it-mean>span {
+			font-size: 24pt;
+			width: 80%;
+			margin-left: auto;
+			line-height: 24pt;
+			padding: 10px;
 		}
 
-	</style>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title></title>
-	</head>
-	<body >
-		<div class="div1 singlediv">
-			<span class="generic">generic</span>
-			<span class="tech">.tech</span>
-		</div>
-		<div class="div2 doublediv">
-			<div class="left">generic</div>
-			<div class="right">generic</div>
-		</div>
-		<div class="div3 doublediv">
-			<div class="left">generic</div>
-			<div class="right">generic</div>
-		</div>
-		<div class="div4 doublediv">
-			<div class="left">generic</div>
-			<div class="right">generic</div>
-		</div>
-		<div class="div5 singlediv">
-		</div>
-		<div class="div6 singlediv">
-			<span>I want to build an ____</span>
-		</div>
+		.singlediv.what-does-it-mean>div {
+			width: 80%;
+			font-size: 12pt;
+		}
 
-	</body>
+		.singlediv.what-does-it-mean>div ul {
+			margin-left: 20px;
+		}
+	}
+</style>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+</head>
+
+<body>
+	<div class="div1 singlediv">
+		<span class="generic">generic</span>
+		<span class="tech">.tech</span>
+		<div>Engineering that scales <u>without drama.</u></div>
+	</div>
+	<div class="div2 doublediv">
+		<div class="left">generic</div>
+		<div class="right">generic</div>
+	</div>
+	<div class="div3 doublediv">
+		<div class="left">generic</div>
+		<div class="right">generic</div>
+	</div>
+	<div class="div4 doublediv">
+		<div class="left">generic</div>
+		<div class="right">generic</div>
+	</div>
+	<div class="div5 singlediv">
+		<div>
+			We help companies address architecture and code-health issues that kill change velocity and make bugs
+			impossible to fix.
+		</div>
+	</div>
+	<div class="services">
+		<div class="service-card">
+			<h2>System Design & Architecture Review</h2>
+			<ul>
+				<li>Distributed systems, data pipelines, microservices</li>
+				<li>Service boundaries and long-running workflows</li>
+				<li>Practical plans that don't stall execution</li>
+			</ul>
+		</div>
+		<div class="service-card">
+			<h2>Reliability & Performance</h2>
+			<ul>
+				<li>Latency, throughput, cost efficiency</li>
+				<li>DDOS Prevention</li>
+				<li>SLOs, alerts, ownership, operational maturity</li>
+			</ul>
+		</div>
+		<div class="service-card">
+			<h2>Code Health & Change Velocity</h2>
+			<ul>
+				<li>Reduce coupling and unclear abstractions</li>
+				<li>Testing and automation you can trust</li>
+				<li>Make bugs easier to localize, reproduce, and fix</li>
+			</ul>
+		</div>
+	</div>
+	<div class="singlediv what-does-it-mean">
+		<span>What does it mean to be <span style="font-family: 'Google Sans Code'">generic</span>?</span>
+		<div>
+			<ul>
+				<li>Simplify your data model and abstraction layer so that anybody on your team can understand it</li>
+				<li>Apply industry standards to your infrastructure to maximize performance and minimize costs</li>
+				<li>Create leverage that turns your 1x engineers into 10x engineers</li>
+			</ul>
+		</div>
+	</div>
+	<div class="engagement-process">
+		<h2>How We Work Together</h2>
+		<div class="process-container">
+			<div class="process-step">
+				<div class="step-number">STEP 01</div>
+				<div class="step-title">Discovery Call</div>
+				<div class="step-description">
+					Free 30-minute call to understand your challenges and see if we're a good fit. No pressure, just a conversation about your engineering needs.
+				</div>
+				<div class="step-price">FREE</div>
+			</div>
+			<div class="process-step">
+				<div class="step-number">STEP 02</div>
+				<div class="step-title">Comprehensive Audit</div>
+				<div class="step-description">
+					Deep dive into your infrastructure, codebase, and testing practices. You'll receive a detailed report with actionable recommendations and prioritized next steps.
+				</div>
+				<div class="step-price">$599</div>
+			</div>
+			<div class="process-step">
+				<div class="step-number">STEP 03</div>
+				<div class="step-title">Implementation Partnership</div>
+				<div class="step-description">
+					Based on the audit findings, we'll create a custom proposal with a clear timeline to address the identified issues. Work together week-by-week to transform your engineering practice.
+				</div>
+				<div class="step-price">$1,999/week</div>
+			</div>
+		</div>
+	</div>
+
+
+
+	<div class="div6 singlediv">
+
+	</div>
+
+</body>
+
 </html>
