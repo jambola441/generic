@@ -9,6 +9,10 @@
 
 <html>
 <style type="text/css">
+	html {
+  		scroll-behavior: smooth;
+	}
+
 	body {
 		display: flex;
 		flex-direction: column;
@@ -146,6 +150,11 @@
 		border-radius: 10px;
 		color: black;
 		background-color: white;
+	}
+
+
+	.div5 > a {
+		margin-top: 30px;
 	}
 
 	@media (max-width: 600px) {
@@ -359,6 +368,48 @@
 			margin-left: 20px;
 		}
 	}
+
+	.cta-button {
+		font-family: 'Google Sans Code', monospace;
+		font-size: 1.2rem;
+		font-weight: bold;
+		padding: 18px 40px;
+		border-radius: 8px;
+		transition: all 0.3s ease;
+		box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+		cursor: pointer;
+	}
+
+	.cta-button:hover {
+		transform: translateY(-2px);
+		box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);	
+	}
+	
+	.cta-button:active {
+		transform: translateY(0);
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+	}
+
+	.engagement-process > .cta-button {
+		color: #1a1a1a;
+		background: #D2B48C;
+		border: none;
+	}
+
+	.engagement-process > .cta-button:hover {
+		background: #E8D4B8;
+	}
+
+	footer {
+		background: #1a1a1a;
+		color: white;
+		text-align: center;
+		padding: 20px 0;
+		font-family: 'Google Sans Code', monospace;
+		font-size: 1rem;
+	}
+	
+
 </style>
 
 <head>
@@ -390,6 +441,9 @@
 			We help companies address architecture and code-health issues that kill change velocity and make bugs
 			impossible to fix.
 		</div>
+		<a href="#engagement">
+			<button class="cta-button">Learn about our process</button>
+		</a>
 	</div>
 	<div class="services">
 		<div class="service-card">
@@ -427,7 +481,7 @@
 			</ul>
 		</div>
 	</div>
-	<div class="engagement-process">
+	<div id="engagement" class="engagement-process">
 		<h2>How We Work Together</h2>
 		<div class="process-container">
 			<div class="process-step">
@@ -455,14 +509,11 @@
 				<div class="step-price">$1,999/week</div>
 			</div>
 		</div>
+		<button class="cta-button" onclick="window.open('https://calendly.com/pablo-melanadayton/30min', '_blank')">Book a Free Call</button>
 	</div>
-
-
-
-	<div class="div6 singlediv">
-
-	</div>
-
+	<footer>
+		generic.tech © 2026
+	</footer>
 </body>
 
 </html>
