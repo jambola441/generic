@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>AI for Small Business · Pricing · generic.tech</title>
+	<meta name="description"
+		content="Fixed-price packages to get Claude running inside your small business, set up by a Brooklyn engineer. Kickstart $2,500, Workflow Build $6,000, AI Operations from $12,000.">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link
+		href="https://fonts.googleapis.com/css2?family=Baloo+Tamma+2:wght@800&family=Google+Sans+Code:ital,wght@0,300..800;1,300..800&display=swap"
+		rel="stylesheet">
+	<style>
+		:root {
+			--tan: #D2B48C;
+			--tan-light: #E8D4B8;
+			--bg: #1a1a1a;
+			--bg-2: #2d2d2d;
+			--bg-3: #242424;
+			--text: #e0e0e0;
+			--muted: #a8a8a8;
+			--mono: 'Google Sans Code', monospace;
+			--display: 'Baloo Tamma 2', cursive;
+		}
+
+		* {
+			box-sizing: border-box;
+		}
+
+		html {
+			scroll-behavior: smooth;
+		}
+
+		body {
+			margin: 0;
+			background: var(--bg);
+			color: var(--text);
+			font-family: var(--mono);
+			line-height: 1.6;
+		}
+
+		a {
+			color: var(--tan);
+		}
+
+		.wrap {
+			max-width: 1100px;
+			margin: 0 auto;
+			padding: 0 20px;
+		}
+
+		/* nav */
+		nav {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			padding: 18px 20px;
+			max-width: 1100px;
+			margin: 0 auto;
+		}
+
+		nav .brand {
+			text-decoration: none;
+			color: white;
+			font-size: 1.3rem;
+			font-weight: 700;
+		}
+
+		nav .brand span {
+			color: var(--tan);
+		}
+
+		nav .links a {
+			color: var(--text);
+			text-decoration: none;
+			margin-left: 22px;
+			font-size: 0.95rem;
+		}
+
+		nav .links a:hover {
+			color: var(--tan);
+		}
+
+		/* hero */
+		.hero {
+			background: var(--tan);
+			color: #1a1a1a;
+			margin: 0 10px;
+			padding: 70px 20px 60px;
+		}
+
+		.hero .wrap {
+			display: flex;
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 22px;
+		}
+
+		.hero .kicker {
+			font-size: 0.95rem;
+			letter-spacing: 0.08em;
+			text-transform: uppercase;
+			font-weight: 700;
+		}
+
+		.hero h1 {
+			font-family: var(--display);
+			font-size: clamp(2rem, 5.5vw, 4.2rem);
+			line-height: 1.05;
+			margin: 0;
+			max-width: 900px;
+		}
+
+		.hero p {
+			font-size: 1.15rem;
+			max-width: 720px;
+			margin: 0;
+		}
+
+		.hero .actions {
+			display: flex;
+			gap: 14px;
+			flex-wrap: wrap;
+			align-items: center;
+		}
+
+		.cta-button {
+			font-family: var(--mono);
+			font-size: 1.05rem;
+			font-weight: bold;
+			padding: 16px 32px;
+			border-radius: 8px;
+			transition: all 0.3s ease;
+			box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+			cursor: pointer;
+			border: none;
+			text-decoration: none;
+			display: inline-block;
+		}
+
+		.cta-button:hover {
+			transform: translateY(-2px);
+			box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+		}
+
+		.cta-dark {
+			background: #1a1a1a;
+			color: var(--tan);
+		}
+
+		.cta-dark:hover {
+			background: #2d2d2d;
+		}
+
+		.cta-tan {
+			background: var(--tan);
+			color: #1a1a1a;
+		}
+
+		.cta-tan:hover {
+			background: var(--tan-light);
+		}
+
+		.cta-ghost {
+			background: transparent;
+			color: #1a1a1a;
+			box-shadow: none;
+			border: 2px solid #1a1a1a;
+		}
+
+		.cta-ghost:hover {
+			background: rgba(0, 0, 0, 0.08);
+			box-shadow: none;
+		}
+
+		/* sections */
+		section {
+			padding: 70px 0;
+		}
+
+		section h2 {
+			font-family: var(--display);
+			font-size: clamp(1.7rem, 3.5vw, 2.6rem);
+			color: var(--tan);
+			margin: 0 0 14px;
+			line-height: 1.1;
+		}
+
+		section .lede {
+			color: var(--muted);
+			max-width: 760px;
+			margin: 0 0 40px;
+			font-size: 1.05rem;
+		}
+
+		.alt {
+			background: var(--bg-2);
+			box-shadow: inset 0px 20px 10px rgba(0, 0, 0, 0.3);
+		}
+
+		/* for / not for */
+		.two-col {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			gap: 30px;
+		}
+
+		.card {
+			background: var(--bg-2);
+			border-radius: 12px;
+			padding: 32px;
+			box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+		}
+
+		.alt .card {
+			background: var(--bg);
+		}
+
+		.card h3 {
+			margin: 0 0 16px;
+			color: white;
+			font-size: 1.3rem;
+		}
+
+		.card ul {
+			list-style: none;
+			padding: 0;
+			margin: 0;
+		}
+
+		.card li {
+			padding-left: 22px;
+			position: relative;
+			margin-bottom: 10px;
+		}
+
+		.card li::before {
+			content: "→";
+			position: absolute;
+			left: 0;
+			color: var(--tan);
+		}
+
+		.card.not li::before {
+			content: "✕";
+			color: #c97b7b;
+		}
+
+		/* pricing */
+		.tiers {
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
+			gap: 24px;
+			align-items: stretch;
+		}
+
+		.tier {
+			background: var(--bg);
+			border-radius: 12px;
+			padding: 34px 28px;
+			display: flex;
+			flex-direction: column;
+			border: 1px solid #3a3a3a;
+			box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+			transition: transform 0.3s ease;
+			position: relative;
+		}
+
+		.tier:hover {
+			transform: translateY(-5px);
+		}
+
+		.tier.featured {
+			border: 2px solid var(--tan);
+		}
+
+		.tier .badge {
+			position: absolute;
+			top: -14px;
+			left: 28px;
+			background: var(--tan);
+			color: #1a1a1a;
+			font-size: 0.75rem;
+			font-weight: 700;
+			letter-spacing: 0.08em;
+			text-transform: uppercase;
+			padding: 5px 12px;
+			border-radius: 999px;
+		}
+
+		.tier .name {
+			font-size: 0.85rem;
+			letter-spacing: 0.1em;
+			text-transform: uppercase;
+			color: var(--muted);
+			margin-bottom: 8px;
+		}
+
+		.tier h3 {
+			margin: 0 0 6px;
+			font-size: 1.6rem;
+			color: white;
+		}
+
+		.tier .price {
+			font-size: 2.4rem;
+			font-weight: 700;
+			color: var(--tan);
+			line-height: 1;
+			margin: 14px 0 4px;
+		}
+
+		.tier .price small {
+			font-size: 1rem;
+			color: var(--muted);
+			font-weight: 400;
+		}
+
+		.tier .meta {
+			color: var(--muted);
+			font-size: 0.9rem;
+			margin-bottom: 18px;
+		}
+
+		.tier .outcome {
+			color: var(--text);
+			font-size: 1rem;
+			margin: 0 0 20px;
+			padding-bottom: 20px;
+			border-bottom: 1px solid #3a3a3a;
+		}
+
+		.tier .includes {
+			font-size: 0.8rem;
+			letter-spacing: 0.1em;
+			text-transform: uppercase;
+			color: var(--tan);
+			margin-bottom: 10px;
+		}
+
+		.tier ul {
+			list-style: none;
+			padding: 0;
+			margin: 0 0 24px;
+			flex: 1;
+		}
+
+		.tier li {
+			padding-left: 22px;
+			position: relative;
+			margin-bottom: 10px;
+			font-size: 0.95rem;
+		}
+
+		.tier li::before {
+			content: "→";
+			position: absolute;
+			left: 0;
+			color: var(--tan);
+		}
+
+		.tier .cta-button {
+			text-align: center;
+			width: 100%;
+		}
+
+		.tier .note {
+			font-size: 0.85rem;
+			color: var(--muted);
+			margin-top: 14px;
+			text-align: center;
+		}
+
+		/* retainer */
+		.retainer {
+			margin-top: 30px;
+			background: var(--bg);
+			border-radius: 12px;
+			border: 1px solid #3a3a3a;
+			padding: 30px 28px;
+			display: grid;
+			grid-template-columns: 1.3fr 1fr 1fr;
+			gap: 28px;
+			align-items: start;
+		}
+
+		.retainer h3 {
+			margin: 0 0 8px;
+			color: white;
+			font-size: 1.4rem;
+		}
+
+		.retainer p {
+			margin: 0;
+			color: var(--muted);
+			font-size: 0.95rem;
+		}
+
+		.retainer .plan .price {
+			color: var(--tan);
+			font-size: 1.6rem;
+			font-weight: 700;
+		}
+
+		.retainer .plan .price small {
+			font-size: 0.9rem;
+			color: var(--muted);
+			font-weight: 400;
+		}
+
+		.retainer .plan ul {
+			list-style: none;
+			padding: 0;
+			margin: 10px 0 0;
+		}
+
+		.retainer .plan li {
+			padding-left: 22px;
+			position: relative;
+			margin-bottom: 6px;
+			font-size: 0.92rem;
+		}
+
+		.retainer .plan li::before {
+			content: "→";
+			position: absolute;
+			left: 0;
+			color: var(--tan);
+		}
+
+		.terms {
+			margin-top: 30px;
+			color: var(--muted);
+			font-size: 0.9rem;
+			max-width: 900px;
+		}
+
+		.terms strong {
+			color: var(--text);
+		}
+
+		/* process */
+		.steps {
+			display: grid;
+			grid-template-columns: repeat(4, 1fr);
+			gap: 20px;
+		}
+
+		.step {
+			background: var(--bg-2);
+			border-left: 5px solid var(--tan);
+			padding: 24px;
+			border-radius: 8px;
+		}
+
+		.step .num {
+			color: var(--tan);
+			font-weight: bold;
+			font-size: 0.9rem;
+			margin-bottom: 8px;
+		}
+
+		.step h3 {
+			margin: 0 0 10px;
+			color: white;
+			font-size: 1.15rem;
+		}
+
+		.step p {
+			margin: 0;
+			font-size: 0.95rem;
+			color: var(--text);
+		}
+
+		/* guarantee */
+		.guarantee {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			gap: 30px;
+		}
+
+		.guarantee .card p {
+			margin: 0 0 12px;
+		}
+
+		.guarantee .card p:last-child {
+			margin: 0;
+		}
+
+		/* faq */
+		.faq details {
+			border-bottom: 1px solid #3a3a3a;
+			padding: 18px 0;
+		}
+
+		.faq summary {
+			cursor: pointer;
+			font-weight: 700;
+			color: white;
+			font-size: 1.05rem;
+			list-style: none;
+			display: flex;
+			justify-content: space-between;
+			gap: 20px;
+		}
+
+		.faq summary::-webkit-details-marker {
+			display: none;
+		}
+
+		.faq summary::after {
+			content: "+";
+			color: var(--tan);
+			font-size: 1.4rem;
+			line-height: 1;
+		}
+
+		.faq details[open] summary::after {
+			content: "−";
+		}
+
+		.faq details p {
+			margin: 14px 0 0;
+			color: var(--text);
+			max-width: 820px;
+		}
+
+		/* final cta */
+		.final {
+			background: var(--tan);
+			color: #1a1a1a;
+			margin: 0 10px;
+			text-align: center;
+			padding: 70px 20px;
+		}
+
+		.final h2 {
+			color: #1a1a1a;
+			font-family: var(--display);
+			font-size: clamp(1.8rem, 4vw, 3rem);
+			margin: 0 0 14px;
+		}
+
+		.final p {
+			max-width: 640px;
+			margin: 0 auto 28px;
+			font-size: 1.05rem;
+		}
+
+		.final .actions {
+			display: flex;
+			gap: 14px;
+			justify-content: center;
+			flex-wrap: wrap;
+		}
+
+		footer {
+			background: var(--bg);
+			color: white;
+			text-align: center;
+			padding: 28px 20px;
+			font-size: 0.95rem;
+		}
+
+		footer a {
+			color: var(--muted);
+			text-decoration: none;
+			margin: 0 10px;
+		}
+
+		footer a:hover {
+			color: var(--tan);
+		}
+
+		@media (max-width: 900px) {
+			.tiers {
+				grid-template-columns: 1fr;
+			}
+
+			.steps {
+				grid-template-columns: 1fr 1fr;
+			}
+
+			.retainer {
+				grid-template-columns: 1fr;
+			}
+		}
+
+		@media (max-width: 600px) {
+			.hero,
+			.final {
+				margin: 0;
+			}
+
+			section {
+				padding: 50px 0;
+			}
+
+			.two-col,
+			.steps,
+			.guarantee {
+				grid-template-columns: 1fr;
+			}
+
+			nav .links a {
+				margin-left: 14px;
+				font-size: 0.85rem;
+			}
+
+			.cta-button {
+				width: 100%;
+				text-align: center;
+			}
+		}
+	</style>
+</head>
+
+<body>
+	<nav>
+		<a class="brand" href="/">generic<span>.tech</span></a>
+		<div class="links">
+			<a href="/#engagement">Engineering</a>
+			<a href="#pricing">Pricing</a>
+			<a href="#faq">FAQ</a>
+		</div>
+	</nav>
+
+	<div class="hero">
+		<div class="wrap">
+			<div class="kicker">AI for small business · Brooklyn, NYC</div>
+			<h1>Claude, running inside your business. Set up by an engineer, in weeks.</h1>
+			<p>Not a workshop that leaves everyone inspired and nothing changed. We set up your team's Claude account the
+				safe way, load it with your SOPs, pricing and voice, train your people on their own work, and build the
+				first automation end to end. You keep everything.</p>
+			<div class="actions">
+				<a class="cta-button cta-dark" href="https://calendly.com/pablo-melanadayton/30min" target="_blank"
+					rel="noopener">Book a free 20-min fit call</a>
+				<a class="cta-button cta-ghost" href="#pricing">See the packages</a>
+			</div>
+		</div>
+	</div>
+
+	<section>
+		<div class="wrap">
+			<h2>Who this is for</h2>
+			<p class="lede">Most small businesses already use ChatGPT or Claude. Almost none have it running across the
+				team, on real workflows, with rules about what goes in. That gap is the work.</p>
+			<div class="two-col">
+				<div class="card">
+					<h3>A good fit</h3>
+					<ul>
+						<li>NYC businesses with 2 to 50 people</li>
+						<li>An owner who already uses AI personally and wants the team to catch up</li>
+						<li>At least one repetitive, text-heavy workflow: proposals and quotes, customer email, intake,
+							bookkeeping prep, scheduling, reviews, content</li>
+						<li>Law, accounting and insurance firms, real estate brokerages, contractors and home services,
+							agencies, e-commerce and specialty retail, restaurant groups</li>
+						<li>You want someone who can actually wire it into QuickBooks, your CRM or your booking system,
+							not just run a class</li>
+					</ul>
+				</div>
+				<div class="card not">
+					<h3>Not a fit (yet)</h3>
+					<ul>
+						<li>Medical and dental offices handling patient data on a standard Claude Team plan. HIPAA needs a
+							different setup. We can scope it, but it is not one of the packages below.</li>
+						<li>Anyone who wants AI to move money or send to customers with no human approval</li>
+						<li>A chatbot for your website. Different product, and we will point you to someone good.</li>
+						<li>Solo operators. Start with Anthropic's free Claude for Small Business workshops and come back
+							when you hire.</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="alt" id="pricing">
+		<div class="wrap">
+			<h2>Packages</h2>
+			<p class="lede">Fixed price, fixed scope, written down before we start. Hour caps are in the agreement as
+				protection for both of us, not as the thing you are buying. You are buying a working result.</p>
+
+			<div class="tiers">
+				<div class="tier">
+					<div class="name">Tier 1</div>
+					<h3>Kickstart</h3>
+					<div class="price">$2,500</div>
+					<div class="meta">2 weeks · up to 10 hours</div>
+					<p class="outcome">Your team is using Claude daily on real work, safely, and you have a priced plan
+						for what to build next.</p>
+					<div class="includes">Includes</div>
+					<ul>
+						<li>Half-day workflow audit, on site in NYC or remote</li>
+						<li>Claude Team account set up right: training on your data off, SSO, spend caps, approved
+							connectors only</li>
+						<li>3 shared Claude Projects loaded with your SOPs, pricing, templates and voice</li>
+						<li>Claude for Small Business plugin installed, 2 workflows tuned to you</li>
+						<li>One 90-minute hands-on team session on your own tasks, recorded</li>
+						<li>One-page AI use policy: what goes in, what doesn't, who reviews</li>
+						<li>Written opportunity list: 5 to 7 workflows ranked by hours saved</li>
+						<li>30 days of email support</li>
+					</ul>
+					<a class="cta-button cta-tan" href="https://calendly.com/pablo-melanadayton/30min" target="_blank"
+						rel="noopener">Start with Kickstart</a>
+					<div class="note">100% credited toward a Workflow Build within 60 days</div>
+				</div>
+
+				<div class="tier featured">
+					<div class="badge">Most businesses pick this</div>
+					<div class="name">Tier 2</div>
+					<h3>Workflow Build</h3>
+					<div class="price">$6,000</div>
+					<div class="meta">4 weeks · up to 25 hours</div>
+					<p class="outcome">One workflow that used to eat hours every week now runs on Claude, end to end, on
+						your real data, with a person approving the output.</p>
+					<div class="includes">Everything in Kickstart, plus</div>
+					<ul>
+						<li>One automation live: inbound lead to CRM plus drafted reply, call notes to priced proposal,
+							weekly invoice chaser, review responses for approval, inbox triage, or intake summaries</li>
+						<li>Built on your own accounts and API key. You own it when we leave.</li>
+						<li>5 to 8 custom Claude Skills published to your team so the output is consistent</li>
+						<li>Second training session for the people who own the workflow, plus a written runbook</li>
+						<li>Before and after measurement: hours per week, at start and at handoff</li>
+						<li>60 days of support and tuning after go-live</li>
+					</ul>
+					<a class="cta-button cta-tan" href="https://calendly.com/pablo-melanadayton/30min" target="_blank"
+						rel="noopener">Talk about a Build</a>
+					<div class="note">Live within 60 days or we keep working at no charge</div>
+				</div>
+
+				<div class="tier">
+					<div class="name">Tier 3</div>
+					<h3>AI Operations</h3>
+					<div class="price">from $12,000</div>
+					<div class="meta">8 weeks · up to 50 hours</div>
+					<p class="outcome">Three workflows running, one of them unattended, wired into the system your
+						business actually lives in. Whole team trained, adoption measured.</p>
+					<div class="includes">Everything in Workflow Build, plus</div>
+					<ul>
+						<li>Three workflows live, including a scheduled agent that runs on its own: nightly inbox triage
+							to a Slack digest, weekly QuickBooks anomaly report, Monday pipeline brief</li>
+						<li>One custom integration into a system with no off-the-shelf connector: your CRM, booking or
+							dispatch tool, or an internal database</li>
+						<li>A live dashboard over your sales or finance data where it helps</li>
+						<li>20 to 50 real examples per workflow used to tune and prove accuracy</li>
+						<li>Company-wide rollout, champions named, adoption measured start, mid and end</li>
+						<li>90 days of support with monthly check-in calls</li>
+					</ul>
+					<a class="cta-button cta-tan" href="https://calendly.com/pablo-melanadayton/30min" target="_blank"
+						rel="noopener">Scope an Operations project</a>
+					<div class="note">Fixed quote in writing after the Kickstart audit</div>
+				</div>
+			</div>
+
+			<div class="retainer">
+				<div>
+					<h3>Keep It Running</h3>
+					<p>After a Build or Operations project. Models change, connectors change, your staff changes. This
+						keeps what we built alive and keeps you current on what is worth adopting. Cancel any month.</p>
+				</div>
+				<div class="plan">
+					<div class="price">$750<small>/month · up to 3 hours</small></div>
+					<ul>
+						<li>Monthly office hour with your team</li>
+						<li>Prompt, Skill and automation tuning</li>
+						<li>Fixes when Anthropic or a connector changes something</li>
+						<li>Email support</li>
+					</ul>
+				</div>
+				<div class="plan">
+					<div class="price">$1,500<small>/month · up to 8 hours</small></div>
+					<ul>
+						<li>Everything in the $750 plan</li>
+						<li>One small new workflow or integration change per month</li>
+						<li>Quarterly review of Claude spend and new features</li>
+					</ul>
+				</div>
+			</div>
+
+			<p class="terms"><strong>Terms, in plain English.</strong> 50% to start, balance on handoff. Anything not
+				listed above is a written change order, quoted before the work begins. You pay Anthropic and any other
+				tools directly; for most clients that is Claude Team at $25 per seat per month and little else. You own
+				every Project, Skill, prompt, automation and document we produce. Human review before anything is sent,
+				posted or paid stays on. We guarantee delivery of what is scoped. We do not guarantee business results,
+				and anyone who does is guessing.</p>
+		</div>
+	</section>
+
+	<section>
+		<div class="wrap">
+			<h2>How it works</h2>
+			<p class="lede">Short engagements with a clear end. You can stop after any step.</p>
+			<div class="steps">
+				<div class="step">
+					<div class="num">STEP 01</div>
+					<h3>Fit call</h3>
+					<p>Free, 20 minutes. What you do, who is on the team, which workflow hurts most. You get a written
+						proposal within one business day.</p>
+				</div>
+				<div class="step">
+					<div class="num">STEP 02</div>
+					<h3>Kickstart</h3>
+					<p>Two weeks. Audit, safe account setup, Projects loaded, team trained, policy written, opportunities
+						ranked and priced.</p>
+				</div>
+				<div class="step">
+					<div class="num">STEP 03</div>
+					<h3>Build</h3>
+					<p>Four to eight weeks. One to three workflows go live on your real data, measured before and after,
+						with your people approving the output.</p>
+				</div>
+				<div class="step">
+					<div class="num">STEP 04</div>
+					<h3>Keep it running</h3>
+					<p>Optional monthly retainer so what we built stays alive, and you hear about new capabilities when
+						they are worth your time.</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="alt">
+		<div class="wrap">
+			<h2>Data, accuracy, and what we promise</h2>
+			<p class="lede">The two questions every owner asks first. Here are the straight answers.</p>
+			<div class="guarantee">
+				<div class="card">
+					<h3>Your data</h3>
+					<p>We set clients up on Claude Team or Enterprise, not personal accounts. On those plans Anthropic
+						does not train on your data, and you get admin control over which tools Claude can reach.</p>
+					<p>Every engagement includes a one-page policy that says what goes into Claude, what never does,
+						and who checks before anything leaves the building. Connectors start read-only and get write
+						access only when you say so.</p>
+					<p>Patient health information needs a different setup. Ask, and we will tell you honestly whether
+						we are the right fit.</p>
+				</div>
+				<div class="card">
+					<h3>Our guarantee</h3>
+					<p>On Workflow Build and AI Operations: if the scoped workflow is not live within 60 days of
+						kickoff, we keep working at no charge until it is. Anything broken in what we delivered is fixed
+						free for 90 days.</p>
+					<p>Claude can be wrong. We build every workflow so a person approves the output before it reaches a
+						customer, a ledger or a bank. We will not guarantee hours saved or revenue gained. We will show
+						you the before and after numbers and let you decide.</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="faq">
+		<div class="wrap">
+			<h2>Questions owners actually ask</h2>
+			<div class="faq">
+				<details>
+					<summary>Do we need anyone technical on staff?</summary>
+					<p>No. Everything we set up is managed through Claude's own interface. The only person who needs to
+						write code is us, and we leave written runbooks so a non-technical owner can see what runs where.
+					</p>
+				</details>
+				<details>
+					<summary>What will we pay Anthropic, and what else do we need to buy?</summary>
+					<p>Claude Team is $25 per seat per month, two seats minimum, billed to you directly. The plan
+						includes monthly API credits that cover the cost of most small-business automations. Occasionally
+						a client already pays for Zapier or Make and we use it. Most clients end up under $100 a month in
+						tools, total.</p>
+				</details>
+				<details>
+					<summary>Why fixed prices instead of hourly?</summary>
+					<p>Because you are buying a working result, not our time. Hourly billing rewards slowness and
+						makes you nervous about every email. The hour caps in the agreement exist so that scope stays
+						honest on both sides. If the scope grows, we write a change order first.</p>
+				</details>
+				<details>
+					<summary>What if it turns out AI is not a good fit for us?</summary>
+					<p>Then the Kickstart report says so, in writing, with reasons, and you have spent $2,500 to avoid
+						spending more. It happens. A business that runs on phone calls and handshakes with no written
+						records has less for Claude to work with, and we will tell you that.</p>
+				</details>
+				<details>
+					<summary>How is this different from just using ChatGPT?</summary>
+					<p>Your team probably already does. The difference is a shared setup with your actual documents
+						and voice loaded in, a policy for what goes in, automations that run without someone typing a
+						prompt, and connections to the tools you already pay for: Google Workspace, QuickBooks, HubSpot,
+						Shopify, Square, Slack and so on. That is the part owners don't have time to figure out alone.</p>
+				</details>
+				<details>
+					<summary>Who owns the prompts, Projects and automations afterward?</summary>
+					<p>You do, outright, on your own accounts. We keep the right to reuse our own general templates and
+						methods with other clients, but nothing specific to your business.</p>
+				</details>
+				<details>
+					<summary>Can you teach us Claude Code or help our developer?</summary>
+					<p>Yes. generic.tech is an engineering consultancy first. If you have a developer or a codebase,
+						that is a different conversation and usually a better-priced one for you. See our <a
+							href="/#engagement">engineering engagements</a>.</p>
+				</details>
+				<details>
+					<summary>Can we get help paying for this?</summary>
+					<p>NYC Small Business Services runs a Customized Training Grant that can reimburse a portion of
+						employee training costs for NYC businesses with five or more trainees. The training parts of
+						Kickstart and Workflow Build may qualify. We will help you ask.</p>
+				</details>
+			</div>
+		</div>
+	</section>
+
+	<div class="final">
+		<h2>Bring the one task that eats your week.</h2>
+		<p>Twenty minutes. If we are not the right fit we will say so and point you somewhere useful, including
+			Anthropic's free workshops.</p>
+		<div class="actions">
+			<a class="cta-button cta-dark" href="https://calendly.com/pablo-melanadayton/30min" target="_blank"
+				rel="noopener">Book a free fit call</a>
+			<a class="cta-button cta-ghost"
+				href="mailto:hello@generic.tech?subject=AI%20brief&body=What%20does%20your%20business%20do%3F%0A%0AHow%20many%20people%20are%20on%20the%20team%3F%0A%0AWhich%20workflow%20eats%20your%20week%3F%0A%0AWhich%20tools%20do%20you%20already%20pay%20for%3F">Prefer
+				email? Send a 4-line brief</a>
+		</div>
+	</div>
+
+	<footer>
+		generic.tech © 2026 · Brooklyn, NY
+		<div style="margin-top:8px"><a href="/">Engineering consulting</a> · <a href="#pricing">AI for small
+				business</a></div>
+	</footer>
+</body>
+
+</html>

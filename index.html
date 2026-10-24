@@ -194,6 +194,35 @@
 		transform: translateY(-5px);
 	}
 
+	.topbar {
+		display: block;
+		background: #1a1a1a;
+		color: #D2B48C;
+		font-family: 'Google Sans Code', monospace;
+		font-size: 0.95rem;
+		text-align: center;
+		padding: 12px 16px;
+		text-decoration: none;
+	}
+
+	.topbar:hover {
+		color: #E8D4B8;
+		text-decoration: underline;
+	}
+
+	.card-link {
+		display: inline-block;
+		margin-top: 18px;
+		color: #D2B48C;
+		font-family: 'Google Sans Code', monospace;
+		font-weight: bold;
+		text-decoration: none;
+	}
+
+	.card-link:hover {
+		text-decoration: underline;
+	}
+
 	.service-card h2 {
 		font-family: 'Google Sans Code', monospace;
 		font-size: 1.8rem;
@@ -419,6 +448,7 @@
 </head>
 
 <body>
+	<a class="topbar" href="/pricing">New: AI for small business &rarr; fixed-price Claude setup, training and automation. See packages</a>
 	<div class="div1 singlediv">
 		<span class="generic">generic</span>
 		<span class="tech">.tech</span>
@@ -470,6 +500,15 @@
 				<li>Make bugs easier to localize, reproduce, and fix</li>
 			</ul>
 		</div>
+		<div class="service-card ai-card">
+			<h2>AI for Small Business</h2>
+			<ul>
+				<li>Claude set up safely for your whole team</li>
+				<li>Training on your real work, not slides</li>
+				<li>Automations wired into QuickBooks, your CRM, your inbox</li>
+			</ul>
+			<a class="card-link" href="/pricing">Fixed-price packages from $2,500 &rarr;</a>
+		</div>
 	</div>
 	<div class="singlediv what-does-it-mean">
 		<span>What does it mean to be <span style="font-family: 'Google Sans Code'">generic</span>?</span>
@@ -512,7 +551,7 @@
 		<button class="cta-button" onclick="window.open('https://calendly.com/pablo-melanadayton/30min', '_blank')">Book a Free Call</button>
 	</div>
 	<footer>
-		generic.tech © 2026
+		generic.tech © 2026 · <a href="/pricing" style="color:#D2B48C;text-decoration:none">AI for small business</a>
 	</footer>
 </body>
 
