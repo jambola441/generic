@@ -239,6 +239,12 @@ li {
 	gap: 48px;
 }
 
+.cols-3 {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 32px;
+}
+
 .cols-4 {
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
@@ -388,7 +394,8 @@ li {
 
 /* generic strip (home) */
 .strip {
-	padding: 22px 0;
+	padding: 26px 0;
+	background: var(--white);
 	border-bottom: 1px solid #e3ddd3;
 }
 
@@ -439,34 +446,6 @@ li {
 	font-size: 1.6rem;
 }
 
-/* artwork band (home) */
-.artwork {
-	background: var(--sand) url("generic.svg") center / cover no-repeat;
-	padding: 88px 0;
-}
-
-.artwork .panel {
-	background: var(--white);
-	color: var(--ink);
-	padding: 40px 44px;
-	max-width: 760px;
-	border: 2px solid var(--ink);
-}
-
-.artwork .panel h2 {
-	margin-bottom: 20px;
-}
-
-.artwork .panel ol {
-	margin: 0;
-	padding-left: 26px;
-	font-size: 1.08rem;
-}
-
-.artwork .panel li {
-	margin: 10px 0;
-}
-
 /* footer */
 footer {
 	padding: 28px 0;
@@ -493,6 +472,7 @@ footer a {
 		gap: 22px;
 	}
 
+	.cols-3,
 	.cols-4 {
 		grid-template-columns: 1fr 1fr;
 	}
@@ -512,6 +492,7 @@ footer a {
 	}
 
 	.cols-2,
+	.cols-3,
 	.cols-4 {
 		grid-template-columns: 1fr;
 		gap: 32px;
@@ -530,7 +511,4 @@ footer a {
 		justify-content: center;
 	}
 
-	.artwork .panel {
-		padding: 28px 22px;
-	}
 }
