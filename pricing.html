@@ -10,19 +10,23 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link
-		href="https://fonts.googleapis.com/css2?family=Baloo+Tamma+2:wght@800&family=Google+Sans+Code:ital,wght@0,300..800;1,300..800&display=swap"
+		href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Inter:wght@400;500;600&family=Google+Sans+Code:wght@400;500;700&display=swap"
 		rel="stylesheet">
 	<style>
 		:root {
 			--tan: #D2B48C;
-			--tan-light: #E8D4B8;
-			--bg: #1a1a1a;
-			--bg-2: #2d2d2d;
-			--bg-3: #242424;
-			--text: #e0e0e0;
-			--muted: #a8a8a8;
-			--mono: 'Google Sans Code', monospace;
-			--display: 'Baloo Tamma 2', cursive;
+			--tan-2: #e6cfae;
+			--tan-ink: #1a1510;
+			--bg: #121212;
+			--surface: #1a1a1a;
+			--surface-2: #202020;
+			--line: #2a2a2a;
+			--line-2: #363636;
+			--text: #ebe7e0;
+			--muted: #9b968e;
+			--serif: 'Fraunces', Georgia, serif;
+			--sans: 'Inter', system-ui, -apple-system, sans-serif;
+			--mono: 'Google Sans Code', ui-monospace, monospace;
 		}
 
 		* {
@@ -37,8 +41,10 @@
 			margin: 0;
 			background: var(--bg);
 			color: var(--text);
-			font-family: var(--mono);
+			font-family: var(--sans);
+			font-size: 17px;
 			line-height: 1.6;
+			-webkit-font-smoothing: antialiased;
 		}
 
 		a {
@@ -46,25 +52,69 @@
 		}
 
 		.wrap {
-			max-width: 1100px;
+			max-width: 1080px;
 			margin: 0 auto;
-			padding: 0 20px;
+			padding: 0 24px;
+		}
+
+		.mono {
+			font-family: var(--mono);
+		}
+
+		.eyebrow {
+			font-family: var(--mono);
+			font-size: 0.78rem;
+			letter-spacing: 0.14em;
+			text-transform: uppercase;
+			color: var(--tan);
+		}
+
+		h1,
+		h2,
+		h3 {
+			font-family: var(--serif);
+			font-weight: 500;
+			letter-spacing: -0.01em;
+			margin: 0;
+		}
+
+		h2 {
+			font-size: clamp(2rem, 4vw, 2.9rem);
+			line-height: 1.1;
+			font-variation-settings: "opsz" 144;
+		}
+
+		h3 {
+			font-size: 1.45rem;
+			line-height: 1.25;
+		}
+
+		p {
+			margin: 0;
 		}
 
 		/* nav */
 		nav {
+			position: sticky;
+			top: 0;
+			z-index: 10;
+			background: rgba(18, 18, 18, 0.85);
+			backdrop-filter: blur(10px);
+			border-bottom: 1px solid var(--line);
+		}
+
+		nav .wrap {
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
-			padding: 18px 20px;
-			max-width: 1100px;
-			margin: 0 auto;
+			height: 64px;
 		}
 
 		nav .brand {
+			font-family: var(--mono);
 			text-decoration: none;
 			color: white;
-			font-size: 1.3rem;
+			font-size: 1.15rem;
 			font-weight: 700;
 		}
 
@@ -72,438 +122,492 @@
 			color: var(--tan);
 		}
 
+		nav .links {
+			display: flex;
+			align-items: center;
+			gap: 26px;
+		}
+
 		nav .links a {
-			color: var(--text);
+			color: var(--muted);
 			text-decoration: none;
-			margin-left: 22px;
-			font-size: 0.95rem;
+			font-size: 0.92rem;
+			font-weight: 500;
 		}
 
 		nav .links a:hover {
+			color: var(--text);
+		}
+
+		nav .links .btn {
+			color: var(--tan-ink);
+		}
+
+		/* buttons */
+		.btn {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			gap: 8px;
+			font-family: var(--sans);
+			font-weight: 600;
+			font-size: 0.98rem;
+			padding: 13px 22px;
+			border-radius: 10px;
+			text-decoration: none;
+			border: 1px solid transparent;
+			transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+			cursor: pointer;
+			line-height: 1.2;
+		}
+
+		.btn:hover {
+			transform: translateY(-1px);
+		}
+
+		.btn-tan {
+			background: var(--tan);
+			color: var(--tan-ink);
+		}
+
+		.btn-tan:hover {
+			background: var(--tan-2);
+		}
+
+		.btn-outline {
+			background: transparent;
+			color: var(--text);
+			border-color: var(--line-2);
+		}
+
+		.btn-outline:hover {
+			border-color: var(--tan);
 			color: var(--tan);
+		}
+
+		.btn-ink {
+			background: var(--tan-ink);
+			color: var(--tan);
+		}
+
+		.btn-ink:hover {
+			background: #2a2219;
+		}
+
+		.btn-ink-outline {
+			background: transparent;
+			color: var(--tan-ink);
+			border-color: rgba(26, 21, 16, 0.45);
+		}
+
+		.btn-ink-outline:hover {
+			background: rgba(26, 21, 16, 0.08);
 		}
 
 		/* hero */
 		.hero {
-			background: var(--tan);
-			color: #1a1a1a;
-			margin: 0 10px;
-			padding: 70px 20px 60px;
+			position: relative;
+			padding: 110px 0 90px;
+			overflow: hidden;
+			border-bottom: 1px solid var(--line);
+		}
+
+		.hero::before {
+			content: "";
+			position: absolute;
+			inset: -40% -20% auto -20%;
+			height: 120%;
+			background: radial-gradient(60% 50% at 70% 30%, rgba(210, 180, 140, 0.16), transparent 70%);
+			pointer-events: none;
 		}
 
 		.hero .wrap {
-			display: flex;
-			flex-direction: column;
-			align-items: flex-start;
-			gap: 22px;
-		}
-
-		.hero .kicker {
-			font-size: 0.95rem;
-			letter-spacing: 0.08em;
-			text-transform: uppercase;
-			font-weight: 700;
+			position: relative;
+			display: grid;
+			grid-template-columns: 1.4fr 1fr;
+			gap: 60px;
+			align-items: end;
 		}
 
 		.hero h1 {
-			font-family: var(--display);
-			font-size: clamp(2rem, 5.5vw, 4.2rem);
-			line-height: 1.05;
-			margin: 0;
-			max-width: 900px;
+			font-size: clamp(2.6rem, 6vw, 4.6rem);
+			line-height: 1.02;
+			margin: 18px 0 26px;
+			font-variation-settings: "opsz" 144;
 		}
 
-		.hero p {
+		.hero h1 em {
+			font-style: italic;
+			color: var(--tan);
+			font-weight: 400;
+		}
+
+		.hero .lede {
 			font-size: 1.15rem;
-			max-width: 720px;
-			margin: 0;
+			color: var(--muted);
+			max-width: 560px;
+			margin-bottom: 34px;
 		}
 
 		.hero .actions {
 			display: flex;
-			gap: 14px;
+			gap: 12px;
 			flex-wrap: wrap;
-			align-items: center;
 		}
 
-		.cta-button {
-			font-family: var(--mono);
-			font-size: 1.05rem;
-			font-weight: bold;
-			padding: 16px 32px;
-			border-radius: 8px;
-			transition: all 0.3s ease;
-			box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-			cursor: pointer;
-			border: none;
-			text-decoration: none;
-			display: inline-block;
+		.hero aside {
+			border-left: 1px solid var(--line-2);
+			padding-left: 28px;
+			color: var(--muted);
+			font-size: 0.98rem;
 		}
 
-		.cta-button:hover {
-			transform: translateY(-2px);
-			box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+		.hero aside p+p {
+			margin-top: 14px;
 		}
 
-		.cta-dark {
-			background: #1a1a1a;
-			color: var(--tan);
-		}
-
-		.cta-dark:hover {
-			background: #2d2d2d;
-		}
-
-		.cta-tan {
-			background: var(--tan);
-			color: #1a1a1a;
-		}
-
-		.cta-tan:hover {
-			background: var(--tan-light);
-		}
-
-		.cta-ghost {
-			background: transparent;
-			color: #1a1a1a;
-			box-shadow: none;
-			border: 2px solid #1a1a1a;
-		}
-
-		.cta-ghost:hover {
-			background: rgba(0, 0, 0, 0.08);
-			box-shadow: none;
+		.hero aside strong {
+			color: var(--text);
+			font-weight: 600;
 		}
 
 		/* sections */
 		section {
-			padding: 70px 0;
+			padding: 96px 0;
+			border-bottom: 1px solid var(--line);
 		}
 
-		section h2 {
-			font-family: var(--display);
-			font-size: clamp(1.7rem, 3.5vw, 2.6rem);
-			color: var(--tan);
-			margin: 0 0 14px;
-			line-height: 1.1;
+		.section-head {
+			max-width: 680px;
+			margin-bottom: 52px;
 		}
 
-		section .lede {
+		.section-head h2 {
+			margin: 12px 0 16px;
+		}
+
+		.section-head p {
 			color: var(--muted);
-			max-width: 760px;
-			margin: 0 0 40px;
-			font-size: 1.05rem;
+			font-size: 1.08rem;
 		}
 
-		.alt {
-			background: var(--bg-2);
-			box-shadow: inset 0px 20px 10px rgba(0, 0, 0, 0.3);
-		}
-
-		/* for / not for */
-		.two-col {
+		/* fit */
+		.fit {
 			display: grid;
 			grid-template-columns: 1fr 1fr;
-			gap: 30px;
+			gap: 56px;
 		}
 
-		.card {
-			background: var(--bg-2);
-			border-radius: 12px;
-			padding: 32px;
-			box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+		.fit h3 {
+			margin-bottom: 20px;
+			padding-bottom: 14px;
+			border-bottom: 1px solid var(--line-2);
 		}
 
-		.alt .card {
-			background: var(--bg);
-		}
-
-		.card h3 {
-			margin: 0 0 16px;
-			color: white;
-			font-size: 1.3rem;
-		}
-
-		.card ul {
+		.fit ul {
 			list-style: none;
 			padding: 0;
 			margin: 0;
 		}
 
-		.card li {
-			padding-left: 22px;
-			position: relative;
-			margin-bottom: 10px;
+		.fit li {
+			display: flex;
+			gap: 14px;
+			padding: 10px 0;
+			color: var(--text);
 		}
 
-		.card li::before {
-			content: "→";
-			position: absolute;
-			left: 0;
+		.fit li svg,
+		.tier li svg,
+		.retainer .plan li svg {
+			width: 16px;
+			height: 16px;
+			flex: 0 0 16px;
+			margin-top: 5px;
+		}
+
+		.fit .yes svg {
 			color: var(--tan);
 		}
 
-		.card.not li::before {
-			content: "✕";
-			color: #c97b7b;
+		.fit .no svg {
+			color: #8f8a83;
+		}
+
+		.fit .no li {
+			color: var(--muted);
 		}
 
 		/* pricing */
 		.tiers {
 			display: grid;
 			grid-template-columns: repeat(3, 1fr);
-			gap: 24px;
+			gap: 20px;
 			align-items: stretch;
 		}
 
 		.tier {
-			background: var(--bg);
-			border-radius: 12px;
-			padding: 34px 28px;
+			background: var(--surface);
+			border: 1px solid var(--line);
+			border-radius: 16px;
+			padding: 34px 30px 30px;
 			display: flex;
 			flex-direction: column;
-			border: 1px solid #3a3a3a;
-			box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-			transition: transform 0.3s ease;
 			position: relative;
 		}
 
-		.tier:hover {
-			transform: translateY(-5px);
-		}
-
 		.tier.featured {
-			border: 2px solid var(--tan);
+			background: linear-gradient(180deg, rgba(210, 180, 140, 0.10), rgba(210, 180, 140, 0.03));
+			border-color: rgba(210, 180, 140, 0.55);
 		}
 
 		.tier .badge {
 			position: absolute;
-			top: -14px;
-			left: 28px;
+			top: -13px;
+			left: 30px;
 			background: var(--tan);
-			color: #1a1a1a;
-			font-size: 0.75rem;
+			color: var(--tan-ink);
+			font-family: var(--mono);
+			font-size: 0.7rem;
 			font-weight: 700;
-			letter-spacing: 0.08em;
+			letter-spacing: 0.1em;
 			text-transform: uppercase;
-			padding: 5px 12px;
+			padding: 6px 12px;
 			border-radius: 999px;
 		}
 
-		.tier .name {
-			font-size: 0.85rem;
-			letter-spacing: 0.1em;
-			text-transform: uppercase;
+		.tier .eyebrow {
 			color: var(--muted);
-			margin-bottom: 8px;
 		}
 
 		.tier h3 {
-			margin: 0 0 6px;
-			font-size: 1.6rem;
-			color: white;
+			font-size: 1.7rem;
+			margin: 8px 0 18px;
 		}
 
 		.tier .price {
-			font-size: 2.4rem;
-			font-weight: 700;
-			color: var(--tan);
+			font-family: var(--serif);
+			font-size: 3rem;
 			line-height: 1;
-			margin: 14px 0 4px;
+			color: white;
+			font-variation-settings: "opsz" 144;
 		}
 
 		.tier .price small {
-			font-size: 1rem;
+			font-family: var(--sans);
+			font-size: 0.95rem;
 			color: var(--muted);
-			font-weight: 400;
+			margin-right: 6px;
 		}
 
 		.tier .meta {
+			font-family: var(--mono);
+			font-size: 0.8rem;
 			color: var(--muted);
-			font-size: 0.9rem;
-			margin-bottom: 18px;
+			margin: 10px 0 22px;
+			letter-spacing: 0.02em;
 		}
 
 		.tier .outcome {
 			color: var(--text);
 			font-size: 1rem;
-			margin: 0 0 20px;
-			padding-bottom: 20px;
-			border-bottom: 1px solid #3a3a3a;
+			padding: 18px 0 22px;
+			border-top: 1px solid var(--line-2);
+			border-bottom: 1px solid var(--line-2);
+			margin-bottom: 22px;
 		}
 
 		.tier .includes {
-			font-size: 0.8rem;
-			letter-spacing: 0.1em;
+			font-family: var(--mono);
+			font-size: 0.72rem;
+			letter-spacing: 0.12em;
 			text-transform: uppercase;
 			color: var(--tan);
-			margin-bottom: 10px;
+			margin-bottom: 12px;
 		}
 
 		.tier ul {
 			list-style: none;
 			padding: 0;
-			margin: 0 0 24px;
+			margin: 0 0 28px;
 			flex: 1;
 		}
 
 		.tier li {
-			padding-left: 22px;
-			position: relative;
-			margin-bottom: 10px;
-			font-size: 0.95rem;
+			display: flex;
+			gap: 12px;
+			font-size: 0.94rem;
+			color: #d6d1c9;
+			padding: 6px 0;
 		}
 
-		.tier li::before {
-			content: "→";
-			position: absolute;
-			left: 0;
+		.tier li svg {
 			color: var(--tan);
 		}
 
-		.tier .cta-button {
-			text-align: center;
+		.tier .btn {
 			width: 100%;
 		}
 
 		.tier .note {
 			font-size: 0.85rem;
 			color: var(--muted);
-			margin-top: 14px;
 			text-align: center;
+			margin-top: 12px;
 		}
 
 		/* retainer */
 		.retainer {
-			margin-top: 30px;
-			background: var(--bg);
-			border-radius: 12px;
-			border: 1px solid #3a3a3a;
-			padding: 30px 28px;
+			margin-top: 20px;
+			background: var(--surface);
+			border: 1px solid var(--line);
+			border-radius: 16px;
+			padding: 34px 30px;
 			display: grid;
-			grid-template-columns: 1.3fr 1fr 1fr;
-			gap: 28px;
-			align-items: start;
+			grid-template-columns: 1.2fr 1fr 1fr;
+			gap: 40px;
 		}
 
 		.retainer h3 {
-			margin: 0 0 8px;
-			color: white;
-			font-size: 1.4rem;
+			margin: 8px 0 12px;
+			font-size: 1.7rem;
 		}
 
 		.retainer p {
-			margin: 0;
 			color: var(--muted);
-			font-size: 0.95rem;
+			font-size: 0.98rem;
 		}
 
 		.retainer .plan .price {
-			color: var(--tan);
-			font-size: 1.6rem;
-			font-weight: 700;
+			font-family: var(--serif);
+			font-size: 2rem;
+			color: white;
+			line-height: 1;
 		}
 
 		.retainer .plan .price small {
-			font-size: 0.9rem;
+			font-family: var(--mono);
+			font-size: 0.78rem;
 			color: var(--muted);
-			font-weight: 400;
+			margin-left: 6px;
 		}
 
 		.retainer .plan ul {
 			list-style: none;
 			padding: 0;
-			margin: 10px 0 0;
+			margin: 16px 0 0;
 		}
 
 		.retainer .plan li {
-			padding-left: 22px;
-			position: relative;
-			margin-bottom: 6px;
-			font-size: 0.92rem;
+			display: flex;
+			gap: 12px;
+			font-size: 0.94rem;
+			color: #d6d1c9;
+			padding: 5px 0;
 		}
 
-		.retainer .plan li::before {
-			content: "→";
-			position: absolute;
-			left: 0;
+		.retainer .plan li svg {
 			color: var(--tan);
 		}
 
 		.terms {
-			margin-top: 30px;
+			margin-top: 36px;
+			padding-top: 28px;
+			border-top: 1px solid var(--line);
 			color: var(--muted);
-			font-size: 0.9rem;
-			max-width: 900px;
+			font-size: 0.95rem;
+			max-width: 880px;
 		}
 
 		.terms strong {
 			color: var(--text);
+			font-weight: 600;
 		}
 
 		/* process */
 		.steps {
 			display: grid;
 			grid-template-columns: repeat(4, 1fr);
-			gap: 20px;
+			gap: 0;
+			border-top: 1px solid var(--line-2);
 		}
 
 		.step {
-			background: var(--bg-2);
-			border-left: 5px solid var(--tan);
-			padding: 24px;
-			border-radius: 8px;
+			padding: 28px 24px 0 0;
+			border-top: 2px solid transparent;
+			margin-top: -1px;
+		}
+
+		.step+.step {
+			padding-left: 24px;
+			border-left: 1px solid var(--line);
 		}
 
 		.step .num {
+			font-family: var(--mono);
 			color: var(--tan);
-			font-weight: bold;
-			font-size: 0.9rem;
-			margin-bottom: 8px;
+			font-size: 0.78rem;
+			letter-spacing: 0.12em;
+			margin-bottom: 14px;
 		}
 
 		.step h3 {
-			margin: 0 0 10px;
-			color: white;
-			font-size: 1.15rem;
+			font-size: 1.35rem;
+			margin-bottom: 10px;
 		}
 
 		.step p {
-			margin: 0;
-			font-size: 0.95rem;
-			color: var(--text);
+			color: var(--muted);
+			font-size: 0.96rem;
 		}
 
-		/* guarantee */
-		.guarantee {
+		/* promise */
+		.promise {
 			display: grid;
 			grid-template-columns: 1fr 1fr;
-			gap: 30px;
+			gap: 20px;
 		}
 
-		.guarantee .card p {
-			margin: 0 0 12px;
+		.promise .card {
+			background: var(--surface);
+			border: 1px solid var(--line);
+			border-radius: 16px;
+			padding: 34px 32px;
 		}
 
-		.guarantee .card p:last-child {
-			margin: 0;
+		.promise h3 {
+			margin: 8px 0 16px;
+		}
+
+		.promise p {
+			color: #cfc9c0;
+			font-size: 0.98rem;
+		}
+
+		.promise p+p {
+			margin-top: 14px;
 		}
 
 		/* faq */
+		.faq {
+			max-width: 820px;
+		}
+
 		.faq details {
-			border-bottom: 1px solid #3a3a3a;
-			padding: 18px 0;
+			border-bottom: 1px solid var(--line);
 		}
 
 		.faq summary {
 			cursor: pointer;
-			font-weight: 700;
-			color: white;
-			font-size: 1.05rem;
 			list-style: none;
 			display: flex;
 			justify-content: space-between;
+			align-items: center;
 			gap: 20px;
+			padding: 22px 0;
+			font-family: var(--serif);
+			font-size: 1.3rem;
+			color: var(--text);
 		}
 
 		.faq summary::-webkit-details-marker {
@@ -512,243 +616,360 @@
 
 		.faq summary::after {
 			content: "+";
+			font-family: var(--mono);
 			color: var(--tan);
-			font-size: 1.4rem;
-			line-height: 1;
+			font-size: 1.3rem;
+			flex: 0 0 auto;
 		}
 
 		.faq details[open] summary::after {
-			content: "−";
+			content: "–";
 		}
 
 		.faq details p {
-			margin: 14px 0 0;
-			color: var(--text);
-			max-width: 820px;
+			color: #cfc9c0;
+			padding: 0 0 24px;
+			max-width: 720px;
 		}
 
-		/* final cta */
+		/* final */
 		.final {
 			background: var(--tan);
-			color: #1a1a1a;
-			margin: 0 10px;
-			text-align: center;
-			padding: 70px 20px;
+			color: var(--tan-ink);
+			padding: 96px 0;
+		}
+
+		.final .wrap {
+			display: grid;
+			grid-template-columns: 1.3fr 1fr;
+			gap: 40px;
+			align-items: center;
 		}
 
 		.final h2 {
-			color: #1a1a1a;
-			font-family: var(--display);
-			font-size: clamp(1.8rem, 4vw, 3rem);
-			margin: 0 0 14px;
+			color: var(--tan-ink);
+			font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+			margin-bottom: 16px;
 		}
 
 		.final p {
-			max-width: 640px;
-			margin: 0 auto 28px;
-			font-size: 1.05rem;
+			color: rgba(26, 21, 16, 0.78);
+			font-size: 1.08rem;
+			max-width: 520px;
 		}
 
 		.final .actions {
 			display: flex;
-			gap: 14px;
-			justify-content: center;
-			flex-wrap: wrap;
+			flex-direction: column;
+			gap: 12px;
+			align-items: stretch;
 		}
 
 		footer {
-			background: var(--bg);
-			color: white;
-			text-align: center;
-			padding: 28px 20px;
-			font-size: 0.95rem;
+			padding: 32px 0;
+			color: var(--muted);
+			font-size: 0.9rem;
+		}
+
+		footer .wrap {
+			display: flex;
+			justify-content: space-between;
+			gap: 20px;
+			flex-wrap: wrap;
 		}
 
 		footer a {
 			color: var(--muted);
 			text-decoration: none;
-			margin: 0 10px;
+			margin-left: 18px;
 		}
 
 		footer a:hover {
 			color: var(--tan);
 		}
 
-		@media (max-width: 900px) {
+		@media (max-width: 960px) {
+			.hero .wrap {
+				grid-template-columns: 1fr;
+				gap: 36px;
+			}
+
+			.hero aside {
+				border-left: 0;
+				padding-left: 0;
+				border-top: 1px solid var(--line-2);
+				padding-top: 24px;
+			}
+
 			.tiers {
 				grid-template-columns: 1fr;
+			}
+
+			.tier.featured {
+				order: -1;
+			}
+
+			.retainer {
+				grid-template-columns: 1fr;
+				gap: 28px;
 			}
 
 			.steps {
 				grid-template-columns: 1fr 1fr;
 			}
 
-			.retainer {
+			.step:nth-child(3) {
+				padding-left: 0;
+				border-left: 0;
+			}
+
+			.step:nth-child(n+3) {
+				border-top: 1px solid var(--line);
+				margin-top: 20px;
+			}
+
+			.final .wrap {
 				grid-template-columns: 1fr;
 			}
 		}
 
-		@media (max-width: 600px) {
-			.hero,
-			.final {
-				margin: 0;
+		@media (max-width: 640px) {
+			body {
+				font-size: 16px;
+			}
+
+			.hero {
+				padding: 70px 0 60px;
 			}
 
 			section {
-				padding: 50px 0;
+				padding: 64px 0;
 			}
 
-			.two-col,
-			.steps,
-			.guarantee {
+			.fit,
+			.promise {
+				grid-template-columns: 1fr;
+				gap: 36px;
+			}
+
+			.steps {
 				grid-template-columns: 1fr;
 			}
 
-			nav .links a {
-				margin-left: 14px;
-				font-size: 0.85rem;
+			.step,
+			.step+.step {
+				padding-left: 0;
+				border-left: 0;
+				padding-right: 0;
 			}
 
-			.cta-button {
+			.step:nth-child(n+2) {
+				border-top: 1px solid var(--line);
+				margin-top: 20px;
+			}
+
+			nav .links a:not(.btn) {
+				display: none;
+			}
+
+			.hero .actions .btn,
+			.final .btn {
 				width: 100%;
-				text-align: center;
+			}
+
+			.tier {
+				padding: 30px 22px 24px;
 			}
 		}
 	</style>
 </head>
 
 <body>
+	<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+		<symbol id="i-check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+			stroke-linejoin="round">
+			<path d="M3 8.5l3 3 7-7" />
+		</symbol>
+		<symbol id="i-x" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+			<path d="M4 4l8 8M12 4l-8 8" />
+		</symbol>
+	</svg>
+
 	<nav>
-		<a class="brand" href="/">generic<span>.tech</span></a>
-		<div class="links">
-			<a href="/#engagement">Engineering</a>
-			<a href="#pricing">Pricing</a>
-			<a href="#faq">FAQ</a>
+		<div class="wrap">
+			<a class="brand" href="/">generic<span>.tech</span></a>
+			<div class="links">
+				<a href="/#engagement">Engineering</a>
+				<a href="#pricing">Packages</a>
+				<a href="#faq">FAQ</a>
+				<a class="btn btn-tan" href="https://calendly.com/pablo-melanadayton/30min" target="_blank"
+					rel="noopener">Book a call</a>
+			</div>
 		</div>
 	</nav>
 
-	<div class="hero">
+	<header class="hero">
 		<div class="wrap">
-			<div class="kicker">AI for small business · Brooklyn, NYC</div>
-			<h1>Claude, running inside your business. Set up by an engineer, in weeks.</h1>
-			<p>Not a workshop that leaves everyone inspired and nothing changed. We set up your team's Claude account the
-				safe way, load it with your SOPs, pricing and voice, train your people on their own work, and build the
-				first automation end to end. You keep everything.</p>
-			<div class="actions">
-				<a class="cta-button cta-dark" href="https://calendly.com/pablo-melanadayton/30min" target="_blank"
-					rel="noopener">Book a free 30-min fit call</a>
-				<a class="cta-button cta-ghost" href="#pricing">See the packages</a>
+			<div>
+				<div class="eyebrow">AI for small business · Brooklyn, NYC</div>
+				<h1>Claude, running inside your business. <em>Set up by an engineer, in weeks.</em></h1>
+				<p class="lede">Not a workshop that leaves everyone inspired and nothing changed. We set up your team's
+					Claude account the safe way, load it with your SOPs, pricing and voice, train your people on their own
+					work, and build the first automation end to end. You keep everything.</p>
+				<div class="actions">
+					<a class="btn btn-tan" href="https://calendly.com/pablo-melanadayton/30min" target="_blank"
+						rel="noopener">Book a free 30-min fit call</a>
+					<a class="btn btn-outline" href="#pricing">See the packages</a>
+				</div>
 			</div>
+			<aside>
+				<p><strong>Three fixed-price packages.</strong> From a two-week setup to a full rollout. Written scope,
+					written price, before any work starts.</p>
+				<p><strong>Your data stays yours.</strong> Business plans only, training off, a one-page policy for what
+					goes in and who checks what comes out.</p>
+				<p><strong>Built, not just taught.</strong> Wired into QuickBooks, your CRM, your inbox. Owned by you
+					when we leave.</p>
+			</aside>
 		</div>
-	</div>
+	</header>
 
 	<section>
 		<div class="wrap">
-			<h2>Who this is for</h2>
-			<p class="lede">Most small businesses already use ChatGPT or Claude. Almost none have it running across the
-				team, on real workflows, with rules about what goes in. That gap is the work.</p>
-			<div class="two-col">
-				<div class="card">
+			<div class="section-head">
+				<div class="eyebrow">Fit</div>
+				<h2>Who this is for</h2>
+				<p>Most small businesses already use ChatGPT or Claude. Almost none have it running across the team, on
+					real workflows, with rules about what goes in. That gap is the work.</p>
+			</div>
+			<div class="fit">
+				<div class="yes">
 					<h3>A good fit</h3>
 					<ul>
-						<li>NYC businesses with 2 to 50 people</li>
-						<li>An owner who already uses AI personally and wants the team to catch up</li>
-						<li>At least one repetitive, text-heavy workflow: proposals and quotes, customer email, intake,
-							bookkeeping prep, scheduling, reviews, content</li>
-						<li>Law, accounting and insurance firms, real estate brokerages, contractors and home services,
-							agencies, e-commerce and specialty retail, restaurant groups</li>
-						<li>You want someone who can actually wire it into QuickBooks, your CRM or your booking system,
-							not just run a class</li>
+						<li><svg><use href="#i-check" /></svg><span>NYC businesses with 2 to 50 people</span></li>
+						<li><svg><use href="#i-check" /></svg><span>An owner who already uses AI personally and wants
+								the team to catch up</span></li>
+						<li><svg><use href="#i-check" /></svg><span>At least one repetitive, text-heavy workflow:
+								proposals and quotes, customer email, intake, bookkeeping prep, scheduling, reviews,
+								content</span></li>
+						<li><svg><use href="#i-check" /></svg><span>Law, accounting and insurance firms, real estate
+								brokerages, contractors and home services, agencies, e-commerce and specialty retail,
+								restaurant groups</span></li>
+						<li><svg><use href="#i-check" /></svg><span>You want someone who can actually wire it into
+								QuickBooks, your CRM or your booking system, not just run a class</span></li>
 					</ul>
 				</div>
-				<div class="card not">
-					<h3>Not a fit (yet)</h3>
+				<div class="no">
+					<h3>Not a fit, yet</h3>
 					<ul>
-						<li>Medical and dental offices handling patient data on a standard Claude Team plan. HIPAA needs a
-							different setup. We can scope it, but it is not one of the packages below.</li>
-						<li>Anyone who wants AI to move money or send to customers with no human approval</li>
-						<li>A chatbot for your website. Different product, and we will point you to someone good.</li>
-						<li>Solo operators. Start with Anthropic's free Claude for Small Business workshops and come back
-							when you hire.</li>
+						<li><svg><use href="#i-x" /></svg><span>Medical and dental offices handling patient data on a
+								standard Claude Team plan. HIPAA needs a different setup. We can scope it, but it is not
+								one of the packages below.</span></li>
+						<li><svg><use href="#i-x" /></svg><span>Anyone who wants AI to move money or send to customers
+								with no human approval</span></li>
+						<li><svg><use href="#i-x" /></svg><span>A chatbot for your website. Different product, and we
+								will point you to someone good.</span></li>
+						<li><svg><use href="#i-x" /></svg><span>Solo operators. Start with Anthropic's free Claude for
+								Small Business workshops and come back when you hire.</span></li>
 					</ul>
 				</div>
 			</div>
 		</div>
 	</section>
 
-	<section class="alt" id="pricing">
+	<section id="pricing">
 		<div class="wrap">
-			<h2>Packages</h2>
-			<p class="lede">Fixed price, fixed scope, written down before we start. Hour caps are in the agreement as
-				protection for both of us, not as the thing you are buying. You are buying a working result.</p>
+			<div class="section-head">
+				<div class="eyebrow">Packages</div>
+				<h2>Fixed price. Fixed scope. Written down first.</h2>
+				<p>Hour caps are in the agreement as protection for both of us, not as the thing you are buying. You are
+					buying a working result.</p>
+			</div>
 
 			<div class="tiers">
 				<div class="tier">
-					<div class="name">Tier 1</div>
+					<div class="eyebrow">Tier 1</div>
 					<h3>Kickstart</h3>
 					<div class="price">$2,500</div>
-					<div class="meta">2 weeks · up to 10 hours</div>
+					<div class="meta">2 WEEKS · UP TO 10 HOURS</div>
 					<p class="outcome">Your team is using Claude daily on real work, safely, and you have a priced plan
 						for what to build next.</p>
 					<div class="includes">Includes</div>
 					<ul>
-						<li>Half-day workflow audit, on site in NYC or remote</li>
-						<li>Claude Team account set up right: training on your data off, SSO, spend caps, approved
-							connectors only</li>
-						<li>3 shared Claude Projects loaded with your SOPs, pricing, templates and voice</li>
-						<li>Claude for Small Business plugin installed, 2 workflows tuned to you</li>
-						<li>One 90-minute hands-on team session on your own tasks, recorded</li>
-						<li>One-page AI use policy: what goes in, what doesn't, who reviews</li>
-						<li>Written opportunity list: 5 to 7 workflows ranked by hours saved</li>
-						<li>30 days of email support</li>
+						<li><svg><use href="#i-check" /></svg><span>Half-day workflow audit, on site in NYC or
+								remote</span></li>
+						<li><svg><use href="#i-check" /></svg><span>Claude Team account set up right: training on your
+								data off, SSO, spend caps, approved connectors only</span></li>
+						<li><svg><use href="#i-check" /></svg><span>3 shared Claude Projects loaded with your SOPs,
+								pricing, templates and voice</span></li>
+						<li><svg><use href="#i-check" /></svg><span>Claude for Small Business plugin installed, 2
+								workflows tuned to you</span></li>
+						<li><svg><use href="#i-check" /></svg><span>One 90-minute hands-on team session on your own
+								tasks, recorded</span></li>
+						<li><svg><use href="#i-check" /></svg><span>One-page AI use policy: what goes in, what doesn't,
+								who reviews</span></li>
+						<li><svg><use href="#i-check" /></svg><span>Written opportunity list: 5 to 7 workflows ranked
+								by hours saved</span></li>
+						<li><svg><use href="#i-check" /></svg><span>30 days of email support</span></li>
 					</ul>
-					<a class="cta-button cta-tan" href="https://calendly.com/pablo-melanadayton/30min" target="_blank"
+					<a class="btn btn-outline" href="https://calendly.com/pablo-melanadayton/30min" target="_blank"
 						rel="noopener">Start with Kickstart</a>
 					<div class="note">100% credited toward a Workflow Build within 60 days</div>
 				</div>
 
 				<div class="tier featured">
 					<div class="badge">Most businesses pick this</div>
-					<div class="name">Tier 2</div>
+					<div class="eyebrow">Tier 2</div>
 					<h3>Workflow Build</h3>
 					<div class="price">$6,000</div>
-					<div class="meta">4 weeks · up to 25 hours</div>
+					<div class="meta">4 WEEKS · UP TO 25 HOURS</div>
 					<p class="outcome">One workflow that used to eat hours every week now runs on Claude, end to end, on
 						your real data, with a person approving the output.</p>
 					<div class="includes">Everything in Kickstart, plus</div>
 					<ul>
-						<li>One automation live: inbound lead to CRM plus drafted reply, call notes to priced proposal,
-							weekly invoice chaser, review responses for approval, inbox triage, or intake summaries</li>
-						<li>Built on your own accounts and API key. You own it when we leave.</li>
-						<li>5 to 8 custom Claude Skills published to your team so the output is consistent</li>
-						<li>Second training session for the people who own the workflow, plus a written runbook</li>
-						<li>Before and after measurement: hours per week, at start and at handoff</li>
-						<li>60 days of support and tuning after go-live</li>
+						<li><svg><use href="#i-check" /></svg><span>One automation live: inbound lead to CRM plus
+								drafted reply, call notes to priced proposal, weekly invoice chaser, review responses for
+								approval, inbox triage, or intake summaries</span></li>
+						<li><svg><use href="#i-check" /></svg><span>Built on your own accounts and API key. You own it
+								when we leave.</span></li>
+						<li><svg><use href="#i-check" /></svg><span>5 to 8 custom Claude Skills published to your team
+								so the output is consistent</span></li>
+						<li><svg><use href="#i-check" /></svg><span>Second training session for the people who own the
+								workflow, plus a written runbook</span></li>
+						<li><svg><use href="#i-check" /></svg><span>Before and after measurement: hours per week, at
+								start and at handoff</span></li>
+						<li><svg><use href="#i-check" /></svg><span>60 days of support and tuning after go-live</span>
+						</li>
 					</ul>
-					<a class="cta-button cta-tan" href="https://calendly.com/pablo-melanadayton/30min" target="_blank"
+					<a class="btn btn-tan" href="https://calendly.com/pablo-melanadayton/30min" target="_blank"
 						rel="noopener">Talk about a Build</a>
 					<div class="note">Live within 60 days or we keep working at no charge</div>
 				</div>
 
 				<div class="tier">
-					<div class="name">Tier 3</div>
+					<div class="eyebrow">Tier 3</div>
 					<h3>AI Operations</h3>
-					<div class="price">from $12,000</div>
-					<div class="meta">8 weeks · up to 50 hours</div>
+					<div class="price"><small>from</small>$12,000</div>
+					<div class="meta">8 WEEKS · UP TO 50 HOURS</div>
 					<p class="outcome">Three workflows running, one of them unattended, wired into the system your
 						business actually lives in. Whole team trained, adoption measured.</p>
 					<div class="includes">Everything in Workflow Build, plus</div>
 					<ul>
-						<li>Three workflows live, including a scheduled agent that runs on its own: nightly inbox triage
-							to a Slack digest, weekly QuickBooks anomaly report, Monday pipeline brief</li>
-						<li>One custom integration into a system with no off-the-shelf connector: your CRM, booking or
-							dispatch tool, or an internal database</li>
-						<li>A live dashboard over your sales or finance data where it helps</li>
-						<li>20 to 50 real examples per workflow used to tune and prove accuracy</li>
-						<li>Company-wide rollout, champions named, adoption measured start, mid and end</li>
-						<li>90 days of support with monthly check-in calls</li>
+						<li><svg><use href="#i-check" /></svg><span>Three workflows live, including a scheduled agent
+								that runs on its own: nightly inbox triage to a Slack digest, weekly QuickBooks anomaly
+								report, Monday pipeline brief</span></li>
+						<li><svg><use href="#i-check" /></svg><span>One custom integration into a system with no
+								off-the-shelf connector: your CRM, booking or dispatch tool, or an internal
+								database</span></li>
+						<li><svg><use href="#i-check" /></svg><span>A live dashboard over your sales or finance data
+								where it helps</span></li>
+						<li><svg><use href="#i-check" /></svg><span>20 to 50 real examples per workflow used to tune
+								and prove accuracy</span></li>
+						<li><svg><use href="#i-check" /></svg><span>Company-wide rollout, champions named, adoption
+								measured start, mid and end</span></li>
+						<li><svg><use href="#i-check" /></svg><span>90 days of support with monthly check-in
+								calls</span></li>
 					</ul>
-					<a class="cta-button cta-tan" href="https://calendly.com/pablo-melanadayton/30min" target="_blank"
+					<a class="btn btn-outline" href="https://calendly.com/pablo-melanadayton/30min" target="_blank"
 						rel="noopener">Scope an Operations project</a>
 					<div class="note">Fixed quote in writing after the Kickstart audit</div>
 				</div>
@@ -756,25 +977,29 @@
 
 			<div class="retainer">
 				<div>
+					<div class="eyebrow">After the project</div>
 					<h3>Keep It Running</h3>
-					<p>After a Build or Operations project. Models change, connectors change, your staff changes. This
-						keeps what we built alive and keeps you current on what is worth adopting. Cancel any month.</p>
+					<p>Models change, connectors change, your staff changes. This keeps what we built alive and keeps you
+						current on what is worth adopting. Cancel any month.</p>
 				</div>
 				<div class="plan">
-					<div class="price">$750<small>/month · up to 3 hours</small></div>
+					<div class="price">$750<small>/ MO · UP TO 3 HRS</small></div>
 					<ul>
-						<li>Monthly office hour with your team</li>
-						<li>Prompt, Skill and automation tuning</li>
-						<li>Fixes when Anthropic or a connector changes something</li>
-						<li>Email support</li>
+						<li><svg><use href="#i-check" /></svg><span>Monthly office hour with your team</span></li>
+						<li><svg><use href="#i-check" /></svg><span>Prompt, Skill and automation tuning</span></li>
+						<li><svg><use href="#i-check" /></svg><span>Fixes when Anthropic or a connector changes
+								something</span></li>
+						<li><svg><use href="#i-check" /></svg><span>Email support</span></li>
 					</ul>
 				</div>
 				<div class="plan">
-					<div class="price">$1,500<small>/month · up to 8 hours</small></div>
+					<div class="price">$1,500<small>/ MO · UP TO 8 HRS</small></div>
 					<ul>
-						<li>Everything in the $750 plan</li>
-						<li>One small new workflow or integration change per month</li>
-						<li>Quarterly review of Claude spend and new features</li>
+						<li><svg><use href="#i-check" /></svg><span>Everything in the $750 plan</span></li>
+						<li><svg><use href="#i-check" /></svg><span>One small new workflow or integration change per
+								month</span></li>
+						<li><svg><use href="#i-check" /></svg><span>Quarterly review of Claude spend and new
+								features</span></li>
 					</ul>
 				</div>
 			</div>
@@ -790,29 +1015,32 @@
 
 	<section>
 		<div class="wrap">
-			<h2>How it works</h2>
-			<p class="lede">Short engagements with a clear end. You can stop after any step.</p>
+			<div class="section-head">
+				<div class="eyebrow">Process</div>
+				<h2>How it works</h2>
+				<p>Short engagements with a clear end. You can stop after any step.</p>
+			</div>
 			<div class="steps">
 				<div class="step">
-					<div class="num">STEP 01</div>
+					<div class="num">01</div>
 					<h3>Fit call</h3>
 					<p>Free, 30 minutes. What you do, who is on the team, which workflow hurts most. You get a written
 						proposal within one business day.</p>
 				</div>
 				<div class="step">
-					<div class="num">STEP 02</div>
+					<div class="num">02</div>
 					<h3>Kickstart</h3>
 					<p>Two weeks. Audit, safe account setup, Projects loaded, team trained, policy written, opportunities
 						ranked and priced.</p>
 				</div>
 				<div class="step">
-					<div class="num">STEP 03</div>
+					<div class="num">03</div>
 					<h3>Build</h3>
 					<p>Four to eight weeks. One to three workflows go live on your real data, measured before and after,
 						with your people approving the output.</p>
 				</div>
 				<div class="step">
-					<div class="num">STEP 04</div>
+					<div class="num">04</div>
 					<h3>Keep it running</h3>
 					<p>Optional monthly retainer so what we built stays alive, and you hear about new capabilities when
 						they are worth your time.</p>
@@ -821,13 +1049,17 @@
 		</div>
 	</section>
 
-	<section class="alt">
+	<section>
 		<div class="wrap">
-			<h2>Data, accuracy, and what we promise</h2>
-			<p class="lede">The two questions every owner asks first. Here are the straight answers.</p>
-			<div class="guarantee">
+			<div class="section-head">
+				<div class="eyebrow">Data and accuracy</div>
+				<h2>The two questions every owner asks first</h2>
+				<p>Here are the straight answers.</p>
+			</div>
+			<div class="promise">
 				<div class="card">
-					<h3>Your data</h3>
+					<div class="eyebrow">Your data</div>
+					<h3>It stays yours, and we write down the rules</h3>
 					<p>We set clients up on Claude Team or Enterprise, not personal accounts. On those plans Anthropic
 						does not train on your data, and you get admin control over which tools Claude can reach.</p>
 					<p>Every engagement includes a one-page policy that says what goes into Claude, what never does,
@@ -837,12 +1069,13 @@
 						we are the right fit.</p>
 				</div>
 				<div class="card">
-					<h3>Our guarantee</h3>
+					<div class="eyebrow">Our guarantee</div>
+					<h3>We guarantee delivery. Nobody can guarantee results.</h3>
 					<p>On Workflow Build and AI Operations: if the scoped workflow is not live within 60 days of
 						kickoff, we keep working at no charge until it is. Anything broken in what we delivered is fixed
 						free for 90 days.</p>
 					<p>Claude can be wrong. We build every workflow so a person approves the output before it reaches a
-						customer, a ledger or a bank. We will not guarantee hours saved or revenue gained. We will show
+						customer, a ledger or a bank. We will not promise hours saved or revenue gained. We will show
 						you the before and after numbers and let you decide.</p>
 				</div>
 			</div>
@@ -851,7 +1084,10 @@
 
 	<section id="faq">
 		<div class="wrap">
-			<h2>Questions owners actually ask</h2>
+			<div class="section-head">
+				<div class="eyebrow">FAQ</div>
+				<h2>Questions owners actually ask</h2>
+			</div>
 			<div class="faq">
 				<details>
 					<summary>Do we need anyone technical on staff?</summary>
@@ -868,9 +1104,9 @@
 				</details>
 				<details>
 					<summary>Why fixed prices instead of hourly?</summary>
-					<p>Because you are buying a working result, not our time. Hourly billing rewards slowness and
-						makes you nervous about every email. The hour caps in the agreement exist so that scope stays
-						honest on both sides. If the scope grows, we write a change order first.</p>
+					<p>Because you are buying a working result, not our time. Hourly billing rewards slowness and makes
+						you nervous about every email. The hour caps in the agreement exist so that scope stays honest on
+						both sides. If the scope grows, we write a change order first.</p>
 				</details>
 				<details>
 					<summary>What if it turns out AI is not a good fit for us?</summary>
@@ -880,8 +1116,8 @@
 				</details>
 				<details>
 					<summary>How is this different from just using ChatGPT?</summary>
-					<p>Your team probably already does. The difference is a shared setup with your actual documents
-						and voice loaded in, a policy for what goes in, automations that run without someone typing a
+					<p>Your team probably already does. The difference is a shared setup with your actual documents and
+						voice loaded in, a policy for what goes in, automations that run without someone typing a
 						prompt, and connections to the tools you already pay for: Google Workspace, QuickBooks, HubSpot,
 						Shopify, Square, Slack and so on. That is the part owners don't have time to figure out alone.</p>
 				</details>
@@ -892,8 +1128,8 @@
 				</details>
 				<details>
 					<summary>Can you teach us Claude Code or help our developer?</summary>
-					<p>Yes. generic.tech is an engineering consultancy first. If you have a developer or a codebase,
-						that is a different conversation and usually a better-priced one for you. See our <a
+					<p>Yes. generic.tech is an engineering consultancy first. If you have a developer or a codebase, that
+						is a different conversation and usually a better-priced one for you. See our <a
 							href="/#engagement">engineering engagements</a>.</p>
 				</details>
 				<details>
@@ -907,22 +1143,27 @@
 	</section>
 
 	<div class="final">
-		<h2>Bring the one task that eats your week.</h2>
-		<p>Thirty minutes. If we are not the right fit we will say so and point you somewhere useful, including
-			Anthropic's free workshops.</p>
-		<div class="actions">
-			<a class="cta-button cta-dark" href="https://calendly.com/pablo-melanadayton/30min" target="_blank"
-				rel="noopener">Book a free fit call</a>
-			<a class="cta-button cta-ghost"
-				href="mailto:pablo@generic.tech?subject=AI%20brief&body=What%20does%20your%20business%20do%3F%0A%0AHow%20many%20people%20are%20on%20the%20team%3F%0A%0AWhich%20workflow%20eats%20your%20week%3F%0A%0AWhich%20tools%20do%20you%20already%20pay%20for%3F">Prefer
-				email? Send a 4-line brief</a>
+		<div class="wrap">
+			<div>
+				<h2>Bring the one task that eats your week.</h2>
+				<p>Thirty minutes. If we are not the right fit we will say so and point you somewhere useful, including
+					Anthropic's free workshops.</p>
+			</div>
+			<div class="actions">
+				<a class="btn btn-ink" href="https://calendly.com/pablo-melanadayton/30min" target="_blank"
+					rel="noopener">Book a free fit call</a>
+				<a class="btn btn-ink-outline"
+					href="mailto:pablo@generic.tech?subject=AI%20brief&body=What%20does%20your%20business%20do%3F%0A%0AHow%20many%20people%20are%20on%20the%20team%3F%0A%0AWhich%20workflow%20eats%20your%20week%3F%0A%0AWhich%20tools%20do%20you%20already%20pay%20for%3F">Prefer
+					email? Send a 4-line brief</a>
+			</div>
 		</div>
 	</div>
 
 	<footer>
-		generic.tech © 2026 · Brooklyn, NY
-		<div style="margin-top:8px"><a href="/">Engineering consulting</a> · <a href="#pricing">AI for small
-				business</a></div>
+		<div class="wrap">
+			<span class="mono">generic.tech © 2026 · Brooklyn, NY</span>
+			<span><a href="/">Engineering consulting</a><a href="#pricing">AI for small business</a></span>
+		</div>
 	</footer>
 </body>
 
