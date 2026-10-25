@@ -1,7 +1,7 @@
 /* generic.tech
-   Palette and type come from the original site: tan, white, near-black,
-   Baloo Tamma 2 for headings. Body is Atkinson Hyperlegible. Square corners,
-   no shadows, no gradients. */
+   Palette comes from the original site: tan, white, near-black. Headings and
+   wordmark are Archivo, body is Source Sans 3. The multi-font "generic" strip
+   keeps its own faces. Square corners, no shadows, no gradients. */
 
 :root {
 	--sand: #D2B48C;
@@ -13,9 +13,9 @@
 	--black-rule: #3a3a3a;
 	--on-black: #ebe7e0;
 	--on-black-soft: #b4ada3;
-	--head: 'Baloo Tamma 2', system-ui, sans-serif;
-	--body: 'Atkinson Hyperlegible', system-ui, -apple-system, sans-serif;
-	--wordmark: 'Google Sans Code', ui-monospace, monospace;
+	--head: 'Archivo', system-ui, -apple-system, sans-serif;
+	--body: 'Source Sans 3', system-ui, -apple-system, sans-serif;
+	--wordmark: 'Archivo', system-ui, -apple-system, sans-serif;
 }
 
 * {
@@ -31,7 +31,7 @@ body {
 	background: var(--white);
 	color: var(--ink);
 	font-family: var(--body);
-	font-size: 18px;
+	font-size: 19px;
 	line-height: 1.55;
 }
 
@@ -47,22 +47,25 @@ h1,
 h2,
 h3 {
 	font-family: var(--head);
-	font-weight: 800;
+	font-weight: 700;
+	letter-spacing: -0.02em;
 	line-height: 1.05;
 	margin: 0;
 }
 
 h1 {
-	font-size: clamp(2.6rem, 6.5vw, 5rem);
+	font-size: clamp(2.4rem, 5.6vw, 4.4rem);
+	letter-spacing: -0.03em;
 }
 
 h2 {
-	font-size: clamp(2rem, 4.2vw, 3rem);
+	font-size: clamp(1.8rem, 3.6vw, 2.6rem);
 	margin-bottom: 18px;
 }
 
 h3 {
-	font-size: 1.5rem;
+	font-size: 1.25rem;
+	letter-spacing: -0.01em;
 	margin-bottom: 10px;
 }
 
@@ -133,7 +136,8 @@ li {
 .wordmark {
 	font-family: var(--wordmark);
 	font-weight: 700;
-	font-size: 1.15rem;
+	letter-spacing: -0.02em;
+	font-size: 1.2rem;
 	text-decoration: none;
 	color: var(--ink);
 }
@@ -150,8 +154,8 @@ li {
 .top nav a {
 	text-decoration: none;
 	color: var(--ink-soft);
-	font-weight: 700;
-	font-size: 0.95rem;
+	font-weight: 600;
+	font-size: 1rem;
 }
 
 .top nav a:hover {
@@ -162,9 +166,9 @@ li {
 /* buttons */
 .btn {
 	display: inline-block;
-	font-family: var(--body);
-	font-weight: 700;
-	font-size: 1rem;
+	font-family: var(--head);
+	font-weight: 600;
+	font-size: 0.95rem;
 	padding: 14px 22px;
 	border: 2px solid var(--ink);
 	border-radius: 2px;
@@ -298,8 +302,9 @@ li {
 
 .row .price {
 	font-family: var(--head);
-	font-weight: 800;
-	font-size: 2.6rem;
+	font-weight: 700;
+	letter-spacing: -0.03em;
+	font-size: 2.4rem;
 	line-height: 1;
 	margin: 6px 0 8px;
 }
@@ -322,7 +327,7 @@ li {
 .row .tag {
 	display: inline-block;
 	margin-top: 14px;
-	font-weight: 700;
+	font-weight: 600;
 	border-bottom: 2px solid currentColor;
 	font-size: 0.95rem;
 }
@@ -373,9 +378,10 @@ li {
 	list-style: none;
 	padding: 20px 0;
 	font-family: var(--head);
-	font-weight: 800;
-	font-size: 1.3rem;
-	line-height: 1.2;
+	font-weight: 600;
+	font-size: 1.15rem;
+	letter-spacing: -0.01em;
+	line-height: 1.25;
 }
 
 .faq summary::-webkit-details-marker {
@@ -442,8 +448,9 @@ li {
 
 .strip .f7 {
 	font-family: var(--head);
-	font-weight: 800;
-	font-size: 1.6rem;
+	font-weight: 700;
+	letter-spacing: -0.02em;
+	font-size: 1.5rem;
 }
 
 /* footer */
