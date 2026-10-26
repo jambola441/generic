@@ -710,6 +710,144 @@ footer a {
 	}
 }
 
+/* example projects (examples/) */
+.example-note {
+	max-width: 720px;
+	margin-top: 28px;
+	padding: 16px 20px;
+	border: 2px solid var(--ink);
+	font-size: 1rem;
+}
+
+.facts {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 24px 40px;
+	margin: 40px 0 0;
+	max-width: 900px;
+}
+
+.facts dt {
+	font-weight: 700;
+	font-size: 0.95rem;
+	padding-bottom: 6px;
+	border-bottom: 2px solid currentColor;
+	margin-bottom: 8px;
+}
+
+.facts dd {
+	margin: 0;
+}
+
+.prose > * {
+	max-width: 700px;
+}
+
+.prose p + p,
+.prose p + ul,
+.prose ul + p {
+	margin-top: 14px;
+}
+
+.prose h3 {
+	margin-top: 36px;
+}
+
+.prose h3:first-child {
+	margin-top: 0;
+}
+
+.run {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 40px;
+	align-items: start;
+}
+
+.run h3 {
+	padding-bottom: 10px;
+	border-bottom: 2px solid currentColor;
+	margin-bottom: 16px;
+}
+
+.run .sent {
+	white-space: pre-line;
+	background: #faf8f4;
+	border: 1px solid #cfc7ba;
+	padding: 18px 20px;
+	font-size: 0.98rem;
+}
+
+.run .reply {
+	border: 2px solid var(--ink);
+	padding: 20px 22px;
+	font-size: 0.98rem;
+}
+
+.run .reply p + p,
+.run .reply p + ul,
+.run .reply ul + p,
+.run .reply table + p,
+.run .reply p + table {
+	margin-top: 12px;
+}
+
+.run .reply h4 {
+	font-family: var(--head);
+	font-size: 1.05rem;
+	margin: 22px 0 8px;
+}
+
+.run .reply .from {
+	font-weight: 700;
+}
+
+.run .note {
+	margin-top: 12px;
+	font-size: 0.9rem;
+	color: var(--ink-soft);
+}
+
+.lines {
+	width: 100%;
+	border-collapse: collapse;
+	font-size: 0.9rem;
+}
+
+.lines th,
+.lines td {
+	text-align: left;
+	padding: 6px 8px 6px 0;
+	border-bottom: 1px solid #e3ddd3;
+	vertical-align: top;
+}
+
+.lines th {
+	border-bottom: 2px solid var(--ink);
+}
+
+.lines td.n,
+.lines th.n {
+	text-align: right;
+	white-space: nowrap;
+}
+
+.lines tr.sum td {
+	font-weight: 700;
+}
+
+@media (max-width: 900px) {
+	.run {
+		grid-template-columns: 1fr;
+	}
+}
+
+@media (max-width: 640px) {
+	.facts {
+		grid-template-columns: 1fr;
+	}
+}
+
 [hidden] {
 	display: none !important;
 }

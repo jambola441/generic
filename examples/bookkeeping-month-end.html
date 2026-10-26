@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Example: month-end client emails for a bookkeeping firm · generic.tech</title>
+	<meta name="description"
+		content="Example project: how generic.tech would set up Claude for a 12-person bookkeeping firm to draft month-end client emails from uncategorized transactions. Made-up business, output from a Claude test run.">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap"
+		rel="stylesheet">
+	<link rel="stylesheet" href="/site.css">
+</head>
+
+<body>
+	<div class="top">
+		<div class="wrap">
+			<a class="wordmark" href="/">generic<span>.tech</span></a>
+			<nav>
+				<a href="/#setup">Services</a>
+				<a class="keep" href="/#packages">Packages</a>
+				<a class="keep" href="/examples/">Examples</a>
+				<a href="/#faq">FAQ</a>
+			</nav>
+		</div>
+	</div>
+
+	<header class="band band-sand hero-short">
+		<div class="wrap">
+			<h1>Month-end client emails for a bookkeeping firm</h1>
+			<p class="example-note">This is an example project. Tompkins &amp; Vale Bookkeeping, its staff, its client
+				and the transactions are made up. The Claude output on this page comes from a test run in Claude and
+				hasn't been edited.</p>
+			<dl class="facts">
+				<div>
+					<dt>Business</dt>
+					<dd>Bookkeeping firm in Brooklyn, 12 people, about 140 small business clients</dd>
+				</div>
+				<div>
+					<dt>Package</dt>
+					<dd>AI Operations, from $12,000, eight weeks</dd>
+				</div>
+				<div>
+					<dt>Software they use</dt>
+					<dd>QuickBooks Online and Google Workspace</dd>
+				</div>
+			</dl>
+		</div>
+	</header>
+
+	<section class="band band-white">
+		<div class="wrap prose">
+			<h3>What was taking the time</h3>
+			<p>In the first week of every month, each bookkeeper goes through their clients' uncategorized bank and
+				card transactions and writes each client an email asking about them. With about 140 clients, that's
+				140 emails a month, and each one means looking up every charge and deciding what to ask.</p>
+			<p>Replies come back in a mix of photos, forwarded receipts and one-line answers. The month can't close for
+				a client until someone matches those replies to the right transactions.</p>
+
+			<h3>What we would set up</h3>
+			<ul>
+				<li>Claude Team for all 12 staff, with training on their data turned off. Client financial data stays
+					on the firm's own Team account.</li>
+				<li>A policy written for a firm that handles other people's money. Last four digits only for card and
+					account numbers, and never ask clients to email Social Security numbers or passwords.</li>
+				<li>A "Month-end emails" Project with the firm's email guide, a past email the team liked and the chart
+					of accounts</li>
+				<li>Automation one, on a schedule: on the 1st of each month, uncategorized transactions are pulled from
+					QuickBooks Online for each client, and a draft email is saved in the assigned bookkeeper's Gmail
+				</li>
+				<li>Automation two: client replies with receipts attached are labeled by client in Gmail, so they're
+					easy to match</li>
+				<li>Automation three: a Monday summary for the partners listing which clients haven't replied</li>
+				<li>Each workflow tested against 20 to 50 past months of the firm's own transactions before it goes
+					live, and training for all staff</li>
+			</ul>
+			<p>Nothing is sent to a client automatically. The bookkeeper reads each draft, edits it if needed and
+				sends it.</p>
+		</div>
+	</section>
+
+	<section class="band band-white">
+		<div class="wrap">
+			<h2>The test run</h2>
+			<p class="intro">We built the Month-end emails Project in Claude with a made-up email guide, past email and
+				chart of accounts, then pasted in one client's October transactions.</p>
+			<div class="run">
+				<div>
+					<h3>What we sent</h3>
+					<div class="sent">Draft the October email for Corner Kettle Coffee. The owner is Maya. Their bookkeeper is Luis.
+
+						Uncategorized transactions, October 2026:</div>
+					<table class="lines" style="margin-top:16px">
+						<thead>
+							<tr>
+								<th>Date</th>
+								<th>Description</th>
+								<th class="n">Amount</th>
+								<th>Account</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr><td>10/02</td><td>AMZN MKTP US*2K7LP0</td><td class="n">-86.42</td><td>Card 4417</td></tr>
+							<tr><td>10/03</td><td>VENMO *DANIEL O</td><td class="n">-350.00</td><td>Checking 0932</td></tr>
+							<tr><td>10/06</td><td>COSTCO WHSE #1080</td><td class="n">-412.19</td><td>Card 4417</td></tr>
+							<tr><td>10/09</td><td>SQ *GREENPOINT DAIRY</td><td class="n">-268.00</td><td>Card 4417</td></tr>
+							<tr><td>10/09</td><td>SQ *GREENPOINT DAIRY</td><td class="n">-268.00</td><td>Card 4417</td></tr>
+							<tr><td>10/14</td><td>ONLINE TRANSFER TO CHK ...7781</td><td class="n">-1,840.00</td><td>Checking 0932</td></tr>
+							<tr><td>10/17</td><td>NETFLIX.COM</td><td class="n">-22.99</td><td>Card 4417</td></tr>
+							<tr><td>10/21</td><td>DEPOSIT MOBILE</td><td class="n">615.00</td><td>Checking 0932</td></tr>
+							<tr><td>10/28</td><td>HOME DEPOT #6177</td><td class="n">-139.56</td><td>Card 4417</td></tr>
+						</tbody>
+					</table>
+					<p class="note">The test ran on October 26, which is why Claude flags the October 28 charge at the
+						end.</p>
+				</div>
+				<div>
+					<h3>What Claude wrote</h3>
+					<div class="reply">
+						<p><b>Subject: October books, 8 quick questions</b></p>
+						<p>Hi Maya,</p>
+						<p>We're closing October for Corner Kettle Coffee and need your help with 8 items.</p>
+
+						<h4>Receipts we need</h4>
+						<ul>
+							<li>Oct 6, COSTCO WHSE #1080, $412.19 (card ending 4417). Could you send the receipt? A
+								photo is fine.</li>
+							<li>Oct 28, HOME DEPOT #6177, $139.56 (card ending 4417). Could you send the receipt?</li>
+						</ul>
+
+						<h4>Questions</h4>
+						<ul>
+							<li>Oct 2, AMZN MKTP US*2K7LP0, $86.42. What was this order? A screenshot of the order page
+								works too.</li>
+							<li>Oct 3, VENMO *DANIEL O, $350.00. What was this payment for?</li>
+							<li>Oct 9, SQ *GREENPOINT DAIRY, $268.00, twice on the same day. Were you charged twice? If
+								so, it's worth checking with Greenpoint Dairy about a refund.</li>
+							<li>Oct 14, ONLINE TRANSFER TO CHK ...7781, $1,840.00. Which account is the one ending in
+								7781?</li>
+							<li>Oct 17, NETFLIX.COM, $22.99. What is this subscription used for?</li>
+							<li>Oct 21, DEPOSIT MOBILE, $615.00. What was this deposit for?</li>
+						</ul>
+
+						<p>If you can reply by November 10, we'll have October closed that week.</p>
+						<p>Thanks,<br>Luis</p>
+
+						<h4>INTERNAL - DON'T SEND</h4>
+						<ul>
+							<li>10/02 AMZN MKTP $86.42: 6900 Ask client until we hear back. Likely 6300 Office supplies
+								or 5020 Packaging and to-go supplies.</li>
+							<li>10/03 VENMO *DANIEL O $350.00: 6900 for now. If it was for work done, use 6100 Contract
+								labor and track Daniel for a possible 1099.</li>
+							<li>10/06 COSTCO #1080 $412.19: Likely 5000 Food and beverage. The receipt may show a split
+								with 5020 or 6300.</li>
+							<li>10/09 GREENPOINT DAIRY $268.00 x2: 5010 Dairy. Possible duplicate. Same vendor, amount
+								and date. Book one charge and hold the second until Maya confirms.</li>
+							<li>10/14 TRANSFER TO CHK ...7781 $1,840.00: If 7781 is another business account, use 1050
+								Transfer between accounts. If it's personal, use 3100 Owner draw. Flag as a transfer.
+							</li>
+							<li>10/17 NETFLIX.COM $22.99: Looks personal. Likely 3100 Owner draw. Use 6400 Software and
+								subscriptions only if Maya says it's used in the cafe.</li>
+							<li>10/21 DEPOSIT MOBILE $615.00: Likely 4000 Sales (for example a check from a catering or
+								wholesale customer) or 4900 Other income. If it came from the 7781 account, use 1050.
+							</li>
+							<li>10/28 HOME DEPOT #6177 $139.56: 6200 Repairs and maintenance or 6210 Small equipment and
+								tools, depending on the receipt.</li>
+							<li>Date check: The Home Depot charge is dated 10/28, two days after today (10/26). It may
+								be pending or mis-dated in the export. Confirm it posts before closing October.</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="band band-sand">
+		<div class="wrap prose">
+			<h3>What a person still checks</h3>
+			<p>Luis reads the email before it goes to Maya and decides how to book each item once Maya replies. The
+				category suggestions in the internal note are a starting point. Claude doesn't post anything to
+				QuickBooks in this setup.</p>
+		</div>
+	</section>
+
+	<section class="band band-black">
+		<div class="wrap">
+			<h2>Does your office chase clients for the same things every month?</h2>
+			<p class="intro">Tell us about your business and pick a time for a free 30-minute call.</p>
+			<div class="actions">
+				<a class="btn btn-fill" href="/start">Tell us about your business</a>
+				<a class="btn" href="/examples/">See the other examples</a>
+			</div>
+		</div>
+	</section>
+
+	<footer>
+		<div class="wrap">
+			<span>generic.tech © 2026, Brooklyn, NY</span>
+			<span><a href="/#packages">Packages</a><a href="/examples/">Examples</a><a href="/#faq">FAQ</a></span>
+		</div>
+	</footer>
+</body>
+
+</html>

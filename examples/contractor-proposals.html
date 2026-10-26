@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Example: call notes to a priced proposal · generic.tech</title>
+	<meta name="description"
+		content="Example project: how generic.tech would set up Claude for an eight-person Brooklyn renovation contractor to turn site-visit notes into priced proposals. Made-up business, output from a Claude test run.">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap"
+		rel="stylesheet">
+	<link rel="stylesheet" href="/site.css">
+</head>
+
+<body>
+	<div class="top">
+		<div class="wrap">
+			<a class="wordmark" href="/">generic<span>.tech</span></a>
+			<nav>
+				<a href="/#setup">Services</a>
+				<a class="keep" href="/#packages">Packages</a>
+				<a class="keep" href="/examples/">Examples</a>
+				<a href="/#faq">FAQ</a>
+			</nav>
+		</div>
+	</div>
+
+	<header class="band band-sand hero-short">
+		<div class="wrap">
+			<h1>Call notes to a priced proposal for a renovation contractor</h1>
+			<p class="example-note">This is an example project. Atlantic Ave Renovations, its staff and its client are
+				made up. The Claude output on this page comes from a test run in Claude and hasn't been edited.</p>
+			<dl class="facts">
+				<div>
+					<dt>Business</dt>
+					<dd>Renovation contractor in Brooklyn, 8 people, mostly kitchens and apartment remodels</dd>
+				</div>
+				<div>
+					<dt>Package</dt>
+					<dd>Workflow Build, $6,000, four weeks</dd>
+				</div>
+				<div>
+					<dt>Software they use</dt>
+					<dd>Google Workspace and QuickBooks</dd>
+				</div>
+			</dl>
+		</div>
+	</header>
+
+	<section class="band band-white">
+		<div class="wrap prose">
+			<h3>What was taking the time</h3>
+			<p>The owner does every site visit and types notes on a phone while walking the job. At night the owner turns
+				those notes into a proposal, looking up each price in a spreadsheet and copying the layout from an old
+				proposal. A typical one takes an hour or more, and there are four to six a week.</p>
+			<p>Proposals often go out three or four days after the visit. Homeowners who are getting several bids
+				sometimes sign with whoever answers first.</p>
+
+			<h3>What we would set up</h3>
+			<ul>
+				<li>Claude Team for the owner, the office manager and the lead carpenter, with training on their data
+					turned off</li>
+				<li>A shared Claude Project with the 2026 price list, three past proposals and instructions to use
+					only listed prices. Anything that isn't on the price list goes in a "To confirm" section instead of
+					getting a guessed price.</li>
+				<li>The automation: notes saved to a "Site visits" folder in Google Drive become a draft proposal in a
+					"To review" folder, and the office manager gets an email when it's ready</li>
+				<li>A Claude Skill for change orders that uses the same price list</li>
+				<li>Training for the owner and office manager, and a one-page policy on what goes into Claude</li>
+				<li>Time from site visit to proposal sent, measured before we start and again at handoff</li>
+			</ul>
+			<p>Nothing goes to a homeowner until the owner or office manager has read the draft and sent it.</p>
+		</div>
+	</section>
+
+	<section class="band band-white">
+		<div class="wrap">
+			<h2>The test run</h2>
+			<p class="intro">We built the Project in Claude with a made-up price list and past proposal, then pasted in
+				these notes.</p>
+			<div class="run">
+				<div>
+					<h3>What we sent</h3>
+					<div class="sent">site visit 10/28 - 88 Bergen st #3, Marcus T
+
+						kitchen/dining wall coming out, ~14 ft, NOT load bearing per super
+						patch + paint after. dining room walls ~380sqft, ceiling ~200
+						wants 4 recessed lights in dining, 1 extra outlet by window
+						floor - LVP in dining, ~200 sqft, floor uneven near radiator, needs leveling
+						will need dumpster, prob 1 load
+						asked about permit - yes file it
+						also asked about moving the radiator?? not sure, check w plumber
+						wants to start before thanksgiving
+
+						Draft a proposal from these notes.</div>
+				</div>
+				<div>
+					<h3>What Claude wrote</h3>
+					<div class="reply">
+						<p>The total is $8,077, with nine line items from the price list plus 10% project management.
+							Please check a few things before you send it:</p>
+						<ul>
+							<li><b>Radiator move:</b> I listed it under "To confirm" because it isn't on the price
+								list.</li>
+							<li><b>Drywall patching:</b> I didn't put a price on this, because the notes don't say how
+								many square feet. It's under "To confirm" at $4.25/sq ft.</li>
+							<li><b>Floor leveling:</b> I priced it for the whole 200 sq ft, but the notes only mention
+								the area near the radiator. If only that spot needs leveling, the price goes down.</li>
+							<li><b>Date:</b> Your notes say the site visit is 10/28, which is after today's date, so I
+								dated the proposal October 25. Change it if needed.</li>
+							<li><b>Start date:</b> A DOB permit could make starting before Thanksgiving tight.</li>
+						</ul>
+
+						<h4>Proposal for 88 Bergen St, Apt 3</h4>
+						<table class="lines">
+							<thead>
+								<tr>
+									<th>Item</th>
+									<th class="n">Qty</th>
+									<th class="n">Unit</th>
+									<th class="n">Total</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr><td>Demolition, interior non-load-bearing wall</td><td class="n">14 lf</td><td class="n">$45</td><td class="n">$630</td></tr>
+								<tr><td>Interior painting, walls, two coats</td><td class="n">380 sq ft</td><td class="n">$2.10</td><td class="n">$798</td></tr>
+								<tr><td>Interior painting, ceilings</td><td class="n">200 sq ft</td><td class="n">$2.40</td><td class="n">$480</td></tr>
+								<tr><td>Recessed light, new, with wiring</td><td class="n">4</td><td class="n">$285</td><td class="n">$1,140</td></tr>
+								<tr><td>Electrical outlet, add</td><td class="n">1</td><td class="n">$195</td><td class="n">$195</td></tr>
+								<tr><td>Floor prep and leveling</td><td class="n">200 sq ft</td><td class="n">$2.75</td><td class="n">$550</td></tr>
+								<tr><td>LVP flooring, supply and install</td><td class="n">200 sq ft</td><td class="n">$8.50</td><td class="n">$1,700</td></tr>
+								<tr><td>Debris removal, dumpster</td><td class="n">1 load</td><td class="n">$650</td><td class="n">$650</td></tr>
+								<tr><td>Permit filing, NYC DOB, minor alteration</td><td class="n">flat</td><td class="n">$1,200</td><td class="n">$1,200</td></tr>
+								<tr class="sum"><td>Subtotal</td><td></td><td></td><td class="n">$7,343</td></tr>
+								<tr><td>Project management</td><td class="n">10%</td><td></td><td class="n">$734</td></tr>
+								<tr class="sum"><td>Total</td><td></td><td></td><td class="n">$8,077</td></tr>
+							</tbody>
+						</table>
+
+						<h4>To confirm</h4>
+						<ul>
+							<li>Radiator relocation: not on price list. Needs plumber review before pricing.</li>
+							<li>Drywall patching where the wall comes out: area to be measured on site, priced at
+								$4.25/sq ft.</li>
+							<li>Wall is non-load-bearing per building super; to be verified before demolition.</li>
+							<li>Floor leveling priced across the full 200 sq ft; may be less if only the area near the
+								radiator needs it.</li>
+							<li>Paint colors and LVP selection, chosen by client before start.</li>
+						</ul>
+					</div>
+					<p class="note">Claude wrote the proposal as a document, which also has scope, timeline and terms
+						sections. The line items and To confirm list are copied from it.</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="band band-sand">
+		<div class="wrap prose">
+			<h3>What a person still checks</h3>
+			<p>The owner measures the drywall patch, gets a plumber's price for the radiator and decides whether the
+				whole floor needs leveling, and only then does the proposal go out. In this run, every price matched the price list and the
+				math added up, which we check on every test case before handoff.</p>
+		</div>
+	</section>
+
+	<section class="band band-black">
+		<div class="wrap">
+			<h2>Do you write proposals or quotes like this?</h2>
+			<p class="intro">Tell us about your business and pick a time for a free 30-minute call.</p>
+			<div class="actions">
+				<a class="btn btn-fill" href="/start">Tell us about your business</a>
+				<a class="btn" href="/examples/">See the other examples</a>
+			</div>
+		</div>
+	</section>
+
+	<footer>
+		<div class="wrap">
+			<span>generic.tech © 2026, Brooklyn, NY</span>
+			<span><a href="/#packages">Packages</a><a href="/examples/">Examples</a><a href="/#faq">FAQ</a></span>
+		</div>
+	</footer>
+</body>
+
+</html>

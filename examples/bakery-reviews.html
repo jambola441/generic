@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Example: Google review replies for a bakery · generic.tech</title>
+	<meta name="description"
+		content="Example project: how generic.tech would set up Claude for a 14-person Brooklyn bakery, including review replies in the owner's voice. Made-up business, output from a Claude test run.">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap"
+		rel="stylesheet">
+	<link rel="stylesheet" href="/site.css">
+</head>
+
+<body>
+	<div class="top">
+		<div class="wrap">
+			<a class="wordmark" href="/">generic<span>.tech</span></a>
+			<nav>
+				<a href="/#setup">Services</a>
+				<a class="keep" href="/#packages">Packages</a>
+				<a class="keep" href="/examples/">Examples</a>
+				<a href="/#faq">FAQ</a>
+			</nav>
+		</div>
+	</div>
+
+	<header class="band band-sand hero-short">
+		<div class="wrap">
+			<h1>Google review replies in the owner's voice for a bakery</h1>
+			<p class="example-note">This is an example project. Bergen &amp; Bond Bakery, its owner and its reviewers
+				are made up. The Claude output on this page comes from a test run in Claude and hasn't been edited.</p>
+			<dl class="facts">
+				<div>
+					<dt>Business</dt>
+					<dd>Bakery and cafe in Brooklyn, 14 staff, plus catering and wholesale orders</dd>
+				</div>
+				<div>
+					<dt>Package</dt>
+					<dd>Kickstart, $2,500, two weeks</dd>
+				</div>
+				<div>
+					<dt>Software they use</dt>
+					<dd>Square, Google Workspace and Google Business Profile</dd>
+				</div>
+			</dl>
+		</div>
+	</header>
+
+	<section class="band band-white">
+		<div class="wrap prose">
+			<h3>What was taking the time</h3>
+			<p>Dana, the owner, answers every Google review personally, along with catering requests and wholesale
+				questions. Reviews pile up during busy weeks, and the complaints are the hardest to write, so they wait
+				the longest.</p>
+			<p>A few of the counter staff already use ChatGPT on their own phones for signs and allergen questions.
+				Nobody has said what's okay to put into it.</p>
+
+			<h3>What we would set up</h3>
+			<ul>
+				<li>Claude Team for Dana, the manager and two shift leads, with training on their data turned off</li>
+				<li>A "Reviews" Project with a short guide to how Dana writes and a few past replies Dana liked</li>
+				<li>A "Catering and wholesale" Project with the price sheet, order minimums and lead times, for
+					drafting answers to inquiries</li>
+				<li>A "Staff questions" Project with opening and closing procedures and the allergen list</li>
+				<li>A one-page policy: no customer card details in Claude, and allergen answers get checked against the
+					ingredient binder before anyone tells a customer</li>
+				<li>One 90-minute training session for the four of them, using their own reviews and emails</li>
+				<li>A ranked list of what to automate next, such as pulling new reviews in automatically each morning
+				</li>
+			</ul>
+			<p>Claude drafts the replies. Dana reads and edits each one before posting it.</p>
+		</div>
+	</section>
+
+	<section class="band band-white">
+		<div class="wrap">
+			<h2>The test run</h2>
+			<p class="intro">We built the Reviews Project in Claude with a made-up voice guide and two past replies,
+				then pasted in four new reviews.</p>
+			<div class="run">
+				<div>
+					<h3>What we sent</h3>
+					<div class="sent">New Google reviews this week:
+
+						Priya S. (5 stars): "The cardamom bun is unreal. Came for one, left with four."
+
+						Tom R. (1 star): "Ordered a birthday cake for pickup at 3, showed up and it wasn't ready.
+						Waited 40 minutes with a 6 year old. The guy at the counter just shrugged. Never again."
+
+						Anonymous (3 stars): "Good bread but $9 for a loaf is a lot."
+
+						Lena K. (5 stars): "Dana remembered my order after one visit. Best neighborhood spot."
+
+						Draft replies to these.</div>
+					<p class="note">The voice guide asks for two to four sentences, one apology for complaints, a
+						way to reach Dana directly, and no refunds or arguments in public.</p>
+				</div>
+				<div>
+					<h3>What Claude wrote</h3>
+					<div class="reply">
+						<p class="from">Priya S.</p>
+						<p>Thank you, Priya. The cardamom bun is the one we argue over in the kitchen, so I'm glad it
+							won you over. Four is a very reasonable number. Dana, owner</p>
+
+						<p class="from">Tom R.</p>
+						<p>I'm sorry, Tom. A birthday cake not ready at pickup, a 40-minute wait with your little one,
+							and a shrug at the counter is not okay. We're now confirming every cake order the day before
+							and having it boxed and ready 30 minutes before pickup. I'd like to make this right, so
+							please write to me at dana@bergenandbond.example. Dana, owner</p>
+
+						<p class="from">Anonymous</p>
+						<p>Thank you for trying our bread, and for the honest note on price. I know $9 is real money
+							for a loaf, and I hope it feels worth it on the days you pick one up. Dana, owner</p>
+
+						<p class="from">Lena K.</p>
+						<p>Thank you, Lena. Remembering our regulars is my favorite part of the job, and you made it
+							easy. See you soon. Dana, owner</p>
+
+						<p>The cake-order fix in Tom's reply is a placeholder. Swap in whatever change Dana is actually
+							making, or cut that sentence if nothing has changed yet.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="band band-sand">
+		<div class="wrap prose">
+			<h3>What a person still checks</h3>
+			<p>Claude made up the cake-order fix in Tom's reply and said so. Dana replaces it with whatever the bakery
+				is changing, or deletes the sentence, before the reply goes up. The same goes for any reply
+				that mentions a policy, a price or an ingredient.</p>
+		</div>
+	</section>
+
+	<section class="band band-black">
+		<div class="wrap">
+			<h2>Does your team write to customers every day?</h2>
+			<p class="intro">Tell us about your business and pick a time for a free 30-minute call.</p>
+			<div class="actions">
+				<a class="btn btn-fill" href="/start">Tell us about your business</a>
+				<a class="btn" href="/examples/">See the other examples</a>
+			</div>
+		</div>
+	</section>
+
+	<footer>
+		<div class="wrap">
+			<span>generic.tech © 2026, Brooklyn, NY</span>
+			<span><a href="/#packages">Packages</a><a href="/examples/">Examples</a><a href="/#faq">FAQ</a></span>
+		</div>
+	</footer>
+</body>
+
+</html>
