@@ -13,14 +13,15 @@ Read it out loud as if you're explaining it to the owner across the counter. If 
 3. **Keep to one idea per sentence.** Aim for 12 to 15 words and mix short with longer. Split anything over 25 words. Don't stack ideas with commas.
 4. **Start with their problem.** First the problem they recognize, then what changes, then how we do it. Put features last, and only the ones they'd ask about.
 5. **Explain a term the first time, or don't use it.** Prefer plain words.
-   - Claude Project: a shared space in Claude that already has your price list and examples.
-   - Integration: a connection to software you use, like QuickBooks.
+   - Say "shared workspace," not Claude Project.
+   - Say "a connection to software you use, like QuickBooks," not integration.
    - Skip API key, scope, handoff, single sign-on and Skills unless the reader needs them.
-6. **Be concrete.** Name the task, the document or the number. Write "quotes you write at night," not "recurring written work." Use one number per sentence.
-7. **Say the safety point once per page.** A person checks anything before it goes out. Put it where it matters and don't repeat it in every section.
-8. **Keep the tone plain.** No hype, no slogans and no punchy one-line closers. Avoid "not X, it's Y," tidy groups of three, and "real" or "actually" used for emphasis.
-9. **Give made-up example characters names and pronouns, and write about them like people.** "Dana reads it and posts it," not "the owner reviews the draft."
-10. **Target grade 6 to 8.** Check long pages with a readability score.
+6. **Say "AI," not "Claude."** Owners know AI and automation, and most don't know Claude. Name Claude only where they need it: the account they'll pay for, how their data is handled, and the "Which AI do you use?" answer. Product names they already use, like ChatGPT, are fine.
+7. **Be concrete.** Name the task, the document or the number. Write "quotes you write at night," not "recurring written work." Use one number per sentence.
+8. **Say the safety point once per page.** A person checks anything before it goes out. Put it where it matters and don't repeat it in every section.
+9. **Keep the tone plain.** No hype, no slogans and no punchy one-line closers. Avoid "not X, it's Y," tidy groups of three, and "real" or "actually" used for emphasis.
+10. **Give made-up example characters names and pronouns, and write about them like people.** "Dana reads it and posts it," not "the owner reviews the draft."
+11. **Target grade 6 to 8.** Check long pages with a readability score.
 
 ## Narration is speech
 
