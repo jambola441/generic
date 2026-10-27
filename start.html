@@ -22,6 +22,7 @@
 			<nav>
 				<a href="/#setup">Services</a>
 				<a class="keep" href="/#packages">Packages</a>
+				<a class="keep" href="/examples/">Examples</a>
 				<a href="/#faq">FAQ</a>
 			</nav>
 		</div>
@@ -31,7 +32,7 @@
 		<div class="wrap">
 			<h1>Tell us about your business</h1>
 			<p class="lede">Answer a few questions, then pick a time for a free 30-minute call. It takes about two
-				minutes. Your answers mean the call starts with your actual workflow instead of introductions.</p>
+				minutes, and it means we can skip the small talk and get straight to your business.</p>
 		</div>
 	</header>
 
@@ -63,7 +64,7 @@
 					</label>
 				</div>
 
-				<label>What does the business do?
+				<label>What does your business do?
 					<textarea name="what" rows="2" required
 						placeholder="For example: residential renovation contractor in Park Slope"></textarea>
 				</label>
@@ -109,7 +110,7 @@
 				</fieldset>
 
 				<fieldset>
-					<legend>Which software does the business run on? <span class="opt">optional</span></legend>
+					<legend>Which software do you use? <span class="opt">optional</span></legend>
 					<div class="checks">
 						<label class="choice"><input type="checkbox" name="software" value="Google Workspace"> Google
 							Workspace</label>
@@ -133,7 +134,7 @@
 				</label>
 
 				<div class="row-3">
-					<label>Patient health information?
+					<label>Do you handle patient health information?
 						<select name="phi" required>
 							<option value="">Choose one</option>
 							<option>No</option>
@@ -170,8 +171,7 @@
 
 			<div id="book" hidden>
 				<h2 class="book-h">Pick a time</h2>
-				<p class="intro" id="book-note">Thanks. Your answers are attached to the booking, so the call can start
-					with your workflow.</p>
+				<p class="intro" id="book-note">Thanks. We'll have your answers in front of us on the call.</p>
 				<div class="cal-wrap">
 					<iframe id="cal" title="Book a 30-minute call"></iframe>
 				</div>
@@ -258,9 +258,9 @@
 				document.getElementById('cal-link').href = CAL + '?' + q.toString().replace(/embed_domain=[^&]*&embed_type=Inline&/, '');
 
 				if (data.phi === 'Yes') {
-					document.getElementById('book-note').textContent = 'Thanks. Since you handle patient health information, the setup is different from our standard packages. Book a time and we will go through what is possible.';
+					document.getElementById('book-note').textContent = 'Thanks. Patient health information needs a different setup from our standard packages. Book a time and we’ll go through what’s possible.';
 				} else if (data.size === 'Just me') {
-					document.getElementById('book-note').textContent = 'Thanks. For one-person businesses, Anthropic’s free Claude for Small Business workshops are often the better first step, but you are welcome to book a time with us too.';
+					document.getElementById('book-note').textContent = 'Thanks. If it’s just you, Anthropic’s free Claude for Small Business workshops are often a better first step. You’re still welcome to book a time with us.';
 				}
 
 				form.hidden = true;

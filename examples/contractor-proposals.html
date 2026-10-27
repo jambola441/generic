@@ -30,8 +30,7 @@
 	<header class="band band-sand hero-short">
 		<div class="wrap">
 			<h1>Call notes to a priced proposal for a renovation contractor</h1>
-			<p class="example-note">This is an example project. Atlantic Ave Renovations, its staff and its client are
-				made up. The Claude output on this page comes from a test run in Claude and hasn't been edited.</p>
+			<p class="example-note">This is an example. Atlantic Ave Renovations, its people and its client are made up. The Claude output on this page is from a test run and hasn’t been edited.</p>
 			<dl class="facts">
 				<div>
 					<dt>Business</dt>
@@ -51,35 +50,27 @@
 
 	<section class="band band-white">
 		<div class="wrap prose">
-			<h3>What was taking the time</h3>
-			<p>The owner does every site visit and types notes on a phone while walking the job. At night the owner turns
-				those notes into a proposal, looking up each price in a spreadsheet and copying the layout from an old
-				proposal. A typical one takes an hour or more, and there are four to six a week.</p>
-			<p>Proposals often go out three or four days after the visit. Homeowners who are getting several bids
-				sometimes sign with whoever answers first.</p>
+			<h3>Where the time went</h3>
+			<p>Sal owns the company and does every site visit himself. He types notes on his phone as he walks the job. Then at night he turns them into a proposal, looking up each price in a spreadsheet and copying the layout from an old one.</p>
+			<p>Each one takes him an hour or more, and he writes four to six a week. So proposals go out three or four days after the visit, and homeowners getting several bids often sign with whoever answers first.</p>
 
-			<h3>What we would set up</h3>
+			<h3>What we’d set up</h3>
 			<ul>
-				<li>Claude Team for the owner, the office manager and the lead carpenter, with training on their data
-					turned off</li>
-				<li>A shared Claude Project with the 2026 price list, three past proposals and instructions to use
-					only listed prices. Anything that isn't on the price list goes in a "To confirm" section instead of
-					getting a guessed price.</li>
-				<li>The automation: notes saved to a "Site visits" folder in Google Drive become a draft proposal in a
-					"To review" folder, and the office manager gets an email when it's ready</li>
-				<li>A Claude Skill for change orders that uses the same price list</li>
-				<li>Training for the owner and office manager, and a one-page policy on what goes into Claude</li>
-				<li>Time from site visit to proposal sent, measured before we start and again at handoff</li>
+				<li>A company Claude account for Sal, his office manager and his lead carpenter. Claude doesn’t learn from their data.</li>
+				<li>A shared Project in Claude with the 2026 price list, three past proposals and one rule: use only listed prices. Anything that isn’t on the list goes under “To confirm” instead of getting a guessed price.</li>
+				<li>The automation. Sal saves his notes to a “Site visits” folder in Google Drive. A draft proposal shows up in a “To review” folder, and the office manager gets an email.</li>
+				<li>Saved instructions for change orders, using the same price list</li>
+				<li>Training for Sal and the office manager, plus a one-page policy on what goes into Claude</li>
+				<li>We time how long a proposal takes to go out, before we start and again at the end</li>
 			</ul>
-			<p>Nothing goes to a homeowner until the owner or office manager has read the draft and sent it.</p>
+			<p>Nothing goes to a homeowner until Sal or the office manager has read it and hit send.</p>
 		</div>
 	</section>
 
 	<section class="band band-white">
 		<div class="wrap">
 			<h2>The test run</h2>
-			<p class="intro">We built the Project in Claude with a made-up price list and past proposal, then pasted in
-				these notes.</p>
+			<p class="intro">We set this up in Claude with a made-up price list and past proposal. Then we pasted in these notes.</p>
 			<div class="run">
 				<div>
 					<h3>What we sent</h3>
@@ -159,10 +150,8 @@
 
 	<section class="band band-sand">
 		<div class="wrap prose">
-			<h3>What a person still checks</h3>
-			<p>The owner measures the drywall patch, gets a plumber's price for the radiator and decides whether the
-				whole floor needs leveling, and only then does the proposal go out. In this run, every price matched the price list and the
-				math added up, which we check on every test case before handoff.</p>
+			<h3>What Sal still does</h3>
+			<p>He measures the drywall patch, gets a plumber’s price for the radiator and decides whether the whole floor needs leveling. Then he sends it. In this test every price matched the price list and the math added up. We check that on every test before we hand anything over.</p>
 		</div>
 	</section>
 
