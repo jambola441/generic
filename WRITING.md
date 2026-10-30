@@ -16,7 +16,7 @@ Read it out loud as if you're explaining it to the owner across the counter. If 
    - Say "shared workspace," not Claude Project.
    - Say "a connection to software you use, like QuickBooks," not integration.
    - Skip API key, scope, handoff, single sign-on and Skills unless the reader needs them.
-6. **Say "AI," not "Claude."** Owners know AI and automation, and most don't know Claude. Name Claude only where they need it: the account they'll pay for, how their data is handled, and the "Which AI do you use?" answer. Product names they already use, like ChatGPT, are fine.
+6. **Lead with what the customer gets, not the tool.** Start with the problem solved and the time saved, like "quotes out the same day" or "review replies in your voice." Owners know "AI" and "automation" better than product names. Mentioning Claude or ChatGPT is fine when it helps, for example to name the account they'll pay for, explain how their data is handled, or compare with what they already use. Just don't make the tool the headline or the point of the post.
 7. **Be concrete.** Name the task, the document or the number. Write "quotes you write at night," not "recurring written work." Use one number per sentence.
 8. **Say the safety point once per page.** A person checks anything before it goes out. Put it where it matters and don't repeat it in every section.
 9. **Keep the tone plain.** No hype, no slogans and no punchy one-line closers. Avoid "not X, it's Y," tidy groups of three, and "real" or "actually" used for emphasis.
