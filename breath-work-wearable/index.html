@@ -11,6 +11,22 @@
 	<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap"
 		rel="stylesheet">
 	<link rel="stylesheet" href="/site.css">
+	<style>
+		#model{position:relative;height:520px;background:#fbfaf7;border:1px solid #d8d2c4;overflow:hidden;touch-action:none}
+		#model canvas{display:block}
+		.model-labels{position:absolute;inset:0;pointer-events:none}
+		.model-label{font:12px/1.3 "Source Sans 3",system-ui,sans-serif;color:#1d1c1a;background:rgba(251,250,247,.92);border:1px solid #c9c2b2;padding:3px 7px;border-radius:2px;white-space:nowrap;transform:translate(-50%,-50%)}
+		.model-bar{display:flex;flex-wrap:wrap;gap:18px;align-items:center;margin-top:10px;font-size:.95rem}
+		.model-bar label{display:flex;align-items:center;gap:6px;cursor:pointer}
+		.model-bar .hint{color:#6b655a}
+		@media (max-width:640px){#model{height:380px}.model-label{font-size:11px;white-space:normal;max-width:150px;text-align:center}}
+	</style>
+	<script type="importmap">
+	{ "imports": {
+		"three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+		"three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+	} }
+	</script>
 </head>
 <body>
 	<div class="top">
@@ -32,6 +48,19 @@
 			<p class="example-note">This is a side project by the person behind generic.tech, not a product and not for sale. The notes, parts and files are here so anyone can build one or pick up where this leaves off.</p>
 		</div>
 	</header>
+
+	<section class="band band-white" id="model-section">
+		<div class="wrap">
+			<h2>The device</h2>
+			<p style="max-width:680px">Drag to turn it, scroll or pinch to zoom. The shirt is the blue panel; its top edge is the neckline or the cuff. Sizes are the real ones from the build sheet, in millimetres.</p>
+			<div id="model" aria-label="Interactive 3D model of the two-disc wearable clipped on a shirt edge"></div>
+			<div class="model-bar">
+				<label><input type="checkbox" id="model-inside" checked> See inside the discs</label>
+				<label><input type="checkbox" id="model-labels-toggle" checked> Labels</label>
+				<span class="hint">Needs WebGL. If nothing shows, the drawings on the build sheet cover the same thing.</span>
+			</div>
+		</div>
+	</section>
 
 	<section class="band band-white">
 		<div class="wrap">
@@ -75,7 +104,7 @@
 						<p>About 400 lines of Arduino. The motor driver calibrates itself once to the motor and remembers the result.</p>
 					</div>
 					<div class="side">
-						<a class="btn" href="/breath-work-wearable/build-sheet.html#firmware">How it works</a>
+						<a class="btn" href="https://github.com/jambola441/breathpuck/tree/main/firmware">Firmware source</a>
 					</div>
 				</div>
 
@@ -89,7 +118,7 @@
 						<p>Until the clip exists, the app does the same thing with the phone resting on your chest, so the breathing detector was tested first against made-up chest movement at 5, 12 and 20 breaths a minute.</p>
 					</div>
 					<div class="side">
-						<a class="btn" href="/breath-work-wearable/build-sheet.html#app">What the app does</a>
+						<a class="btn" href="https://github.com/jambola441/breathpuck">App source</a>
 					</div>
 				</div>
 			</div>
@@ -99,11 +128,16 @@
 	<section class="band band-sand" id="files">
 		<div class="wrap">
 			<h2>Files</h2>
-			<div class="cols-2">
+			<div class="cols-3">
 				<div class="col">
 					<h3>Build sheet</h3>
 					<p>One page with everything: parts with links and prices, the wiring, the shell drawings, the haptic design, the firmware, the phone app, a four-week build order and the open risks.</p>
 					<p class="actions"><a class="btn btn-fill" href="/breath-work-wearable/build-sheet.html">Read the build sheet</a></p>
+				</div>
+				<div class="col">
+					<h3>Source code</h3>
+					<p>The iPhone app and the board firmware are in one public repository, MIT licensed. The Bluetooth contract between them is in its README.</p>
+					<p class="actions"><a class="btn" href="https://github.com/jambola441/breathpuck">github.com/jambola441/breathpuck</a></p>
 				</div>
 				<div class="col">
 					<h3>Shells to print</h3>
@@ -129,8 +163,7 @@
 						<li>Print the shells and check the magnets hold through a t-shirt and a sweater.</li>
 						<li>Solder the ten wires, run the motor calibration, and feel the first swell.</li>
 						<li>Wear it at the neckline, the cuff and the hem, and see where the breathing signal is cleanest.</li>
-						<li>Put the app's source and the firmware on GitHub and link them here.</li>
-					</ul>
+											</ul>
 				</div>
 				<div class="col">
 					<h3>If it works</h3>
@@ -150,6 +183,7 @@
 			<span><a href="/#packages">Packages</a><a href="/examples/">Examples</a><a href="/#faq">FAQ</a></span>
 		</div>
 	</footer>
+	<script type="module" src="/breath-work-wearable/model.js?v=3"></script>
 </body>
 
 </html>
