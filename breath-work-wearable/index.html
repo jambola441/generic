@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Breath work wearable · generic.tech</title>
+	<meta name="description"
+		content="A small clip for breathing exercises: two magnetic discs on a ribbon, a vibration that swells and fades with your breath, and a phone app that reads your breathing from chest movement. Build notes, parts and files.">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap"
+		rel="stylesheet">
+	<link rel="stylesheet" href="/site.css">
+</head>
+<body>
+	<div class="top">
+		<div class="wrap">
+			<a class="wordmark" href="/">generic<span>.tech</span></a>
+			<nav>
+				<a href="/#setup">Services</a>
+				<a class="keep" href="/#packages">Packages</a>
+				<a class="keep" href="/examples/">Examples</a>
+				<a href="/#faq">FAQ</a>
+			</nav>
+		</div>
+	</div>
+
+	<header class="band band-sand hero-short">
+		<div class="wrap">
+			<h1>Breath work wearable</h1>
+			<p class="lede" style="max-width:680px;margin-top:20px;font-size:1.2rem">A small clip for breathing exercises. Two magnetic discs on a short ribbon hold each other through your shirt, at the neckline or the cuff. The disc against your skin carries a vibration motor that swells and fades with a breathing pattern. Your phone reads your breathing from the movement of your chest and either paces you or follows you.</p>
+			<p class="example-note">This is a side project by the person behind generic.tech, not a product and not for sale. The notes, parts and files are here so anyone can build one or pick up where this leaves off.</p>
+		</div>
+	</header>
+
+	<section class="band band-white">
+		<div class="wrap">
+			<h2>Where it stands</h2>
+			<div class="rows">
+				<div class="row">
+					<div>
+						<h3>Parts</h3>
+						<div class="when">Ordered 30 October 2026</div>
+					</div>
+					<div>
+						<p class="outcome">A Bluetooth board with a built-in motion sensor, a haptic driver, two linear vibration motors, a 100 mAh battery, magnets, ribbon and a soldering iron. About $75 of parts and $80 of tools.</p>
+						<p>Everything is off the shelf from Digi-Key and Amazon. The shopping list with links and prices is on the build sheet.</p>
+					</div>
+					<div class="side">
+						<a class="btn" href="/breath-work-wearable/build-sheet.html#buy">Shopping list</a>
+					</div>
+				</div>
+
+				<div class="row">
+					<div>
+						<h3>Shells</h3>
+						<div class="when">Designed, not yet printed</div>
+					</div>
+					<div>
+						<p class="outcome">Two cups and two lids, 36 mm across, with the magnets set into the floors. A 15 mm ribbon joins them and carries four wires from the outer disc to the motor in the inner one.</p>
+						<p>The print files are below. Two smaller dummy discs are there to check the fit on a shirt before the real ones are printed.</p>
+					</div>
+					<div class="side">
+						<a class="btn" href="#files">Print files</a>
+					</div>
+				</div>
+
+				<div class="row">
+					<div>
+						<h3>Firmware</h3>
+						<div class="when">Compiles, not yet run on the board</div>
+					</div>
+					<div>
+						<p class="outcome">The board streams its motion sensor to the phone 25 times a second and drives the motor from the strength the phone sends 50 times a second. If the phone goes quiet for a second, the motor stops.</p>
+						<p>About 400 lines of Arduino. The motor driver calibrates itself once to the motor and remembers the result.</p>
+					</div>
+					<div class="side">
+						<a class="btn" href="/breath-work-wearable/build-sheet.html#firmware">How it works</a>
+					</div>
+				</div>
+
+				<div class="row">
+					<div>
+						<h3>Phone app</h3>
+						<div class="when">iPhone, builds and passes its tests</div>
+					</div>
+					<div>
+						<p class="outcome">Reads breathing from the motion sensor, counts breaths per minute, tells inhale from exhale, and pauses when you are walking. Three paced patterns, or a mode that follows your own breath.</p>
+						<p>Until the clip exists, the app does the same thing with the phone resting on your chest, so the breathing detector was tested first against made-up chest movement at 5, 12 and 20 breaths a minute.</p>
+					</div>
+					<div class="side">
+						<a class="btn" href="/breath-work-wearable/build-sheet.html#app">What the app does</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="band band-sand" id="files">
+		<div class="wrap">
+			<h2>Files</h2>
+			<div class="cols-2">
+				<div class="col">
+					<h3>Build sheet</h3>
+					<p>One page with everything: parts with links and prices, the wiring, the shell drawings, the haptic design, the firmware, the phone app, a four-week build order and the open risks.</p>
+					<p class="actions"><a class="btn btn-fill" href="/breath-work-wearable/build-sheet.html">Read the build sheet</a></p>
+				</div>
+				<div class="col">
+					<h3>Shells to print</h3>
+					<p>Binary STL, millimetres. Print in resin or a fine PLA with the open side up. The lid is printed twice.</p>
+					<ul>
+						<li><a href="/breath-work-wearable/stl/outer_cup_v0.stl" download>outer_cup_v0.stl</a>, 36 × 12 mm, holds the board and battery</li>
+						<li><a href="/breath-work-wearable/stl/inner_cup_v0.stl" download>inner_cup_v0.stl</a>, 36 × 8 mm, holds the motor</li>
+						<li><a href="/breath-work-wearable/stl/lid_v0.stl" download>lid_v0.stl</a>, 36 × 1.2 mm, print two</li>
+						<li><a href="/breath-work-wearable/stl/dummy_outer_32x9.stl" download>dummy_outer_32x9.stl</a> and <a href="/breath-work-wearable/stl/dummy_inner_32x6.stl" download>dummy_inner_32x6.stl</a>, solid discs at the size the next version aims for, to check how it sits on a shirt</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="band band-white">
+		<div class="wrap">
+			<h2>What comes next</h2>
+			<div class="cols-2">
+				<div class="col">
+					<h3>In the next few weeks</h3>
+					<ul>
+						<li>Print the shells and check the magnets hold through a t-shirt and a sweater.</li>
+						<li>Solder the ten wires, run the motor calibration, and feel the first swell.</li>
+						<li>Wear it at the neckline, the cuff and the hem, and see where the breathing signal is cleanest.</li>
+						<li>Put the app's source and the firmware on GitHub and link them here.</li>
+					</ul>
+				</div>
+				<div class="col">
+					<h3>If it works</h3>
+					<ul>
+						<li>A single custom circuit board so the discs shrink from 36 mm to 32 mm.</li>
+						<li>Heart rate and heart rate variability from a watch, next to the breathing.</li>
+						<li>A quieter, lower-frequency motor, which is what makes a vibration feel calm rather than like a phone buzzing.</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<footer>
+		<div class="wrap">
+			<span>generic.tech © 2026, Brooklyn, NY</span>
+			<span><a href="/#packages">Packages</a><a href="/examples/">Examples</a><a href="/#faq">FAQ</a></span>
+		</div>
+	</footer>
+</body>
+
+</html>

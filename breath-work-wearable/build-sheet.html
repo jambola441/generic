@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Parts with links and prices, wiring, printable shells, firmware and phone app for a breathwork wearable: two magnetic discs on a ribbon that clip to a shirt.">
+<title>Breath Puck Build Sheet</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: engineering build sheet. Sticky section nav on wide screens, single column on phones.
+   Palette: cool paper and ink, one "breath" blue accent, a teal glow for haptic/light cues. */
+:root{
+  --bg:#f3f5f8; --paper:#ffffff; --ink:#1b222c; --muted:#5b6673; --line:#d6dde6;
+  --accent:#2b6fd6; --accent-soft:#e3ecfa; --glow:#39b8c9; --warn:#b8641a; --warn-soft:#fbeedd;
+  --good:#2e7d4f; --good-soft:#e2f3e8; --code-bg:#eef2f6;
+  --display:"Sora",system-ui,sans-serif; --body:"IBM Plex Sans",system-ui,sans-serif; --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#0f141a; --paper:#161d25; --ink:#e7ecf2; --muted:#9aa7b5; --line:#2a3542;
+  --accent:#6ea3f0; --accent-soft:#1a2a44; --glow:#4fd1e1; --warn:#e7a35b; --warn-soft:#3a2a16;
+  --good:#6cc48f; --good-soft:#16301f; --code-bg:#0c1117; color-scheme:dark } }
+:root[data-theme="dark"]{
+  --bg:#0f141a; --paper:#161d25; --ink:#e7ecf2; --muted:#9aa7b5; --line:#2a3542;
+  --accent:#6ea3f0; --accent-soft:#1a2a44; --glow:#4fd1e1; --warn:#e7a35b; --warn-soft:#3a2a16;
+  --good:#6cc48f; --good-soft:#16301f; --code-bg:#0c1117; color-scheme:dark }
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.55;margin:0;
+  padding-block:0 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+a{color:var(--accent);text-decoration:none;border-bottom:1px solid transparent}
+a:hover,a:focus-visible{border-bottom-color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.2}
+h1{font-size:clamp(28px,4vw,40px);font-weight:600}
+h2{font-size:22px;font-weight:600;padding-top:8px}
+h3{font-size:16px;font-weight:600;margin-top:22px}
+p{margin:10px 0;max-width:68ch}
+ul,ol{max-width:70ch;padding-left:22px;margin:8px 0}
+li{margin:4px 0}
+code,.pn{font-family:var(--mono);font-size:.92em;background:var(--code-bg);padding:1px 5px;border-radius:4px}
+pre{font-family:var(--mono);font-size:12.5px;line-height:1.5;background:var(--code-bg);border:1px solid var(--line);border-radius:8px;padding:14px;overflow-x:auto;max-width:100%}
+.wrap{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:200px minmax(0,1fr);gap:40px}
+@media (max-width:860px){.wrap{grid-template-columns:minmax(0,1fr);gap:0}}
+nav.toc{position:sticky;top:20px;align-self:start;font-size:13px;padding-top:34px}
+nav.toc a{display:block;color:var(--muted);padding:4px 0;border-bottom:none}
+nav.toc a:hover{color:var(--accent)}
+nav.toc .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+@media (max-width:860px){nav.toc{position:static;padding:16px 0 0;display:flex;flex-wrap:wrap;gap:4px 14px}nav.toc .eyebrow{width:100%}}
+main{min-width:0}
+header{padding:34px 0 10px}
+header .lede{font-size:17px;color:var(--muted);max-width:62ch}
+.meta{display:flex;flex-wrap:wrap;gap:8px 18px;font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:14px}
+section{padding:26px 0 8px;border-top:1px solid var(--line);margin-top:22px}
+.stage{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:4px}
+figure{margin:18px 0;padding:0}
+figure svg{width:100%;height:auto;display:block;max-width:100%}
+figcaption{font-size:13px;color:var(--muted);margin-top:6px;max-width:70ch}
+.panel{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:14px 0}
+.callout{border-left:3px solid var(--warn);background:var(--warn-soft);padding:10px 14px;border-radius:0 8px 8px 0;margin:14px 0;max-width:72ch}
+.callout.good{border-left-color:var(--good);background:var(--good-soft)}
+.callout.info{border-left-color:var(--accent);background:var(--accent-soft)}
+.tbl{overflow-x:auto;margin:12px 0;border:1px solid var(--line);border-radius:10px;background:var(--paper)}
+table{border-collapse:collapse;width:100%;font-size:13.5px;min-width:640px}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:500;background:var(--bg)}
+tr:last-child td{border-bottom:none}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+td.total{font-weight:600}
+.pill{display:inline-block;font-family:var(--mono);font-size:11px;padding:1px 7px;border-radius:999px;border:1px solid var(--line);color:var(--muted);white-space:nowrap}
+.pill.must{border-color:var(--accent);color:var(--accent)}
+.pill.opt{border-color:var(--line)}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;font-size:13.5px}
+.kv dt{color:var(--muted);font-family:var(--mono);font-size:12px;padding-top:2px}
+.kv dd{margin:0}
+.steps{counter-reset:s;list-style:none;padding:0;max-width:72ch}
+.steps li{counter-increment:s;position:relative;padding-left:40px;margin:10px 0}
+.steps li::before{content:counter(s,decimal-leading-zero);position:absolute;left:0;top:1px;font-family:var(--mono);font-size:12px;color:var(--accent);border:1px solid var(--accent);border-radius:6px;padding:0 5px}
+.check{list-style:none;padding:0;max-width:72ch}
+.check li{padding-left:26px;position:relative;margin:6px 0}
+.check li::before{content:"";position:absolute;left:0;top:5px;width:13px;height:13px;border:1.5px solid var(--muted);border-radius:3px}
+footer{margin-top:40px;font-size:12.5px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px}
+footer ul{columns:2;column-gap:28px;max-width:none;padding-left:18px}
+@media (max-width:700px){footer ul{columns:1}}
+/* svg shared styles */
+.svg-ink{stroke:var(--ink);fill:none;stroke-width:1.4}
+.svg-thin{stroke:var(--muted);fill:none;stroke-width:1}
+.svg-dim{stroke:var(--muted);fill:none;stroke-width:.8}
+.svg-t{font-family:var(--body);font-size:11px;fill:var(--ink)}
+.svg-m{font-family:var(--mono);font-size:10px;fill:var(--muted)}
+.svg-lab{font-family:var(--mono);font-size:10.5px;fill:var(--ink)}
+.svg-fill{fill:var(--paper);stroke:var(--ink);stroke-width:1.2}
+.svg-shirt{fill:var(--accent-soft);stroke:var(--ink);stroke-width:1.2}
+.svg-acc{fill:var(--accent)}
+.svg-glow{stroke:var(--glow);fill:none;stroke-width:2.5}
+.svg-mag{fill:var(--muted)}
+.svg-box{fill:var(--paper);stroke:var(--ink);stroke-width:1.2;rx:6}
+.svg-wire{stroke:var(--accent);fill:none;stroke-width:1.6}
+.svg-skin{fill:var(--warn-soft);stroke:none}
+@media (prefers-reduced-motion: no-preference){
+  .breathe{animation:breathe 11s ease-in-out infinite;transform-origin:center;transform-box:fill-box}
+  @keyframes breathe{0%{opacity:.25}50%{opacity:1}100%{opacity:.25}}
+}
+</style>
+</head>
+<body>
+
+
+<div class="wrap">
+<nav class="toc" aria-label="Sections">
+  <div class="eyebrow">Build sheet</div>
+  <a href="#overview">Overview</a>
+  <a href="#buy">Shopping list</a>
+  <a href="#mech">Mechanical design</a>
+  <a href="#elec">Wiring schematic</a>
+  <a href="#haptic">Haptic design</a>
+  <a href="#firmware">Firmware</a>
+  <a href="#app">Phone app</a>
+  <a href="#plan">Build order and tests</a>
+  <a href="#risks">Open risks</a>
+  <a href="#production">Path to a real product</a>
+  <a href="#sources">Sources</a>
+</nav>
+
+<main>
+<header>
+  <div class="stage">Prototype v0 · two magnetic discs on a ribbon</div>
+  <h1>Breath Puck Build Sheet</h1>
+  <p class="lede">Everything needed to go from zero hardware experience to a working breathwork wearable on your shirt: parts with links and prices, the wiring, the shells to print, the firmware, the phone side, and the order to do it in.</p>
+  <div class="meta">
+    <span>Core kit ≈ $75 before shipping</span><span>Tools if you own none ≈ +$80</span><span>Prices checked 30 Oct 2026</span><span>No soldering beyond 10 wires</span>
+  </div>
+  <p style="margin:12px 0 0;font-size:14px;color:var(--muted)">Part of <a href="/breath-work-wearable/">generic.tech/breath-work-wearable</a>. Shell files to print:
+    <a href="stl/outer_cup_v0.stl" download>outer_cup_v0.stl</a> ·
+    <a href="stl/inner_cup_v0.stl" download>inner_cup_v0.stl</a> ·
+    <a href="stl/lid_v0.stl" download>lid_v0.stl</a> (print two) ·
+    fit checks <a href="stl/dummy_outer_32x9.stl" download>outer 32×9</a> and <a href="stl/dummy_inner_32x6.stl" download>inner 32×6</a>.</p>
+</header>
+
+<section id="overview">
+  <div class="stage">What you are building</div>
+  <h2>One unit, two discs, three places to wear it</h2>
+  <p>Two 36 mm discs joined by a short grosgrain ribbon. The ribbon drapes over a fabric edge and carries the weight; the magnets in each disc clamp through the fabric and keep it still. The outer disc holds the radio, the motion sensor and the battery. The inner disc sits against skin and holds the vibration motor, so you feel the pacing where it matters.</p>
+  <figure>
+    <svg viewBox="0 0 900 310" role="img" aria-label="Three wearing positions: crew neck centre front, sleeve end, shirt hem">
+      <!-- shirt template drawn three times -->
+      <g id="p1" transform="translate(30,20)">
+        <path class="svg-shirt" d="M70 60 L40 72 L52 118 L72 110 L72 270 Q72 282 84 282 L196 282 Q208 282 208 270 L208 110 L228 118 L240 72 L210 60 L178 52 Q140 92 102 52 Z"/>
+        <circle cx="140" cy="78" r="13" class="svg-fill"/><circle cx="140" cy="78" r="13" class="svg-glow breathe"/>
+        <path d="M140 65 q6 -10 0 -16" class="svg-thin"/>
+        <text x="140" y="300" text-anchor="middle" class="svg-t">A · Crew neck, centre front</text>
+        <text x="140" y="24" text-anchor="middle" class="svg-m">senses breath + paces</text>
+      </g>
+      <g transform="translate(330,20)">
+        <path class="svg-shirt" d="M70 60 L40 72 L52 118 L72 110 L72 270 Q72 282 84 282 L196 282 Q208 282 208 270 L208 110 L228 118 L240 72 L210 60 L178 52 Q140 92 102 52 Z"/>
+        <circle cx="236" cy="104" r="13" class="svg-fill"/><circle cx="236" cy="104" r="13" class="svg-glow breathe"/>
+        <text x="140" y="300" text-anchor="middle" class="svg-t">B · Sleeve end (long sleeve: inner wrist)</text>
+        <text x="140" y="24" text-anchor="middle" class="svg-m">paces only · heart data from watch</text>
+      </g>
+      <g transform="translate(630,20)">
+        <path class="svg-shirt" d="M70 60 L40 72 L52 118 L72 110 L72 270 Q72 282 84 282 L196 282 Q208 282 208 270 L208 110 L228 118 L240 72 L210 60 L178 52 Q140 92 102 52 Z"/>
+        <circle cx="140" cy="270" r="13" class="svg-fill"/><circle cx="140" cy="270" r="13" class="svg-glow breathe"/>
+        <text x="140" y="300" text-anchor="middle" class="svg-t">C · Hem, over the belly</text>
+        <text x="140" y="24" text-anchor="middle" class="svg-m">strongest breath signal · lying down</text>
+      </g>
+    </svg>
+    <figcaption>The app tells the positions apart from the accelerometer's gravity vector and motion pattern, and switches between sense-and-pace and pace-only modes.</figcaption>
+  </figure>
+
+  <div class="grid2">
+    <div class="panel">
+      <h3 style="margin-top:0">v0 goal (this build)</h3>
+      <p>A puck you can wear that streams chest motion to your phone over Bluetooth and plays a slow haptic swell to pace breathing. Off-the-shelf boards, printed shells, ten soldered wires. Done when a friend can follow a five-minute paced session with their eyes closed and the app's breath count matches a manual count.</p>
+    </div>
+    <div class="panel">
+      <h3 style="margin-top:0">What v0 deliberately skips</h3>
+      <p>Custom circuit board, light ring, wideband haptic motor, waterproofing, charging dock, certification. Each is listed under <a href="#production">path to a real product</a>. None is needed to learn whether people want this.</p>
+    </div>
+  </div>
+  <div class="callout info"><strong>Zero-hardware parallel track.</strong> Your phone has the same kind of accelerometer. Lay it flat on your chest and you can build and tune the whole breath-detection algorithm in the app before a single part arrives. Do that during the shipping week.</div>
+</section>
+
+<section id="buy">
+  <div class="stage">Shopping list</div>
+  <h2>Parts, links, prices</h2>
+  <p>Four orders: Digi-Key, Adafruit, K&amp;J Magnetics, Amazon. Prices are single-unit USD as shown on the linked retailer pages on 30 October 2026, before shipping and tax; check the page before you pay. Quantities include one spare where a part is easy to break.</p>
+
+  <h3>Core kit <span class="pill must">must buy</span></h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Part</th><th>What it does here</th><th>Where</th><th class="num">Qty</th><th class="num">Each</th><th class="num">Line</th></tr></thead>
+    <tbody>
+      <tr><td><a href="https://www.seeedstudio.com/Seeed-XIAO-BLE-Sense-nRF52840-p-5253.html">Seeed XIAO nRF52840 Sense</a><br><span class="svg-m" style="font-size:11px">also <a href="https://robotshop.com/products/seeed-studio-xiao-nrf52840-sense">RobotShop</a></span></td><td>The brain. Bluetooth 5 radio, 6-axis motion sensor on board, LiPo charger on board, USB-C. 21 × 17.5 mm. Buy the <em>Sense</em> variant; the plain one has no accelerometer.</td><td>Seeed / RobotShop</td><td class="num">2</td><td class="num">$16.82</td><td class="num">$33.64</td></tr>
+      <tr><td><a href="https://www.adafruit.com/product/2305">Adafruit DRV2605L Haptic Motor Controller</a> <span class="pn">2305</span></td><td>Drives the vibration motor. Tracks the motor's resonance, takes amplitude commands over I²C, has a real-time mode for the slow swell.</td><td>Adafruit</td><td class="num">1</td><td class="num">$7.95</td><td class="num">$7.95</td></tr>
+      <tr><td><a href="https://www.digikey.com/en/products/detail/vybronics-inc/VLV101040A/12323590">Vybronics VLV101040A LRA</a> <span class="pn">1670-VLV101040A-ND</span></td><td>The vibration motor. Linear resonant actuator, 10 × 10 × 4 mm, 170 Hz, 2.75 G. Crisp and quiet, unlike a coin buzzer. Substitute <a href="https://www.digikey.com/en/products/detail/vybronics-inc/VG1040003D/10285886">VG1040003D</a> if out of stock.</td><td>Digi-Key</td><td class="num">2</td><td class="num">$6.32</td><td class="num">$12.64</td></tr>
+      <tr><td><a href="https://www.adafruit.com/product/1570">Adafruit LiPo 3.7 V 100 mAh</a> <span class="pn">1570</span></td><td>Battery. About 28 × 12 × 5 mm, protected cell. Roughly four hours of continuous paced sessions, days on standby. Solders to the XIAO's battery pads.</td><td>Adafruit</td><td class="num">1</td><td class="num">$5.95</td><td class="num">$5.95</td></tr>
+      <tr><td><a href="https://www.kjmagnetics.com/d81-n52-neodymium-disc-magnet">K&amp;J D81-N52 disc magnet</a> ½″ × 1/16″</td><td>The clamp. 12.7 × 1.6 mm, N52 grade. Two per disc, poles arranged to attract through a shirt. Pack of 10 leaves spares for the dock experiment.</td><td>K&amp;J Magnetics</td><td class="num">10</td><td class="num">$0.77</td><td class="num">$7.70</td></tr>
+      <tr><td><a href="https://www.kjmagnetics.com/proddetail.asp?prod=D82">K&amp;J D82 disc magnet</a> ½″ × 1/8″</td><td>Stronger option (3.2 mm thick) if the thin ones slip on a heavy sweatshirt. Buy four to compare.</td><td>K&amp;J Magnetics</td><td class="num">4</td><td class="num">$1.08</td><td class="num">$4.32</td></tr>
+      <tr><td><a href="https://www.amazon.com/s?k=30awg+silicone+wire+kit">30 AWG silicone wire, 6 colours</a></td><td>The ten wires in the build, including the four that run through the ribbon. Silicone insulation survives flexing.</td><td>Amazon</td><td class="num">1</td><td class="num">$9.99</td><td class="num">$9.99</td></tr>
+      <tr><td><a href="https://www.amazon.com/s?k=grosgrain+ribbon+5%2F8+inch+black">Grosgrain ribbon ⅝″ (15 mm)</a></td><td>The hinge between the discs. Stiff enough not to twist, soft on the neck. One roll is a lifetime supply.</td><td>Amazon</td><td class="num">1</td><td class="num">$5.99</td><td class="num">$5.99</td></tr>
+      <tr><td><a href="https://www.amazon.com/s?k=E6000+craft+adhesive">E6000 adhesive</a> + any superglue</td><td>E6000 for magnets and ribbon (flexible, strong). Superglue for the motor to its plate (rigid coupling matters for haptics).</td><td>Amazon</td><td class="num">1</td><td class="num">$6.49</td><td class="num">$6.49</td></tr>
+      <tr><td><a href="https://www.amazon.com/s?k=kapton+tape+10mm">Kapton tape</a></td><td>Insulates the battery from the board and holds wires in the ribbon fold.</td><td>Amazon</td><td class="num">1</td><td class="num">$6.99</td><td class="num">$6.99</td></tr>
+      <tr><td colspan="5" class="total">Core kit total</td><td class="num total">$101.66</td></tr>
+    </tbody>
+  </table></div>
+  <p style="font-size:13px;color:var(--muted)">Shells: print the STL files that came with this sheet. No printer? Upload them to <a href="https://jlc3dp.com/">JLC3DP</a> (resin, about $1 to $5 per part plus shipping) or a library makerspace. A <a href="https://us.store.bambulab.com/products/a1-mini">Bambu Lab A1 mini</a> is $299 if you expect to iterate shells weekly, which you will.</p>
+
+  <h3>Tools, if you own none <span class="pill opt">one-time</span></h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Tool</th><th>Why</th><th>Where</th><th class="num">Price</th></tr></thead>
+    <tbody>
+      <tr><td><a href="https://pine64.com/product/pinecil-smart-mini-portable-soldering-iron-with-type-c-interface/">Pinecil V2 soldering iron</a></td><td>Heats in seconds, runs off a USB-C laptop charger, good tip for small pads.</td><td>Pine64</td><td class="num">$25.99</td></tr>
+      <tr><td><a href="https://www.amazon.com/s?k=soldering+kit+flux+solder+wick+tweezers+flush+cutters">Solder, flux pen, wick, tweezers, flush cutters</a></td><td>Buy a bundle. Use 0.6 mm lead-free or 63/37 solder.</td><td>Amazon</td><td class="num">$19.99</td></tr>
+      <tr><td><a href="https://www.amazon.com/s?k=digital+caliper+150mm">Digital calipers</a></td><td>You cannot design shells without measuring parts. Non-negotiable.</td><td>Amazon</td><td class="num">$12.99</td></tr>
+      <tr><td><a href="https://www.amazon.com/s?k=helping+hands+soldering+station">Helping hands with magnifier</a></td><td>Third hand for 30 AWG wire.</td><td>Amazon</td><td class="num">$14.99</td></tr>
+      <tr><td><a href="https://www.amazon.com/s?k=digital+multimeter">Basic multimeter</a></td><td>Confirms battery polarity before the first power-up. Cheap insurance.</td><td>Amazon</td><td class="num">$14.99</td></tr>
+      <tr><td colspan="3" class="total">Tools total</td><td class="num total">$88.95</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Experiments worth the money <span class="pill opt">optional</span></h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Part</th><th>Experiment</th><th>Where</th><th class="num">Price</th></tr></thead>
+    <tbody>
+      <tr><td><a href="https://shop.espruino.com/puckjs">Espruino Puck.js v2.1</a></td><td>A round 36 mm button-cell board with an accelerometer, programmed in JavaScript from a browser. Zero soldering. Tape magnets to it and you have a breath-sensing puck in an hour, before the real kit ships. Also sold by <a href="https://www.adafruit.com/product/3372">Adafruit</a>.</td><td>Espruino (UK)</td><td class="num">£32.40</td></tr>
+      <tr><td><a href="https://www.adafruit.com/product/1643">NeoPixel Ring, 12 × 5050</a></td><td>36.8 mm outer diameter, so it sits around the v0 shell as a glowing rim behind a thin printed diffuser. Tests whether the light ring is worth keeping in v1.</td><td>Adafruit</td><td class="num">$7.50</td></tr>
+      <tr><td><a href="https://www.adafruit.com/product/2428">Pogo pins, 10 pack</a></td><td>Two spring pins in a printed dock plus two brass pads on the puck: the magnetic charging dock, using the same magnets.</td><td>Adafruit</td><td class="num">$4.95</td></tr>
+      <tr><td><a href="https://www.precisionmicrodrives.com/products/fb7e332c-199f-4922-ac22-857688f22351/c10-100-10mm-coin-lra">Precision Microdrives C10-100</a></td><td>Round 10 mm coin LRA at 175 Hz, for comparing feel against the square Vybronics. Quote-based pricing.</td><td>Precision Microdrives</td><td class="num">quote</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="mech">
+  <div class="stage">Mechanical design</div>
+  <h2>Two cups, two lids, one ribbon</h2>
+  <p>v0 is 36 mm across because the two off-the-shelf boards need a 32.4 mm cavity. The custom board in v1 brings it to 32 mm. Thicknesses are driven by the stack inside each cup.</p>
+  <figure>
+    <svg viewBox="0 0 900 400" role="img" aria-label="Section view of the unit clamped on a fabric edge">
+      <defs><pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="6" stroke="var(--muted)" stroke-width=".8"/></pattern></defs>
+      <!-- scale 4 px per mm. fabric edge at x=450 -->
+      <text x="20" y="28" class="svg-t" font-weight="600">Section through the unit on a fabric edge · 4 px = 1 mm</text>
+      <!-- skin -->
+      <rect x="560" y="60" width="320" height="300" class="svg-skin"/><text x="720" y="350" class="svg-m" text-anchor="middle">skin</text>
+      <!-- fabric -->
+      <rect x="446" y="90" width="8" height="270" fill="url(#hatch)" stroke="var(--ink)" stroke-width=".8"/>
+      <text x="450" y="378" class="svg-m" text-anchor="middle">shirt (1–2 mm)</text>
+      <!-- outer cup: 12mm thick = 48px, 36mm tall = 144px, centred y=200 -->
+      <g>
+        <rect x="398" y="128" width="48" height="144" rx="4" class="svg-fill"/>
+        <!-- internals -->
+        <rect x="404" y="140" width="6" height="84" fill="var(--good)"/><text x="392" y="305" class="svg-m" text-anchor="end" transform="rotate(-90 392 305)">XIAO 21 × 17.5 × 3.5</text>
+        <rect x="414" y="150" width="20" height="112" fill="var(--muted)" opacity=".6"/>
+        <rect x="438" y="162" width="6" height="50" class="svg-mag"/><rect x="438" y="218" width="6" height="50" class="svg-mag"/>
+        <text x="422" y="100" class="svg-lab" text-anchor="middle">OUTER · 12 mm</text>
+        <text x="422" y="112" class="svg-m" text-anchor="middle">radio · IMU · battery</text>
+      </g>
+      <!-- inner cup: 8mm = 32px -->
+      <g>
+        <rect x="454" y="128" width="32" height="144" rx="4" class="svg-fill"/>
+        <rect x="458" y="162" width="6" height="50" class="svg-mag"/><rect x="458" y="218" width="6" height="50" class="svg-mag"/>
+        <rect x="466" y="140" width="6" height="104" fill="var(--good)"/>
+        <rect x="474" y="176" width="10" height="40" fill="var(--glow)"/>
+        <text x="470" y="100" class="svg-lab" text-anchor="middle">INNER · 8 mm</text>
+        <text x="470" y="112" class="svg-m" text-anchor="middle">driver · motor</text>
+      </g>
+      <!-- ribbon over the edge -->
+      <path d="M402 128 C402 70 484 70 484 128" fill="none" stroke="var(--ink)" stroke-width="5"/>
+      <path d="M402 128 C402 70 484 70 484 128" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-dasharray="3 3"/>
+      <text x="443" y="60" class="svg-m" text-anchor="middle">ribbon 15 mm wide, ~25 mm span, 4 wires inside</text>
+      <!-- legend -->
+      <g transform="translate(40,120)" class="svg-t">
+        <rect width="10" height="10" fill="var(--good)"/><text x="16" y="9">circuit board</text>
+        <rect y="20" width="10" height="10" fill="var(--muted)" opacity=".6"/><text x="16" y="29">LiPo 100 mAh</text>
+        <rect y="40" width="10" height="10" class="svg-mag"/><text x="16" y="49">magnets, 2 × D81 per disc</text>
+        <rect y="60" width="10" height="10" fill="var(--glow)"/><text x="16" y="69">LRA motor, touches the skin wall</text>
+        <text y="100" class="svg-m">magnets face each other through</text><text y="112" class="svg-m">the fabric, N→S, so they attract</text>
+        <text y="140" class="svg-m">the ribbon takes the hanging load;</text><text y="152" class="svg-m">the magnets only stop it swinging</text>
+      </g>
+      <!-- dims -->
+      <line x1="398" y1="290" x2="446" y2="290" class="svg-dim"/><text x="422" y="302" class="svg-m" text-anchor="middle">12</text>
+      <line x1="454" y1="290" x2="486" y2="290" class="svg-dim"/><text x="470" y="302" class="svg-m" text-anchor="middle">8</text>
+      <line x1="380" y1="128" x2="380" y2="272" class="svg-dim"/><text x="374" y="204" class="svg-m" text-anchor="end">36</text>
+    </svg>
+    <figcaption>The motor is glued to the inside of the inner cup's skin-side wall. Keep that wall at 1.2 mm: thinner cracks, thicker muffles the haptic.</figcaption>
+  </figure>
+
+  <figure>
+    <svg viewBox="0 0 900 330" role="img" aria-label="Dimensioned drawings of the two printed cups and lid">
+      <text x="20" y="26" class="svg-t" font-weight="600">Printed parts (STL files supplied) · dimensions in mm</text>
+      <!-- outer cup top view -->
+      <g transform="translate(120,170)">
+        <circle r="72" class="svg-fill"/><circle r="64.8" class="svg-thin"/>
+        <line x1="-72" y1="0" x2="72" y2="0" class="svg-dim"/><text x="0" y="-78" text-anchor="middle" class="svg-m">Ø36 outer</text><text x="0" y="14" text-anchor="middle" class="svg-m">Ø32.4 cavity</text>
+        <!-- xiao footprint -->
+        <rect x="-42" y="-35" width="84" height="70" rx="3" class="svg-thin" stroke-dasharray="3 2"/><text x="0" y="52" text-anchor="middle" class="svg-m">XIAO footprint</text>
+        <text x="0" y="100" text-anchor="middle" class="svg-t">outer_cup_v0.stl</text>
+      </g>
+      <!-- outer cup section -->
+      <g transform="translate(260,122)">
+        <path d="M0 0 L0 48 L144 48 L144 0 L136.8 0 L136.8 43.2 L7.2 43.2 L7.2 0 Z" class="svg-fill"/>
+        <line x1="150" y1="0" x2="150" y2="48" class="svg-dim"/><text x="156" y="27" class="svg-m">12</text>
+        <line x1="0" y1="60" x2="7.2" y2="60" class="svg-dim"/><text x="4" y="74" class="svg-m" text-anchor="middle">1.8 wall</text>
+        <line x1="60" y1="43.2" x2="60" y2="48" class="svg-dim"/><text x="72" y="60" class="svg-m">1.2 floor</text>
+        <text x="72" y="-10" class="svg-m" text-anchor="middle">section</text>
+      </g>
+      <!-- inner cup -->
+      <g transform="translate(560,170)">
+        <circle r="72" class="svg-fill"/><circle r="64.8" class="svg-thin"/>
+        <text x="0" y="-78" text-anchor="middle" class="svg-m">Ø36 outer</text>
+        <rect x="-52" y="-36" width="104" height="72" rx="3" class="svg-thin" stroke-dasharray="3 2"/><text x="0" y="-42" text-anchor="middle" class="svg-m">DRV2605L breakout</text>
+        <rect x="-20" y="42" width="40" height="20" class="svg-thin" stroke-dasharray="3 2"/><text x="0" y="56" text-anchor="middle" class="svg-m">LRA</text>
+        <text x="0" y="100" text-anchor="middle" class="svg-t">inner_cup_v0.stl</text>
+      </g>
+      <g transform="translate(700,138)">
+        <path d="M0 0 L0 32 L144 32 L144 0 L136.8 0 L136.8 27.2 L7.2 27.2 L7.2 0 Z" class="svg-fill"/>
+        <line x1="150" y1="0" x2="150" y2="32" class="svg-dim"/><text x="156" y="19" class="svg-m">8</text>
+        <text x="72" y="-10" class="svg-m" text-anchor="middle">section</text>
+        <rect x="0" y="60" width="144" height="4.8" class="svg-fill"/><text x="72" y="80" class="svg-m" text-anchor="middle">lid_v0.stl · Ø36 × 1.2 · print two</text>
+      </g>
+      <text x="20" y="310" class="svg-m">Cut a 15 × 2 mm notch in each cup rim for the ribbon with a hobby knife, or add it in your slicer. Wear-test dummies at the v1 size (Ø32 × 9.5 and Ø32 × 6) are included: glue magnets in and wear them a day before you build anything.</text>
+    </svg>
+  </figure>
+
+  <h3>Assembly notes</h3>
+  <ol class="steps">
+    <li><strong>Magnet polarity first.</strong> Stack all four D81 magnets, mark the top face of each with a dot, then separate. In each disc, glue two magnets dot-down into the cup floor near the rim, opposite each other. Put the outer disc's magnets dot-up instead. Test attraction through a t-shirt before any glue cures.</li>
+    <li><strong>Motor coupling.</strong> Superglue the LRA flat against the inside of the inner cup's floor (that floor becomes the skin wall). A loose motor feels like a cheap buzzer; a rigid one feels like a phone.</li>
+    <li><strong>Battery.</strong> Kapton over the XIAO's underside, battery on top of the tape, wires to the BAT pads. Confirm polarity with the multimeter before soldering. Red is positive.</li>
+    <li><strong>Ribbon.</strong> Cut 70 mm. Lay the four wires along the centre, fold the ribbon lengthwise and tack with Kapton, then E6000 each end into a rim notch. Leave 25 mm of ribbon exposed between the cups.</li>
+    <li><strong>Lids.</strong> Dry-fit everything and run the firmware before gluing lids on. A dab of E6000 at three points so you can pry it open later.</li>
+  </ol>
+</section>
+
+<section id="elec">
+  <div class="stage">Wiring schematic</div>
+  <h2>Ten wires</h2>
+  <p>Four cross the ribbon (power, ground, two I²C lines). Two join the motor to its driver inside the inner disc. Two join the battery to the XIAO. The motion sensor is already on the XIAO, so there is nothing to wire for it.</p>
+  <figure>
+    <svg viewBox="0 0 900 420" role="img" aria-label="Wiring schematic between XIAO, DRV2605L, LRA and battery">
+      <text x="20" y="26" class="svg-t" font-weight="600">Schematic · v0</text>
+      <!-- ribbon boundary -->
+      <line x1="450" y1="50" x2="450" y2="400" stroke="var(--muted)" stroke-width="1" stroke-dasharray="6 4"/>
+      <text x="440" y="62" class="svg-m" text-anchor="end">OUTER DISC</text><text x="460" y="62" class="svg-m">INNER DISC</text>
+      <text x="450" y="395" class="svg-m" text-anchor="middle">← 4 wires through the ribbon →</text>
+      <!-- XIAO -->
+      <rect x="80" y="90" width="220" height="200" class="svg-box"/>
+      <text x="190" y="112" class="svg-lab" text-anchor="middle" font-weight="600">Seeed XIAO nRF52840 Sense</text>
+      <text x="190" y="126" class="svg-m" text-anchor="middle">nRF52840 · LSM6DS3TR-C IMU · BQ25101 charger</text>
+      <g class="svg-lab">
+        <text x="292" y="156" text-anchor="end">3V3</text>
+        <text x="292" y="186" text-anchor="end">GND</text>
+        <text x="292" y="216" text-anchor="end">D4 · SDA</text>
+        <text x="292" y="246" text-anchor="end">D5 · SCL</text>
+        <text x="90" y="156">USB-C (charge + flash)</text>
+        <text x="90" y="266">BAT+ (pad, underside)</text>
+        <text x="90" y="284">BAT− (pad, underside)</text>
+        <text x="90" y="226" class="svg-m">D6 spare → light ring data (v1)</text>
+      </g>
+      <!-- battery -->
+      <rect x="80" y="330" width="120" height="50" class="svg-box"/>
+      <text x="140" y="351" class="svg-lab" text-anchor="middle">LiPo 3.7 V 100 mAh</text><text x="140" y="366" class="svg-m" text-anchor="middle">Adafruit 1570</text>
+      <path d="M100 330 L100 300 L120 300 L120 290" class="svg-wire" stroke="var(--warn)"/><text x="104" y="312" class="svg-m">red +</text>
+      <path d="M160 330 L160 300 L140 300 L140 290" class="svg-wire" stroke="var(--ink)"/><text x="164" y="312" class="svg-m">black −</text>
+      <!-- DRV -->
+      <rect x="520" y="110" width="220" height="170" class="svg-box"/>
+      <text x="630" y="132" class="svg-lab" text-anchor="middle" font-weight="600">Adafruit DRV2605L breakout</text>
+      <text x="630" y="146" class="svg-m" text-anchor="middle">I²C address 0x5A · 3.3 V logic</text>
+      <g class="svg-lab">
+        <text x="530" y="156">VIN</text><text x="530" y="186">GND</text><text x="530" y="216">SDA</text><text x="530" y="246">SCL</text>
+        <text x="730" y="196" text-anchor="end">OUT+</text><text x="730" y="226" text-anchor="end">OUT−</text>
+        <text x="730" y="266" text-anchor="end" class="svg-m">IN/TRIG unused</text>
+      </g>
+      <!-- wires across ribbon -->
+      <line x1="300" y1="152" x2="520" y2="152" class="svg-wire" stroke="var(--warn)"/>
+      <line x1="300" y1="182" x2="520" y2="182" class="svg-wire" stroke="var(--ink)"/>
+      <line x1="300" y1="212" x2="520" y2="212" class="svg-wire"/>
+      <line x1="300" y1="242" x2="520" y2="242" class="svg-wire" stroke="var(--glow)"/>
+      <text x="380" y="146" class="svg-m" text-anchor="middle">3.3 V</text>
+      <text x="380" y="176" class="svg-m" text-anchor="middle">GND</text>
+      <text x="380" y="206" class="svg-m" text-anchor="middle">SDA</text>
+      <text x="380" y="236" class="svg-m" text-anchor="middle">SCL</text>
+      <!-- LRA -->
+      <rect x="790" y="180" width="90" height="70" class="svg-box"/>
+      <text x="835" y="205" class="svg-lab" text-anchor="middle">LRA</text><text x="835" y="220" class="svg-m" text-anchor="middle">VLV101040A</text><text x="835" y="234" class="svg-m" text-anchor="middle">170 Hz · 2.5 Vrms</text>
+      <line x1="740" y1="192" x2="790" y2="192" class="svg-wire"/><line x1="740" y1="222" x2="790" y2="222" class="svg-wire"/>
+      <text x="765" y="186" class="svg-m" text-anchor="middle">either way</text>
+      <!-- notes -->
+      <text x="520" y="310" class="svg-m">IMU is on the XIAO's internal I²C bus (SDA1/SCL1) and needs</text>
+      <text x="520" y="324" class="svg-m">P1.08 driven HIGH to power it. The Seeed library does this.</text>
+      <text x="520" y="348" class="svg-m">Charger defaults to 50 mA, right for a 100 mAh cell (0.5 C).</text>
+      <text x="520" y="362" class="svg-m">LRA has no polarity; swap OUT+/− freely.</text>
+    </svg>
+    <figcaption>I²C is pulled up on the DRV2605L breakout, so no extra resistors. The breakout's onboard regulator is bypassed when fed 3.3 V; that is fine.</figcaption>
+  </figure>
+
+  <h3>Pin table</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>XIAO pin</th><th>Goes to</th><th>Wire</th><th>Note</th></tr></thead>
+    <tbody>
+      <tr><td><span class="pn">3V3</span></td><td>DRV2605L <span class="pn">VIN</span></td><td>red, through ribbon</td><td>Regulated 3.3 V from the XIAO</td></tr>
+      <tr><td><span class="pn">GND</span></td><td>DRV2605L <span class="pn">GND</span></td><td>black, through ribbon</td><td></td></tr>
+      <tr><td><span class="pn">D4</span> (P0.04)</td><td>DRV2605L <span class="pn">SDA</span></td><td>blue, through ribbon</td><td>Default <code>Wire</code> bus</td></tr>
+      <tr><td><span class="pn">D5</span> (P0.05)</td><td>DRV2605L <span class="pn">SCL</span></td><td>yellow, through ribbon</td><td></td></tr>
+      <tr><td><span class="pn">BAT+</span> / <span class="pn">BAT−</span></td><td>LiPo</td><td>battery leads</td><td>Pads on the underside. Check polarity with a meter.</td></tr>
+      <tr><td>DRV2605L <span class="pn">OUT+</span> / <span class="pn">OUT−</span></td><td>LRA</td><td>two short wires</td><td>Inside the inner disc</td></tr>
+      <tr><td><span class="pn">D6</span></td><td>reserved</td><td></td><td>Light ring data line for the NeoPixel experiment</td></tr>
+    </tbody>
+  </table></div>
+
+  <figure>
+    <svg viewBox="0 0 900 200" role="img" aria-label="System block diagram: puck, phone, watch">
+      <rect x="40" y="50" width="200" height="100" class="svg-box"/><text x="140" y="80" class="svg-lab" text-anchor="middle" font-weight="600">Puck</text>
+      <text x="140" y="100" class="svg-m" text-anchor="middle">accel 25 Hz → stream</text><text x="140" y="114" class="svg-m" text-anchor="middle">haptic envelope ← command</text><text x="140" y="128" class="svg-m" text-anchor="middle">battery level</text>
+      <rect x="350" y="40" width="220" height="120" class="svg-box"/><text x="460" y="70" class="svg-lab" text-anchor="middle" font-weight="600">Phone app</text>
+      <text x="460" y="92" class="svg-m" text-anchor="middle">breath detection</text><text x="460" y="106" class="svg-m" text-anchor="middle">session patterns</text><text x="460" y="120" class="svg-m" text-anchor="middle">position detection</text><text x="460" y="134" class="svg-m" text-anchor="middle">history, HRV coherence</text>
+      <rect x="680" y="50" width="180" height="100" class="svg-box" stroke-dasharray="4 3"/><text x="770" y="80" class="svg-lab" text-anchor="middle" font-weight="600">Watch (later)</text>
+      <text x="770" y="100" class="svg-m" text-anchor="middle">heart rate, HRV</text><text x="770" y="114" class="svg-m" text-anchor="middle">via HealthKit</text>
+      <line x1="240" y1="90" x2="350" y2="90" class="svg-wire"/><text x="295" y="84" class="svg-m" text-anchor="middle">BLE notify</text>
+      <line x1="350" y1="115" x2="240" y2="115" class="svg-wire" stroke="var(--glow)"/><text x="295" y="130" class="svg-m" text-anchor="middle">BLE write</text>
+      <line x1="570" y1="100" x2="680" y2="100" class="svg-thin" stroke-dasharray="4 3"/>
+      <text x="40" y="185" class="svg-m">All the thinking lives in the app. The puck is a sensor and an actuator with a radio, which is why an app developer can build it.</text>
+    </svg>
+  </figure>
+</section>
+
+<section id="haptic">
+  <div class="stage">Haptic design</div>
+  <h2>A swell, not a buzz</h2>
+  <p>Notifications live around 200 to 250 Hz, where skin is most sensitive and the feeling is alerting. Calming devices sit lower and change slowly. In v0 the carrier is fixed at the motor's 170 Hz resonance; what you shape is the amplitude envelope over seconds. In v1 a wideband actuator lets you lower the carrier toward 60 to 120 Hz as well.</p>
+  <figure>
+    <svg viewBox="0 0 900 300" role="img" aria-label="Haptic amplitude envelope for one coherent breath cycle">
+      <text x="20" y="26" class="svg-t" font-weight="600">Envelope for coherent breathing · 5.5 breaths per minute · 10.9 s cycle</text>
+      <line x1="60" y1="230" x2="860" y2="230" class="svg-thin"/><line x1="60" y1="60" x2="60" y2="230" class="svg-thin"/>
+      <text x="56" y="64" class="svg-m" text-anchor="end">100%</text><text x="56" y="148" class="svg-m" text-anchor="end">50%</text><text x="56" y="234" class="svg-m" text-anchor="end">0</text>
+      <!-- x ticks every second: 800px / 10.9s = 73.4 px/s -->
+      <g class="svg-m" text-anchor="middle">
+        <text x="60" y="250">0 s</text><text x="427" y="250">5.45 s</text><text x="860" y="250">10.9 s</text>
+      </g>
+      <!-- envelope: smoothstep up over 0..5.45s, down over 5.45..10.9 -->
+      <path d="M60 230 C 200 230, 290 60, 460 60 C 630 60, 720 230, 860 230" class="svg-glow" stroke-width="3"/>
+      <path d="M60 230 C 200 230, 290 60, 460 60 C 630 60, 720 230, 860 230 L 860 230 L 60 230 Z" fill="var(--glow)" opacity=".12"/>
+      <!-- carrier zoom inset -->
+      <rect x="620" y="70" width="230" height="80" class="svg-box"/>
+      <path d="M630 110 q3 -22 6 0 t6 0 t6 0 t6 0 t6 0 t6 0 t6 0 t6 0 t6 0 t6 0 t6 0 t6 0 t6 0 t6 0 t6 0 t6 0 t6 0 t6 0 t6 0 t6 0 t6 0 t6 0 t6 0 t6 0 t6 0 t6 0 t6 0 t6 0 t6 0 t6 0 t6 0 t6 0 t6 0 t6 0 t6 0" fill="none" stroke="var(--accent)" stroke-width="1"/>
+      <text x="735" y="140" class="svg-m" text-anchor="middle">carrier: 170 Hz sine (v0) · 60–120 Hz (v1)</text>
+      <text x="260" y="100" class="svg-lab">INHALE · rising</text><text x="560" y="200" class="svg-lab" text-anchor="end">EXHALE · fading</text>
+      <text x="60" y="282" class="svg-m">Update amplitude every 20 ms (50 steps per second). Use an ease-in-out curve, never linear: linear ramps feel mechanical.</text>
+    </svg>
+  </figure>
+  <div class="grid2">
+    <div class="panel">
+      <h3 style="margin-top:0">Patterns to ship in v0</h3>
+      <dl class="kv">
+        <dt>Coherent</dt><dd>5.5 bpm, equal in and out, continuous swell (above)</dd>
+        <dt>Box 4-4-4-4</dt><dd>swell in, hold at 35%, fade out, silence; a soft 60 ms tick at each phase change</dd>
+        <dt>4-7-8</dt><dd>short swell, long low hold, long fade; wind-down for sleep</dd>
+        <dt>Follow me</dt><dd>no pacing; haptic mirrors the user's own detected breath so they feel it. Surprisingly powerful</dd>
+      </dl>
+    </div>
+    <div class="panel">
+      <h3 style="margin-top:0">Spec for the premium v1 actuator</h3>
+      <dl class="kv">
+        <dt>Type</dt><dd>wideband X-axis linear motor, 8 to 10 mm class (AAC, Nidec) or a second Vybronics LRA tuned lower</dd>
+        <dt>Range</dt><dd>50 to 250 Hz usable, resonance near 150 to 170 Hz</dd>
+        <dt>Strength</dt><dd>1.5 G or more on a 100 g test mass</dd>
+        <dt>Rise</dt><dd>under 15 ms</dd>
+        <dt>Driver</dt><dd>TI DRV2625 (closed loop, waveform library, low standby) or DRV2624 if you need custom stored waveforms</dd>
+        <dt>Noise</dt><dd>inaudible at breath-cue amplitude, which is a mounting problem more than a motor problem</dd>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<section id="firmware">
+  <div class="stage">Firmware</div>
+  <h2>Arduino, two libraries, about 150 lines</h2>
+  <p>Board package: Seeed's non-mbed <code>Seeed nRF52 Boards</code> (it bundles Adafruit's Bluefruit BLE stack). Libraries: Seeed <code>LSM6DS3</code>, <code>Adafruit_DRV2605</code>. The puck does two things on timers and nothing else.</p>
+  <pre><code>#include &lt;LSM6DS3.h&gt;
+#include &lt;Wire.h&gt;
+#include &lt;Adafruit_DRV2605.h&gt;
+#include &lt;bluefruit.h&gt;
+
+LSM6DS3 imu(I2C_MODE, 0x6A);           // on the XIAO's internal bus
+Adafruit_DRV2605 drv;                  // on Wire (D4/D5), address 0x5A
+
+BLEService        svc  ("7a0b0001-6f3c-4d2e-9b1a-0b7e47b5c001");
+BLECharacteristic imuC ("7a0b0002-6f3c-4d2e-9b1a-0b7e47b5c001");  // notify: int16 ax,ay,az + uint16 seq
+BLECharacteristic hapC ("7a0b0003-6f3c-4d2e-9b1a-0b7e47b5c001");  // write: uint8 amplitude 0..127, or a pattern struct
+BLEBas            bas;                 // standard battery service
+
+volatile uint8_t amp = 0;
+
+void onHaptic(uint16_t, BLECharacteristic*, uint8_t* d, uint16_t n) { if (n) amp = d[0] & 0x7F; }
+
+void setup() {
+  imu.settings.accelSampleRate = 26;   // Hz; breathing is 0.1–0.5 Hz, 26 is plenty
+  imu.settings.accelRange = 2;         // ±2 g
+  imu.settings.gyroEnabled = 0;        // save power
+  imu.begin();
+
+  drv.begin();
+  drv.useLRA();
+  drv.writeRegister8(DRV2605_REG_RATEDV, 0x3E);   // ≈2.5 Vrms for the VLV101040A; tune after auto-cal
+  drv.writeRegister8(DRV2605_REG_CLAMPV, 0x89);   // overdrive clamp
+  drv.setMode(0x07); drv.go(); delay(1200);       // one-time auto-calibration, then
+  drv.setMode(DRV2605_MODE_REALTIME);             // real-time playback: amplitude from a register
+
+  Bluefruit.begin(); Bluefruit.setName("BreathPuck");
+  svc.begin();
+  imuC.setProperties(CHR_PROPS_NOTIFY); imuC.setFixedLen(8); imuC.begin();
+  hapC.setProperties(CHR_PROPS_WRITE | CHR_PROPS_WRITE_WO_RESP); hapC.setWriteCallback(onHaptic); hapC.begin();
+  bas.begin();
+  Bluefruit.Advertising.addService(svc); Bluefruit.Advertising.start(0);
+}
+
+void loop() {
+  static uint32_t tImu = 0, tHap = 0; static uint16_t seq = 0;
+  uint32_t now = millis();
+  if (now - tImu >= 40) {              // 25 Hz stream
+    tImu = now;
+    int16_t p[4] = { (int16_t)(imu.readFloatAccelX()*8192), (int16_t)(imu.readFloatAccelY()*8192),
+                     (int16_t)(imu.readFloatAccelZ()*8192), (int16_t)seq++ };
+    if (Bluefruit.connected()) imuC.notify((uint8_t*)p, 8);
+  }
+  if (now - tHap >= 20) {              // 50 Hz envelope update
+    tHap = now;
+    drv.setRealtimeValue(amp);
+  }
+}</code></pre>
+  <ul>
+    <li><strong>Why amplitude over BLE, not patterns?</strong> For v0 the phone streams the envelope at 50 Hz (one byte per write). It keeps all pattern logic in the app where you can iterate fast. Move patterns into firmware in v1 so the puck keeps pacing if the phone sleeps.</li>
+    <li><strong>Auto-calibration.</strong> Run it once with the motor glued in its final cup, because mounting changes resonance. Store the result registers in flash if you want to skip it on boot.</li>
+    <li><strong>Power.</strong> The nRF52840 with a 25 Hz stream averages under 2 mA. The motor at 40% average envelope draws about 30 mA. A 100 mAh cell gives roughly three to four hours of sessions.</li>
+    <li><strong>Flashing.</strong> USB-C, double-tap reset for the bootloader, upload from Arduino IDE. No programmer needed.</li>
+  </ul>
+</section>
+
+<section id="app">
+  <div class="stage">Phone app</div>
+  <h2>Where the product actually lives</h2>
+  <p>SwiftUI with CoreBluetooth, or Flutter with <code>flutter_blue_plus</code>. Either way the app has four jobs: connect, detect breath, run a session, and remember it.</p>
+  <figure>
+    <svg viewBox="0 0 900 150" role="img" aria-label="Breath detection pipeline">
+      <g class="svg-lab">
+        <rect x="20" y="40" width="130" height="60" class="svg-box"/><text x="85" y="66" text-anchor="middle">accel 25 Hz</text><text x="85" y="82" text-anchor="middle" class="svg-m">3 axes</text>
+        <rect x="170" y="40" width="130" height="60" class="svg-box"/><text x="235" y="66" text-anchor="middle">remove gravity</text><text x="235" y="82" text-anchor="middle" class="svg-m">subtract 3 s mean</text>
+        <rect x="320" y="40" width="130" height="60" class="svg-box"/><text x="385" y="66" text-anchor="middle">low-pass 0.6 Hz</text><text x="385" y="82" text-anchor="middle" class="svg-m">2nd-order Butterworth</text>
+        <rect x="470" y="40" width="130" height="60" class="svg-box"/><text x="535" y="66" text-anchor="middle">pick breath axis</text><text x="535" y="82" text-anchor="middle" class="svg-m">PCA over 10 s</text>
+        <rect x="620" y="40" width="130" height="60" class="svg-box"/><text x="685" y="66" text-anchor="middle">peaks + troughs</text><text x="685" y="82" text-anchor="middle" class="svg-m">min 1.5 s apart</text>
+        <rect x="770" y="40" width="110" height="60" class="svg-box"/><text x="825" y="66" text-anchor="middle">bpm, phase</text><text x="825" y="82" text-anchor="middle" class="svg-m">+ confidence</text>
+      </g>
+      <g class="svg-thin"><line x1="150" y1="70" x2="170" y2="70"/><line x1="300" y1="70" x2="320" y2="70"/><line x1="450" y1="70" x2="470" y2="70"/><line x1="600" y1="70" x2="620" y2="70"/><line x1="750" y1="70" x2="770" y2="70"/></g>
+      <text x="20" y="130" class="svg-m">Gate: if raw acceleration variance over 2 s exceeds a threshold the wearer is moving; show "hold still" and pause detection. Confidence = band power in 0.1–0.5 Hz over total power.</text>
+    </svg>
+  </figure>
+  <div class="grid2">
+    <div class="panel">
+      <h3 style="margin-top:0">BLE contract</h3>
+      <dl class="kv">
+        <dt>Service</dt><dd>custom 128-bit UUID, advertised</dd>
+        <dt>IMU</dt><dd>notify, 8 bytes: ax, ay, az as int16 at 8192 counts per g, plus a sequence number to spot dropped packets</dd>
+        <dt>Haptic</dt><dd>write without response, 1 byte amplitude at 50 Hz in v0; a 6-byte pattern struct in v1</dd>
+        <dt>Battery</dt><dd>standard Battery Service 0x180F</dd>
+      </dl>
+    </div>
+    <div class="panel">
+      <h3 style="margin-top:0">Screens for v0</h3>
+      <ul style="margin:0">
+        <li>Connect, with battery and "where is it clipped" readout</li>
+        <li>Live breath trace with detected peaks, bpm, confidence</li>
+        <li>Session: pick a pattern, see the swell, feel it, timer</li>
+        <li>Summary: average bpm, time in target, a trace to scroll</li>
+      </ul>
+    </div>
+  </div>
+  <div class="callout good"><strong>Build the algorithm before the hardware arrives.</strong> Use <code>CMMotionManager</code> at 25 Hz with the phone lying on your chest. Same pipeline, same data shape. When the puck arrives you swap the data source and nothing else changes.</div>
+</section>
+
+<section id="plan">
+  <div class="stage">Build order</div>
+  <h2>Four weeks, in order</h2>
+  <ol class="steps">
+    <li><strong>Day 1. Order everything</strong> in the core kit. Digi-Key ships next day; K&amp;J and Adafruit in two to three days. Print the two wear-test dummies, glue magnets in, and wear them on a shirt for a day. This answers weight, magnet strength and the ribbon length before any electronics exist.</li>
+    <li><strong>Week 1. App first.</strong> Breath detection from the phone's own accelerometer on your chest. Target: your bpm count matches a manual count within one breath per minute over three minutes, seated. Build the session screen and the envelope generator while you are at it.</li>
+    <li><strong>Week 2. Desk prototype.</strong> Flash the firmware. Wire XIAO to DRV2605L to LRA on a desk with the LRA taped to a mint tin so you can feel it. Get a swell you like. Then stream IMU data to the app and swap the data source. Don't glue anything yet.</li>
+    <li><strong>Week 3. Into the shells.</strong> Print cups and lids, wire the ribbon, glue magnets and motor, run auto-calibration with the motor in place, close it up. Wear it for a real session.</li>
+    <li><strong>Week 4. Other people.</strong> Five friends, five-minute coherent session each, eyes closed. Count their breaths yourself. Ask one question afterwards: would you wear this again tomorrow? That answer decides whether v1 exists.</li>
+  </ol>
+
+  <h3>Tests that must fail when they should</h3>
+  <p>A test that passes against broken code is worse than none. Each of these pairs a positive check with its inverse.</p>
+  <ul class="check">
+    <li><strong>Breath detection:</strong> seated normal breathing shows 10 to 18 bpm; then hold your breath for 15 s and the trace must flatten and the bpm must drop out, not hold the last value.</li>
+    <li><strong>Motion gate:</strong> stand up and walk; the app must say "hold still" within 2 s and must not report breaths while walking.</li>
+    <li><strong>Off-body:</strong> puck on the desk shows confidence near zero and no breaths. If it detects breathing on a desk, your threshold is wrong.</li>
+    <li><strong>Position detection:</strong> move the puck from neckline to sleeve; the app must switch to pace-only. Move it back; sensing resumes within 10 s.</li>
+    <li><strong>Haptic phase:</strong> blindfolded tester follows the swell and reports inhale versus exhale; agreement must beat 90% over 20 breaths. Then invert the envelope in software and check they follow the inversion, proving they feel the device and not their own rhythm.</li>
+    <li><strong>Dropped packets:</strong> walk the phone to another room until BLE drops; sequence gaps are logged and the trace shows a gap, not a straight line.</li>
+    <li><strong>Battery:</strong> full charge, run coherent sessions back to back; log the time to shutdown. Expect three hours or more. Charger current measured at the USB port stays near 50 mA.</li>
+    <li><strong>Magnets:</strong> jog in place for 30 s wearing it on a t-shirt; it must not slip more than a centimetre.</li>
+  </ul>
+</section>
+
+<section id="risks">
+  <div class="stage">Open risks</div>
+  <h2>What might not work, and the fallback</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>Risk</th><th>How you will know</th><th>Fallback</th></tr></thead>
+    <tbody>
+      <tr><td>Breathing signal too weak at the neckline</td><td>Confidence below 0.3 seated, while the hem position reads well</td><td>Ship with the hem as the sensing position for sessions and the neckline as pace-only; or lengthen the ribbon so the inner disc sits lower on the breastbone</td></tr>
+      <tr><td>Haptic muffled through the cup wall</td><td>Swell feels faint at 100% with the motor glued in</td><td>Thin the skin wall to 0.8 mm resin, or cut a window and let the motor's own face touch skin through a silicone pad</td></tr>
+      <tr><td>Audible buzz</td><td>You hear it in a quiet room</td><td>It is almost always a loose part. Re-glue the motor, add a foam shim behind the board</td></tr>
+      <tr><td>36 mm feels too large</td><td>Wear-test dummies tell you on day one</td><td>Nothing to do in v0; v1's custom board gets to 32 mm, as drawn in the dummies</td></tr>
+      <tr><td>Two boards do not fit the cavity</td><td>Dry fit in week 3</td><td>Print at 38 mm. The STL generator script scales with one number</td></tr>
+      <tr><td>Magnets too weak on fleece, too strong on silk</td><td>Slips, or the fabric puckers</td><td>Swap D81 for D82 in the outer disc only; the ribbon carries the load so a modest hold is enough</td></tr>
+      <tr><td>Battery damage</td><td>Any puffing, heat or smell</td><td>Stop. Never puncture or short a cell. Keep the protected cell, keep the 50 mA charge rate</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout"><strong>Claims.</strong> "Helps you slow your breathing" is a wellness product. "Treats anxiety" or "lowers blood pressure" is a medical device with regulatory consequences. Write the copy for v0 as the former and keep it there until you have a reason and a lawyer.</div>
+</section>
+
+<section id="production">
+  <div class="stage">After v0</div>
+  <h2>Path to a real product</h2>
+  <p>Only after five strangers want one. Each step below is a contract engineer's job for a few weeks, not a thing to learn alone; what you own is the spec, the firmware and the app.</p>
+  <h3>v1 custom board, per-unit parts at low volume</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Function</th><th>Part</th><th>Why</th><th class="num">≈ Each</th></tr></thead>
+    <tbody>
+      <tr><td>Radio + MCU</td><td><a href="https://www.sparkfun.com/nordic-nrf52840-ble-module-mdbt50q-1mv2.html">Raytac MDBT50Q-1MV2</a></td><td>Pre-certified nRF52840 module: FCC, IC, CE and more are done for the radio. Same chip as the XIAO, so firmware ports unchanged.</td><td class="num">$8.95</td></tr>
+      <tr><td>Haptic driver</td><td><a href="https://www.ti.com/product/DRV2625">TI DRV2625</a></td><td>Closed loop, built-in waveform library, very low standby current. DRV2624 if you need custom stored waveforms.</td><td class="num">$2</td></tr>
+      <tr><td>Actuator</td><td>Vybronics VG1040003D, or an AAC / Nidec X-axis wideband motor sampled via the maker</td><td>Wideband lets the carrier drop to the calming range</td><td class="num">$4 to 8</td></tr>
+      <tr><td>Motion</td><td>ST LSM6DSO or Bosch BMA400</td><td>BMA400 runs on microamps, ideal if the puck must wake on being picked up</td><td class="num">$2 to 3</td></tr>
+      <tr><td>Charger + regulator</td><td>TI BQ25101 + TPS7A02</td><td>Same charger family the XIAO uses</td><td class="num">$1.50</td></tr>
+      <tr><td>Battery</td><td>LiPo 401230, 100 mAh, with protection</td><td>Moves to the inner disc in v1, which thins the outer one</td><td class="num">$3</td></tr>
+      <tr><td>Light ring</td><td>6 × SK6805-EC10 mini addressable LEDs + printed light pipe</td><td>Only if the NeoPixel experiment earned it</td><td class="num">$1</td></tr>
+      <tr><td>Charging contacts</td><td>2 pogo pins in the dock, 2 brass pads on the puck</td><td>Same magnets locate the dock</td><td class="num">$1</td></tr>
+      <tr><td>PCB, 4-layer, Ø30, assembled</td><td>JLCPCB</td><td>At 10 units; drops to a few dollars at 1,000</td><td class="num">$15</td></tr>
+      <tr><td>Enclosure</td><td>SLA resin prototypes, then injection moulding</td><td>Tooling for two small cups runs $5k to $15k; wait for volume</td><td class="num">$5 to 15</td></tr>
+    </tbody>
+  </table></div>
+  <h3>The non-part costs</h3>
+  <ul>
+    <li><strong>Electrical engineer, contract:</strong> schematic and layout for the board above, two spins, about four to six weeks of work.</li>
+    <li><strong>Certification:</strong> with a pre-certified module you test the finished product as an unintentional radiator: FCC Part 15B and CE EMC, typically $3k to $8k at a test lab. UN38.3 for the battery to ship by air, about $1k to $2k. Bluetooth SIG listing fee if you use the Bluetooth name and logo.</li>
+    <li><strong>Industrial design:</strong> the ribbon, the finish, the dock. This is what makes it a product people photograph. Budget a few weeks of a designer's time after v0 proves the behaviour.</li>
+    <li><strong>Stage 0 still applies.</strong> An Apple Watch version of the pacing and HRV features costs nothing in hardware and reaches people who will never clip a puck to a shirt. Ship it alongside.</li>
+  </ul>
+</section>
+
+<footer id="sources">
+  <strong>Sources checked for parts and prices, 30 October 2026</strong>
+  <ul>
+    <li><a href="https://robotshop.com/products/seeed-studio-xiao-nrf52840-sense">RobotShop: XIAO nRF52840 Sense, $16.82</a></li>
+    <li><a href="https://wiki.seeedstudio.com/XIAO-BLE-Sense-IMU-Usage/">Seeed wiki: XIAO BLE Sense IMU usage</a></li>
+    <li><a href="https://learn.adafruit.com/adafruit-drv2605-haptic-controller-breakout">Adafruit Learn: DRV2605L breakout guide</a></li>
+    <li><a href="https://www.digikey.com/en/products/detail/vybronics-inc/VLV101040A/12323590">Digi-Key: Vybronics VLV101040A, 170 Hz, 2.75 G, $6.32</a></li>
+    <li><a href="https://www.digikey.com/en/products/detail/vybronics-inc/VG1040003D/10285886">Digi-Key: Vybronics VG1040003D</a></li>
+    <li><a href="https://www.precisionmicrodrives.com/products/fb7e332c-199f-4922-ac22-857688f22351/c10-100-10mm-coin-lra">Precision Microdrives: C10-100 coin LRA, 175 Hz</a></li>
+    <li><a href="https://shop.espruino.com/puckjs">Espruino: Puck.js v2.1, £32.40</a></li>
+    <li><a href="https://www.adafruit.com/product/1570">Adafruit: LiPo 100 mAh (1570)</a></li>
+    <li><a href="https://www.kjmagnetics.com/d81-n52-neodymium-disc-magnet">K&amp;J Magnetics: D81-N52</a></li>
+    <li><a href="https://www.adafruit.com/product/1643">Adafruit: NeoPixel Ring 12, 36.8 mm OD</a></li>
+    <li><a href="https://www.adafruit.com/product/2428">Adafruit: pogo pins 10 pack</a></li>
+    <li><a href="https://www.ti.com/product/DRV2625">TI: DRV2625 haptic driver</a></li>
+    <li><a href="https://www.sparkfun.com/nordic-nrf52840-ble-module-mdbt50q-1mv2.html">SparkFun: Raytac MDBT50Q-1MV2, $8.95</a></li>
+    <li><a href="https://jlc3dp.com/">JLC3DP: resin printing from $0.30 per part</a></li>
+    <li><a href="https://us.store.bambulab.com/products/a1-mini">Bambu Lab: A1 mini, $299 list</a></li>
+  </ul>
+  <p>Amazon links are searches for commodity items; pick any well-reviewed listing. Adafruit list prices for 2305 and 1570 are from the product pages; retailer snapshots elsewhere differ by a dollar or two.</p>
+</footer>
+</main>
+</div>
+
+</body>
+</html>
