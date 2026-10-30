@@ -261,6 +261,19 @@ li {
 	margin-bottom: 16px;
 }
 
+/* apps listed under each tool category */
+.tools {
+	row-gap: 40px;
+}
+
+.tools .apps {
+	font-family: var(--head);
+	font-weight: 600;
+	font-size: 0.95rem;
+	color: var(--ink-soft);
+	margin: -6px 0 10px;
+}
+
 .band-black .col p,
 .band-black .col li {
 	color: var(--on-black-soft);
