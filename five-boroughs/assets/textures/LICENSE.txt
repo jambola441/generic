@@ -1,0 +1,6 @@
+Five Boroughs viewer textures (512x512 tileable, resized and converted from the 1K-JPG sets):
+  asphalt_l.jpg / asphalt_n.jpg   <- ambientCG "Asphalt012" (Color -> greyscale detail, NormalGL), CC0 1.0
+                                     https://ambientcg.com/view?id=Asphalt012
+  concrete_l.jpg / concrete_n.jpg <- ambientCG "Concrete016" (Color -> greyscale detail, NormalGL), CC0 1.0
+                                     https://ambientcg.com/view?id=Concrete016
+ambientCG assets are public domain under CC0 1.0 Universal: https://docs.ambientcg.com/license/
