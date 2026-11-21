@@ -13,6 +13,7 @@
 		href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap"
 		rel="stylesheet">
 	<link rel="stylesheet" href="site.css">
+	<script data-goatcounter="https://generictech.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </head>
 
 <body>
@@ -197,6 +198,20 @@
 			var params = new URLSearchParams(location.search);
 			var source = params.get('utm_source') || (document.referrer ? new URL(document.referrer).hostname : 'direct');
 
+			// Visitor counts (GoatCounter: no cookies, no personal data). Events show up next to page views.
+			function track(path, title) {
+				try {
+					if (window.goatcounter && window.goatcounter.count) {
+						window.goatcounter.count({ path: path + '-' + source, title: title, event: true });
+					}
+				} catch (e) { /* counting never blocks the form */ }
+			}
+			window.addEventListener('message', function (e) {
+				if (e.origin === 'https://calendly.com' && e.data && e.data.event === 'calendly.event_scheduled') {
+					track('call-booked', 'Intro call booked');
+				}
+			});
+
 			function val(name) { return (form.elements[name] && form.elements[name].value || '').trim(); }
 			function checked(name) {
 				return Array.prototype.slice.call(form.querySelectorAll('input[name="' + name + '"]:checked'))
@@ -262,6 +277,8 @@
 				} else if (data.size === 'Just me') {
 					document.getElementById('book-note').textContent = 'Thanks. If it’s just you, Anthropic’s free Claude for Small Business workshops are often a better first step. You’re still welcome to book a time with us.';
 				}
+
+				track('intake-submitted', 'Intake form submitted');
 
 				form.hidden = true;
 				document.getElementById('book').hidden = false;
