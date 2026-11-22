@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Tell us about your business · generic.tech</title>
+	<title>Book a free call · generic.tech</title>
 	<meta name="description"
 		content="Tell generic.tech about your business, then book a free 30-minute call about setting up AI for your team.">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -32,9 +32,8 @@
 
 	<header class="band band-sand hero hero-short">
 		<div class="wrap">
-			<h1>Tell us about your business</h1>
-			<p class="lede">Answer a few questions, then pick a time for a free 30-minute call. It takes about two
-				minutes, and it means we can skip the small talk and get straight to your business.</p>
+			<h1>Book a free 30-minute call</h1>
+			<p class="lede">Three quick questions, then pick a time. We'll ask the rest on the call.</p>
 		</div>
 	</header>
 
@@ -57,110 +56,17 @@
 					</label>
 				</div>
 
-				<div class="row-2">
-					<label>Business name
-						<input type="text" name="business" autocomplete="organization" required>
-					</label>
-					<label><span>Website or Instagram <span class="opt">optional</span></span>
-						<input type="text" name="website" placeholder="example.com or @handle">
-					</label>
-				</div>
-
-				<label>What does your business do?
-					<textarea name="what" rows="2" required
-						placeholder="For example: residential renovation contractor in Park Slope"></textarea>
+				<label>Business name
+					<input type="text" name="business" autocomplete="organization" required>
 				</label>
 
-				<div class="row-2">
-					<label>Industry
-						<select name="industry" required>
-							<option value="">Choose one</option>
-							<option>Law</option>
-							<option>Accounting or bookkeeping</option>
-							<option>Insurance</option>
-							<option>Real estate</option>
-							<option>Contractor or home services</option>
-							<option>Agency</option>
-							<option>Retail or e-commerce</option>
-							<option>Restaurant or hospitality</option>
-							<option>Other</option>
-						</select>
-					</label>
-					<label>How many people work there?
-						<select name="size" required>
-							<option value="">Choose one</option>
-							<option>Just me</option>
-							<option>2 to 5</option>
-							<option>6 to 15</option>
-							<option>16 to 50</option>
-							<option>More than 50</option>
-						</select>
-					</label>
-				</div>
-
-				<fieldset>
-					<legend>How does your team use AI today?</legend>
-					<label class="choice"><input type="radio" name="ai_use" value="Not at all" required> Not at
-						all</label>
-					<label class="choice"><input type="radio" name="ai_use"
-							value="A few people use ChatGPT or Claude on their own"> A few people use ChatGPT or Claude
-						on their own</label>
-					<label class="choice"><input type="radio" name="ai_use" value="We pay for a company account"> We pay
-						for a company account</label>
-					<label class="choice"><input type="radio" name="ai_use" value="We already have some automations">
-						We already have some automations</label>
-				</fieldset>
-
-				<fieldset>
-					<legend>Which software do you use? <span class="opt">optional</span></legend>
-					<div class="checks">
-						<label class="choice"><input type="checkbox" name="software" value="Google Workspace"> Google
-							Workspace</label>
-						<label class="choice"><input type="checkbox" name="software" value="Microsoft 365"> Microsoft
-							365</label>
-						<label class="choice"><input type="checkbox" name="software" value="QuickBooks">
-							QuickBooks</label>
-						<label class="choice"><input type="checkbox" name="software" value="Xero"> Xero</label>
-						<label class="choice"><input type="checkbox" name="software" value="HubSpot"> HubSpot</label>
-						<label class="choice"><input type="checkbox" name="software" value="Salesforce">
-							Salesforce</label>
-						<label class="choice"><input type="checkbox" name="software" value="Shopify"> Shopify</label>
-						<label class="choice"><input type="checkbox" name="software" value="Square"> Square</label>
-						<label class="choice"><input type="checkbox" name="software" value="Other"> Other</label>
-					</div>
-				</fieldset>
-
-				<label>Which task takes the most time each week?
-					<textarea name="task" rows="3" required
-						placeholder="For example: writing quotes after site visits, about 6 hours a week"></textarea>
+				<label><span>What eats the most time each week? <span class="opt">optional</span></span>
+					<textarea name="task" rows="2"
+						placeholder="For example: writing quotes after site visits"></textarea>
 				</label>
 
-				<div class="row-3">
-					<label>Do you handle patient health information?
-						<select name="phi" required>
-							<option value="">Choose one</option>
-							<option>No</option>
-							<option>Yes</option>
-						</select>
-					</label>
-					<label>When would you start?
-						<select name="timing" required>
-							<option value="">Choose one</option>
-							<option>This month</option>
-							<option>In 1 to 3 months</option>
-							<option>Just exploring</option>
-						</select>
-					</label>
-					<label>Budget
-						<select name="budget" required>
-							<option value="">Choose one</option>
-							<option>Under $2,500</option>
-							<option>$2,500 to $6,000</option>
-							<option>$6,000 to $15,000</option>
-							<option>Not sure yet</option>
-						</select>
-					</label>
-				</div>
+				<label class="choice"><input type="checkbox" name="phi" value="Yes"> We handle patient health
+					information</label>
 
 				<p class="form-error" id="err" hidden>Please fill in the highlighted questions.</p>
 
@@ -234,28 +140,22 @@
 				if (bad.length) { bad[0].focus(); return; }
 
 				var data = {
-					name: val('name'), email: val('email'), business: val('business'), website: val('website'),
-					what: val('what'), industry: val('industry'), size: val('size'),
-					ai_use: checked('ai_use')[0] || '', software: checked('software').join(', '),
-					task: val('task'), phi: val('phi'), timing: val('timing'), budget: val('budget'),
+					name: val('name'), email: val('email'), business: val('business'),
+					task: val('task'), phi: checked('phi').length ? 'Yes' : 'No',
 					source: source
 				};
 
 				var summary = [
-					data.business + (data.website ? ' (' + data.website + ')' : ''),
-					data.what,
-					'Industry: ' + data.industry + '. Team: ' + data.size + '.',
-					'AI today: ' + data.ai_use + '.',
-					data.software ? 'Software: ' + data.software + '.' : '',
-					'Biggest time cost: ' + data.task,
-					'Patient health info: ' + data.phi + '. Start: ' + data.timing + '. Budget: ' + data.budget + '.'
+					data.business,
+					data.task ? 'Biggest time cost: ' + data.task : '',
+					data.phi === 'Yes' ? 'Handles patient health information.' : ''
 				].filter(Boolean).join('\n').slice(0, 1500);
 
 				var btn = document.getElementById('go');
 				btn.disabled = true; btn.textContent = 'One moment';
 
 				var payload = Object.assign({
-					_subject: 'Intake: ' + data.business + ' (' + data.size + ', ' + data.industry + ')',
+					_subject: 'Intake: ' + data.business,
 					_template: 'table', _captcha: 'false'
 				}, data);
 
@@ -275,8 +175,6 @@
 
 				if (data.phi === 'Yes') {
 					document.getElementById('book-note').textContent = 'Thanks. Patient health information needs a different setup from our standard packages. Book a time and we’ll go through what’s possible.';
-				} else if (data.size === 'Just me') {
-					document.getElementById('book-note').textContent = 'Thanks. If it’s just you, Anthropic’s free Claude for Small Business workshops are often a better first step. You’re still welcome to book a time with us.';
 				}
 
 				track('intake-submitted', 'Intake form submitted');
